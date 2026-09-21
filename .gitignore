@@ -43,3 +43,7 @@ next-env.d.ts
 # raw image downloads (regenerate with scripts/fetch-images.mjs)
 .cache/
 .playwright-cli/
+
+# exported stills for the portfolio (regenerate with ?still=)
+stills/
+PORTFOLIO-FEEDBACK.md

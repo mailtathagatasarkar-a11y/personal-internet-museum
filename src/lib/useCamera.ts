@@ -1,24 +1,8 @@
 "use client";
 
 import { useCallback, useEffect, useMemo, useRef } from "react";
-import {
-  animate,
-  useMotionTemplate,
-  useMotionValue,
-  type AnimationPlaybackControls,
-  type MotionValue,
-} from "motion/react";
-import {
-  MAX_SCALE,
-  clamp,
-  constrain,
-  lerp,
-  toWorld,
-  worldCenter,
-  zoomAt,
-  type Camera,
-  type Size,
-} from "./camera";
+import { animate, useMotionTemplate, useMotionValue, type AnimationPlaybackControls, type MotionValue } from "motion/react";
+import { MAX_SCALE, clamp, constrain, lerp, toWorld, worldCenter, zoomAt, type Camera, type Size } from "./camera";
 
 export interface CameraApi {
   /** Motion values driving the world transform; never re-render React. */
@@ -128,10 +112,7 @@ export function useCamera(opts: Options): CameraApi {
     [get, set, stop],
   );
 
-  const applyUser = useCallback(
-    (c: Camera) => set(constrain(c, optsRef.current.viewport(), optsRef.current.world)),
-    [set],
-  );
+  const applyUser = useCallback((c: Camera) => set(constrain(c, optsRef.current.viewport(), optsRef.current.world)), [set]);
 
   const bind = useCallback(
     (el: HTMLElement | null) => {
@@ -218,11 +199,7 @@ export function useCamera(opts: Options): CameraApi {
           prev = now;
           const decay = Math.exp(-dt / 300);
           const cam = get();
-          const next = constrain(
-            { ...cam, x: cam.x + v.x * dt, y: cam.y + v.y * dt },
-            optsRef.current.viewport(),
-            optsRef.current.world,
-          );
+          const next = constrain({ ...cam, x: cam.x + v.x * dt, y: cam.y + v.y * dt }, optsRef.current.viewport(), optsRef.current.world);
           if (next.x !== cam.x + v.x * dt) v.x = 0;
           if (next.y !== cam.y + v.y * dt) v.y = 0;
           set(next);

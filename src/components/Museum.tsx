@@ -2,7 +2,18 @@
 
 import { useCallback, useEffect, useMemo, useRef, useState } from "react";
 import { AnimatePresence, motion, useMotionValueEvent } from "motion/react";
-import { PLACED, TERRITORY_PLACES, WORLD, placedById, territoryById, territoryPlaceById, threadById } from "@/data/museum";
+import {
+  GRID,
+  PLACED,
+  TERRITORY_PLACES,
+  WORLD,
+  cellX,
+  cellY,
+  placedById,
+  territoryById,
+  territoryPlaceById,
+  threadById,
+} from "@/data/museum";
 import type { TerritoryId } from "@/data/territories";
 import { centerOn, clamp, fitRect, fitScale, frameObject, toScreen, union, worldCenter, zoomAt, type Size } from "@/lib/camera";
 import { useCamera } from "@/lib/useCamera";
@@ -24,7 +35,32 @@ const smooth = (a: number, b: number, v: number) => {
   return t * t * (3 - 2 * t);
 };
 
-const rectOf = (o: { left: number; top: number; w: number; h: number }) => ({ left: o.left, top: o.top, w: o.w, h: o.h });
+const rectOf = (o: { left: number; top: number; w: number; h: number }) => ({
+  left: o.left,
+  top: o.top,
+  w: o.w,
+  h: o.h,
+});
+
+/** Camera for an exported still. Regions are in cells; see layout.ts. */
+function stillFrame(mode: string, vp: Size, home: ReturnType<typeof centerOn>, minS: number) {
+  const cell = (c: number, r: number, w: number, h: number) => ({
+    left: cellX(c),
+    top: cellY(r),
+    w: w * GRID.cell,
+    h: h * GRID.cell,
+  });
+  switch (mode) {
+    // The share card: the top-left of the floor, first line of the manifesto legible.
+    case "og":
+      return fitRect(cell(-0.3, -0.25, 13.6, 7.15), vp, 0, minS * 0.5, 3);
+    // A hover frame: a few objects with their labels, at reading zoom.
+    case "close":
+      return fitRect(cell(1.6, 3.55, 5.8, 3.62), vp, 0, minS * 0.5, 3);
+    default:
+      return home;
+  }
+}
 
 export default function Museum() {
   const viewportRef = useRef<HTMLDivElement>(null);
@@ -63,9 +99,14 @@ export default function Museum() {
   const [inspecting, setInspecting] = useState(false);
   const [tier, setTier] = useState<Tier>("far");
   const [trail, setTrail] = useState<string[]>([]);
-  const [search, setSearch] = useState<{ open: boolean; query: string }>({ open: false, query: "" });
+  const [search, setSearch] = useState<{ open: boolean; query: string }>({
+    open: false,
+    query: "",
+  });
   const [legendOpen, setLegendOpen] = useState(false);
   const [ready, setReady] = useState(false);
+  /** Render for a still: no HUD, no entry flight, a fixed frame. `?still=home|og|close`. */
+  const [still, setStill] = useState<string | null>(null);
   const [place, setPlace] = useState<{ label: string; id: TerritoryId | null }>({ label: "the museum", id: null });
   const [scaleReadout, setScaleReadout] = useState(0.2);
 
@@ -104,7 +145,10 @@ export default function Museum() {
     onDoubleClick: (w) => {
       const cam = camera.get();
       const p = toScreen(cam, w.x, w.y);
-      camera.flyTo(zoomAt(cam, p.x, p.y, 2.2, minScale()), { duration: 0.7, lift: false });
+      camera.flyTo(zoomAt(cam, p.x, p.y, 2.2, minScale()), {
+        duration: 0.7,
+        lift: false,
+      });
     },
   });
 
@@ -139,6 +183,16 @@ export default function Museum() {
     if (!measured) return;
     const vp = vpRef.current;
     const params = new URLSearchParams(window.location.search);
+    const stillMode = params.get("still");
+    if (stillMode) {
+      touchedRef.current = true;
+      camera.set(stillFrame(stillMode, vp, homeCamera(), minScale()));
+      const timer = setTimeout(() => {
+        setStill(stillMode);
+        setReady(true);
+      }, 0);
+      return () => clearTimeout(timer);
+    }
     const o = params.get("o");
     const t = params.get("t");
     if (o && placedById[o]) {
@@ -206,7 +260,10 @@ export default function Museum() {
       raf = null;
       const cam = camera.get();
       const c = worldCenter(cam, vpRef.current);
-      const ranked = TERRITORY_PLACES.map((t) => ({ t, d: Math.hypot(t.center.x - c.cx, t.center.y - c.cy) })).sort((a, b) => a.d - b.d);
+      const ranked = TERRITORY_PLACES.map((t) => ({
+        t,
+        d: Math.hypot(t.center.x - c.cx, t.center.y - c.cy),
+      })).sort((a, b) => a.d - b.d);
       const [a, b] = ranked;
       if (cam.s < minScale() * 1.35) setPlace({ label: "the museum", id: null });
       else if (b && b.d < a.d * 1.3) setPlace({ label: `${a.t.name} · ${b.t.name}`, id: a.t.id });
@@ -256,9 +313,15 @@ export default function Museum() {
         if (next) {
           const cam = camera.get();
           const p = toScreen(cam, o.x, o.y);
-          camera.flyTo(zoomAt(cam, p.x, p.y, 1.9, minScale()), { duration: 0.7, lift: false });
+          camera.flyTo(zoomAt(cam, p.x, p.y, 1.9, minScale()), {
+            duration: 0.7,
+            lift: false,
+          });
         } else {
-          camera.flyTo(frameObject(rectOf(o), vp, minScale()), { duration: 0.7, lift: false });
+          camera.flyTo(frameObject(rectOf(o), vp, minScale()), {
+            duration: 0.7,
+            lift: false,
+          });
         }
         return;
       }
@@ -335,7 +398,10 @@ export default function Museum() {
       const p = toScreen(cam, o.x, o.y);
       const inView = p.x > 80 && p.x < vp.w - 80 && p.y > 80 && p.y < vp.h - 80;
       if (inView && cam.s >= 0.3) return;
-      camera.flyTo(centerOn(vp, o.x, o.y, Math.max(cam.s, 0.45)), { duration: 0.6, lift: false });
+      camera.flyTo(centerOn(vp, o.x, o.y, Math.max(cam.s, 0.45)), {
+        duration: 0.6,
+        lift: false,
+      });
     },
     [camera],
   );
@@ -472,7 +538,10 @@ export default function Museum() {
     (id: string) => {
       if (selected && !previewThread && relatedIds.has(id)) return { text: relationKind.get(id)! };
       if ((previewThread || (!selected && thread)) && memberIndex.has(id) && id !== selected?.id) {
-        return { n: String(memberIndex.get(id)! + 1).padStart(2, "0"), text: placedById[id].title };
+        return {
+          n: String(memberIndex.get(id)! + 1).padStart(2, "0"),
+          text: placedById[id].title,
+        };
       }
       return null;
     },
@@ -502,7 +571,11 @@ export default function Museum() {
           data-mode={mode}
           data-tier={tier}
           data-preview={hoverTerritory ?? ""}
-          style={{ width: WORLD.width, height: WORLD.height, transform: camera.transform }}
+          style={{
+            width: WORLD.width,
+            height: WORLD.height,
+            transform: camera.transform,
+          }}
           initial={false}
           animate={{ opacity: ready ? 1 : 0 }}
           transition={{ duration: 1.4, ease: "easeOut" }}
@@ -537,27 +610,31 @@ export default function Museum() {
 
       <div className="grain" aria-hidden="true" />
 
-      <Masthead large={tier === "far" && !selected && !thread} narrow={narrow} onReset={reset} />
-      <Trail ids={narrow ? trail.slice(-2) : trail} current={selectedId} onSelect={select} />
-      <Readout
-        place={selected ? territoryById[selected.territory].name : place.label}
-        placeId={selected ? selected.territory : place.id}
-        scale={scaleReadout}
-        narrow={narrow}
-        onGo={goToTerritory}
-      />
-      <Controls
-        onReset={reset}
-        onSearch={() => (search.open ? setSearch({ open: false, query: "" }) : openSearch())}
-        onDrift={drift}
-        onZoom={zoom}
-        onHelp={() => setLegendOpen((v) => !v)}
-        searchOpen={search.open}
-        legendOpen={legendOpen}
-        narrow={narrow}
-      />
+      {still ? null : (
+        <>
+          <Masthead large={tier === "far" && !selected && !thread} narrow={narrow} onReset={reset} />
+          <Trail ids={narrow ? trail.slice(-2) : trail} current={selectedId} onSelect={select} />
+          <Readout
+            place={selected ? territoryById[selected.territory].name : place.label}
+            placeId={selected ? selected.territory : place.id}
+            scale={scaleReadout}
+            narrow={narrow}
+            onGo={goToTerritory}
+          />
+          <Controls
+            onReset={reset}
+            onSearch={() => (search.open ? setSearch({ open: false, query: "" }) : openSearch())}
+            onDrift={drift}
+            onZoom={zoom}
+            onHelp={() => setLegendOpen((v) => !v)}
+            searchOpen={search.open}
+            legendOpen={legendOpen}
+            narrow={narrow}
+          />
 
-      <AnimatePresence>{legendOpen && <Legend key="legend" onClose={() => setLegendOpen(false)} />}</AnimatePresence>
+          <AnimatePresence>{legendOpen && <Legend key="legend" onClose={() => setLegendOpen(false)} />}</AnimatePresence>
+        </>
+      )}
 
       <AnimatePresence>
         {thread && <ThreadBanner key={thread.id} thread={thread} condensed={!!selected} onClose={() => setThreadId(null)} />}
@@ -594,7 +671,9 @@ export default function Museum() {
       )}
 
       <AnimatePresence>
-        {search.open && <Search key="search" initial={search.query} onSelect={select} onClose={() => setSearch({ open: false, query: "" })} />}
+        {search.open && (
+          <Search key="search" initial={search.query} onSelect={select} onClose={() => setSearch({ open: false, query: "" })} />
+        )}
       </AnimatePresence>
     </>
   );

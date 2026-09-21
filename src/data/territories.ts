@@ -3,15 +3,7 @@
 // that is fixed here.
 
 export type TerritoryId =
-  | "design"
-  | "typography"
-  | "architecture"
-  | "objects"
-  | "technology"
-  | "photography"
-  | "film"
-  | "music"
-  | "oddities";
+  "design" | "typography" | "architecture" | "objects" | "technology" | "photography" | "film" | "music" | "oddities";
 
 export interface Territory {
   id: TerritoryId;

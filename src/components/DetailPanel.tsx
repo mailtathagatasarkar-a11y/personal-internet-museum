@@ -23,7 +23,18 @@ interface Props {
  * The reading column. Not a modal: the museum stays behind it and the object
  * stays where it is — this is the wall text next to the artefact.
  */
-export function DetailPanel({ obj, hot, activeThread, narrow, onSelect, onHover, onFollowThread, onPreviewThread, onTerritory, onSearch }: Props) {
+export function DetailPanel({
+  obj,
+  hot,
+  activeThread,
+  narrow,
+  onSelect,
+  onHover,
+  onFollowThread,
+  onPreviewThread,
+  onTerritory,
+  onSearch,
+}: Props) {
   const territory = territoryById[obj.territory];
   const threads = threadsFor(obj.id);
   // "1958" → the fifties; "113 AD" and "c. 1910" fall back to the string itself.
@@ -56,7 +67,17 @@ export function DetailPanel({ obj, hot, activeThread, narrow, onSelect, onHover,
         <h1 className="serif" style={{ fontSize: narrow ? 34 : 44, lineHeight: 0.96, margin: 0 }}>
           {obj.title}
         </h1>
-        <div className="serif italic" style={{ fontSize: narrow ? 24 : 30, lineHeight: 1.1, marginTop: 6, color: "var(--ink-2)", fontWeight: "var(--serif-text-weight)", letterSpacing: "-0.02em" }}>
+        <div
+          className="serif italic"
+          style={{
+            fontSize: narrow ? 24 : 30,
+            lineHeight: 1.1,
+            marginTop: 6,
+            color: "var(--ink-2)",
+            fontWeight: "var(--serif-text-weight)",
+            letterSpacing: "-0.02em",
+          }}
+        >
           <button type="button" className="hud-link" onClick={() => onSearch(decade)} title={`Others from the ${decade}0s`}>
             {obj.year}
           </button>
@@ -70,11 +91,15 @@ export function DetailPanel({ obj, hot, activeThread, narrow, onSelect, onHover,
 
         <div style={{ marginTop: 20 }}>
           <div className="row">
-            <span className="mono" style={{ color: "var(--ink-3)" }}>Collected</span>
+            <span className="mono" style={{ color: "var(--ink-3)" }}>
+              Collected
+            </span>
             <span className="mono">{obj.collected}</span>
           </div>
           <div className="row">
-            <span className="mono" style={{ color: "var(--ink-3)" }}>Source</span>
+            <span className="mono" style={{ color: "var(--ink-3)" }}>
+              Source
+            </span>
             <span className="mono">
               <a className="hud-link" href={obj.sourceUrl} target="_blank" rel="noreferrer">
                 {obj.source} ↗
@@ -82,13 +107,19 @@ export function DetailPanel({ obj, hot, activeThread, narrow, onSelect, onHover,
             </span>
           </div>
           <div className="row">
-            <span className="mono" style={{ color: "var(--ink-3)" }}>Medium</span>
-            <span className="mono" style={{ textTransform: "none", letterSpacing: "0.02em" }}>{obj.medium}</span>
+            <span className="mono" style={{ color: "var(--ink-3)" }}>
+              Medium
+            </span>
+            <span className="mono" style={{ textTransform: "none", letterSpacing: "0.02em" }}>
+              {obj.medium}
+            </span>
           </div>
         </div>
 
         <div style={{ marginTop: 20 }}>
-          <div className="mono" style={{ color: "var(--ink-3)", marginBottom: 6 }}>Note</div>
+          <div className="mono" style={{ color: "var(--ink-3)", marginBottom: 6 }}>
+            Note
+          </div>
           <p className="serif-text" style={{ fontSize: narrow ? 20 : 23, lineHeight: 1.28, margin: 0 }}>
             “{obj.note}”
           </p>
@@ -123,7 +154,9 @@ export function DetailPanel({ obj, hot, activeThread, narrow, onSelect, onHover,
 
         {threads.length > 0 && (
           <div style={{ marginTop: 26 }}>
-            <div className="mono" style={{ color: "var(--ink-3)", marginBottom: 8 }}>Threads</div>
+            <div className="mono" style={{ color: "var(--ink-3)", marginBottom: 8 }}>
+              Threads
+            </div>
             {threads.map((t) => (
               <div key={t.id} style={{ padding: "6px 0" }}>
                 <button
@@ -145,7 +178,10 @@ export function DetailPanel({ obj, hot, activeThread, narrow, onSelect, onHover,
           </div>
         )}
 
-        <div className="mono" style={{ color: "var(--ink-4)", marginTop: 34, fontSize: 9.5, textTransform: "none", letterSpacing: "0.03em" }}>
+        <div
+          className="mono"
+          style={{ color: "var(--ink-4)", marginTop: 34, fontSize: 9.5, textTransform: "none", letterSpacing: "0.03em" }}
+        >
           Image: {obj.image.artist || "unknown"} · {obj.image.license || "—"} ·{" "}
           <a className="hud-link" href={obj.image.page} target="_blank" rel="noreferrer">
             Wikimedia Commons

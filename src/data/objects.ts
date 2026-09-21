@@ -53,10 +53,22 @@ export const OBJECTS: MuseumObject[] = [
     collected: "14 MAR 2026",
     note: "The restraint is what makes this still feel contemporary.",
     relations: [
-      { to: "vitsoe-606", kind: "SAME DESIGNER", why: "Rams drew both within two years of each other; the same refusal to decorate runs through them." },
-      { to: "ipod", kind: "SHARED DESIGN PHILOSOPHY", why: "Ive has said the T3's grid of holes and single wheel were on his mind when the first iPod was drawn." },
+      {
+        to: "vitsoe-606",
+        kind: "SAME DESIGNER",
+        why: "Rams drew both within two years of each other; the same refusal to decorate runs through them.",
+      },
+      {
+        to: "ipod",
+        kind: "SHARED DESIGN PHILOSOPHY",
+        why: "Ive has said the T3's grid of holes and single wheel were on his mind when the first iPod was drawn.",
+      },
       { to: "braun-sk4", kind: "SAME ERA", why: "Two years apart, two ends of Braun's new language: a pocket and a sideboard." },
-      { to: "walkman", kind: "PRECURSOR", why: "The idea of music as something you carry starts here, twenty years before Sony made it personal." },
+      {
+        to: "walkman",
+        kind: "PRECURSOR",
+        why: "The idea of music as something you carry starts here, twenty years before Sony made it personal.",
+      },
     ],
   },
   {
@@ -89,7 +101,11 @@ export const OBJECTS: MuseumObject[] = [
     collected: "21 JAN 2026",
     note: "Still in production, still compatible with the 1960 parts. The most honest product page on the internet.",
     relations: [
-      { to: "helvetica", kind: "SHARED DESIGN PHILOSOPHY", why: "A system rather than an object; both were meant to disappear behind whatever you put on them." },
+      {
+        to: "helvetica",
+        kind: "SHARED DESIGN PHILOSOPHY",
+        why: "A system rather than an object; both were meant to disappear behind whatever you put on them.",
+      },
       { to: "braun-et66", kind: "SAME DESIGNER", why: "Twenty-seven years later, the same hand and the same grid." },
     ],
   },
@@ -124,7 +140,11 @@ export const OBJECTS: MuseumObject[] = [
     note: "Sottsass called it an anti-machine machine. The bucket case is the point — it was made to be carried to a beach.",
     relations: [
       { to: "lettera-22", kind: "SAME MAKER", why: "Olivetti nineteen years earlier: the serious one before the playful one." },
-      { to: "imac-g3", kind: "SHARED DESIGN PHILOSOPHY", why: "Both used colour and a handle to make an office machine feel like something you'd want at home." },
+      {
+        to: "imac-g3",
+        kind: "SHARED DESIGN PHILOSOPHY",
+        why: "Both used colour and a handle to make an office machine feel like something you'd want at home.",
+      },
       { to: "tizio", kind: "SAME CITY", why: "Milan, three years apart — two ways Italian industry learned to have fun." },
     ],
   },
@@ -158,8 +178,16 @@ export const OBJECTS: MuseumObject[] = [
     collected: "03 JUN 2026",
     note: "No wires in the arms — the current runs through the metal. The counterweights are the design.",
     relations: [
-      { to: "anglepoise", kind: "PRECURSOR", why: "Carwardine's springs solved the same problem thirty-seven years earlier with a different kind of honesty." },
-      { to: "thinkpad", kind: "SAME DESIGNER", why: "Sapper again: the same matte black and the same one red accent, twenty years later on a laptop." },
+      {
+        to: "anglepoise",
+        kind: "PRECURSOR",
+        why: "Carwardine's springs solved the same problem thirty-seven years earlier with a different kind of honesty.",
+      },
+      {
+        to: "thinkpad",
+        kind: "SAME DESIGNER",
+        why: "Sapper again: the same matte black and the same one red accent, twenty years later on a laptop.",
+      },
     ],
   },
 
@@ -178,8 +206,16 @@ export const OBJECTS: MuseumObject[] = [
     note: "The typeface that means 'no opinion'. Which is, of course, an opinion.",
     relations: [
       { to: "johnston", kind: "PRECURSOR", why: "Forty years earlier, Johnston proved a sans could carry a whole city's identity." },
-      { to: "macintosh", kind: "SAME IDEA", why: "Neutral tools that became defaults: once something is everywhere it stops being a choice." },
-      { to: "futura", kind: "SAME ERA", why: "Geometric versus neo-grotesque — the two answers to the same modernist question, thirty years apart." },
+      {
+        to: "macintosh",
+        kind: "SAME IDEA",
+        why: "Neutral tools that became defaults: once something is everywhere it stops being a choice.",
+      },
+      {
+        to: "futura",
+        kind: "SAME ERA",
+        why: "Geometric versus neo-grotesque — the two answers to the same modernist question, thirty years apart.",
+      },
     ],
   },
   {
@@ -229,8 +265,16 @@ export const OBJECTS: MuseumObject[] = [
     collected: "08 AUG 2026",
     note: "Every capital letter I've ever set descends from this. Painted with a brush first, then cut.",
     relations: [
-      { to: "helvetica", kind: "INFLUENCE", why: "The proportions of Roman capitals survive even in a typeface that claims to have no history." },
-      { to: "barcelona-pavilion", kind: "SIMILAR MATERIAL LANGUAGE", why: "Marble asked to carry meaning by proportion alone, nineteen centuries apart." },
+      {
+        to: "helvetica",
+        kind: "INFLUENCE",
+        why: "The proportions of Roman capitals survive even in a typeface that claims to have no history.",
+      },
+      {
+        to: "barcelona-pavilion",
+        kind: "SIMILAR MATERIAL LANGUAGE",
+        why: "Marble asked to carry meaning by proportion alone, nineteen centuries apart.",
+      },
     ],
   },
 
@@ -248,8 +292,16 @@ export const OBJECTS: MuseumObject[] = [
     collected: "23 FEB 2026",
     note: "Demolished in 1930, rebuilt in 1986 from photographs. A building that exists because people missed it.",
     relations: [
-      { to: "barcelona-chair", kind: "SAME DESIGNER", why: "The chair was designed for this room, for the King of Spain to sit in for a few minutes." },
-      { to: "farnsworth", kind: "SAME DESIGNER", why: "Twenty-two years later Mies did the same thing in Illinois with a river instead of a pool." },
+      {
+        to: "barcelona-chair",
+        kind: "SAME DESIGNER",
+        why: "The chair was designed for this room, for the King of Spain to sit in for a few minutes.",
+      },
+      {
+        to: "farnsworth",
+        kind: "SAME DESIGNER",
+        why: "Twenty-two years later Mies did the same thing in Illinois with a river instead of a pool.",
+      },
       { to: "casio-f91w", kind: "SHARED DESIGN PHILOSOPHY", why: "Less is more, at two price points." },
     ],
   },
@@ -265,7 +317,11 @@ export const OBJECTS: MuseumObject[] = [
     collected: "12 JUN 2026",
     note: "Floats above the flood plain. The client sued him and it's still the most beautiful house I know.",
     relations: [
-      { to: "vitsoe-606", kind: "SIMILAR MATERIAL LANGUAGE", why: "White-painted steel and floating planes — a shelf and a house solving the same problem." },
+      {
+        to: "vitsoe-606",
+        kind: "SIMILAR MATERIAL LANGUAGE",
+        why: "White-painted steel and floating planes — a shelf and a house solving the same problem.",
+      },
       { to: "iim-ahmedabad", kind: "SAME ERA", why: "Post-war modernism arriving in two climates: glass for Illinois, brick for Gujarat." },
     ],
   },
@@ -298,7 +354,11 @@ export const OBJECTS: MuseumObject[] = [
     note: "Demolished in 2022. The capsules were meant to be swapped every 25 years; none ever were.",
     relations: [
       { to: "walkman", kind: "SAME CITY", why: "Tokyo in the seventies: the city that miniaturised living, then miniaturised music." },
-      { to: "imac-g3", kind: "SHARED DESIGN PHILOSOPHY", why: "The pod as a unit of the future — a room, a computer, the same round window." },
+      {
+        to: "imac-g3",
+        kind: "SHARED DESIGN PHILOSOPHY",
+        why: "The pod as a unit of the future — a room, a computer, the same round window.",
+      },
     ],
   },
   {
@@ -313,7 +373,11 @@ export const OBJECTS: MuseumObject[] = [
     collected: "15 JAN 2026",
     note: "The first modern building I ever stood inside. The concrete is rougher than the photographs admit.",
     relations: [
-      { to: "iim-ahmedabad", kind: "SAME ERA", why: "Two foreign architects, two Indian cities, one decade — and completely different ideas about brick." },
+      {
+        to: "iim-ahmedabad",
+        kind: "SAME ERA",
+        why: "Two foreign architects, two Indian cities, one decade — and completely different ideas about brick.",
+      },
       { to: "barbican", kind: "SIMILAR MATERIAL LANGUAGE", why: "Raw concrete, twenty years and a continent apart, both loved late." },
     ],
   },
@@ -329,7 +393,11 @@ export const OBJECTS: MuseumObject[] = [
     collected: "15 JAN 2026",
     note: "Kahn asked the brick what it wanted to be. The brick said 'an arch'. Saved from a friend's story.",
     relations: [
-      { to: "atget", kind: "VISUAL RELATIONSHIP", why: "Both photographs are about an opening in a wall and the light that comes through it." },
+      {
+        to: "atget",
+        kind: "VISUAL RELATIONSHIP",
+        why: "Both photographs are about an opening in a wall and the light that comes through it.",
+      },
     ],
   },
   {
@@ -343,9 +411,7 @@ export const OBJECTS: MuseumObject[] = [
     sourceUrl: "https://www.barbicanliving.co.uk/",
     collected: "04 SEP 2026",
     note: "Hated, then listed, then unaffordable. The surface was hammered by hand to expose the aggregate.",
-    relations: [
-      { to: "nakagin", kind: "SAME ERA", why: "Two megastructures that promised a city inside a building; one survived." },
-    ],
+    relations: [{ to: "nakagin", kind: "SAME ERA", why: "Two megastructures that promised a city inside a building; one survived." }],
   },
 
   // ─── OBJECTS ───────────────────────────────────────────────────────────
@@ -396,7 +462,11 @@ export const OBJECTS: MuseumObject[] = [
     collected: "19 MAR 2026",
     note: "Breuer got the idea from the handlebars of his Adler bicycle. Named after Kandinsky, who just liked sitting in it.",
     relations: [
-      { to: "lego-patent", kind: "SAME IDEA", why: "A system of standard parts: Breuer's tubes and Christiansen's studs both came from a bicycle shop mindset." },
+      {
+        to: "lego-patent",
+        kind: "SAME IDEA",
+        why: "A system of standard parts: Breuer's tubes and Christiansen's studs both came from a bicycle shop mindset.",
+      },
     ],
   },
   {
@@ -411,9 +481,7 @@ export const OBJECTS: MuseumObject[] = [
     sourceUrl: "https://designmuseum.org/",
     collected: "03 JUN 2026",
     note: "Designed by a car-suspension engineer. It balances the way an arm does, which is why it never feels mechanical.",
-    relations: [
-      { to: "moka", kind: "SAME ERA", why: "1933 and 1935: two household objects that have not needed a redesign since." },
-    ],
+    relations: [{ to: "moka", kind: "SAME ERA", why: "1933 and 1935: two household objects that have not needed a redesign since." }],
   },
   {
     id: "leica-m3",
@@ -445,7 +513,11 @@ export const OBJECTS: MuseumObject[] = [
     note: "The octagon is so that you can grip it with a tea towel. Ninety years and 300 million units.",
     relations: [
       { to: "tizio", kind: "SAME CITY", why: "Italian aluminium, cast for the kitchen and cast for the desk." },
-      { to: "utah-teapot", kind: "VISUAL RELATIONSHIP", why: "Two pots that became icons for reasons that have nothing to do with pouring." },
+      {
+        to: "utah-teapot",
+        kind: "VISUAL RELATIONSHIP",
+        why: "Two pots that became icons for reasons that have nothing to do with pouring.",
+      },
     ],
   },
   {
@@ -461,7 +533,11 @@ export const OBJECTS: MuseumObject[] = [
     note: "Eleven dollars. Seven-year battery. The most-worn watch on Earth and the only one with no target customer.",
     relations: [
       { to: "game-boy", kind: "SAME ERA", why: "1989, grey plastic, monochrome LCD: the year cheap screens became personal." },
-      { to: "nokia-3310", kind: "SHARED DESIGN PHILOSOPHY", why: "Indestructible, cheap, universal — the same product strategy eleven years apart." },
+      {
+        to: "nokia-3310",
+        kind: "SHARED DESIGN PHILOSOPHY",
+        why: "Indestructible, cheap, universal — the same product strategy eleven years apart.",
+      },
     ],
   },
   {
@@ -477,7 +553,11 @@ export const OBJECTS: MuseumObject[] = [
     collected: "18 APR 2026",
     note: "Müller worked for Rams at Braun before this. You can tell: the clip is the only thing that's allowed to shine.",
     relations: [
-      { to: "braun-sk4", kind: "SAME DESIGNER", why: "Müller drew the SK 4's sibling products at Braun before leaving for Lamy — same restraint, in your pocket." },
+      {
+        to: "braun-sk4",
+        kind: "SAME DESIGNER",
+        why: "Müller drew the SK 4's sibling products at Braun before leaving for Lamy — same restraint, in your pocket.",
+      },
     ],
   },
 
@@ -496,7 +576,11 @@ export const OBJECTS: MuseumObject[] = [
     note: "A thousand songs in your pocket. The scroll wheel actually turned — it was mechanical for one generation only.",
     relations: [
       { to: "walkman", kind: "PRECURSOR", why: "Same promise, twenty-two years apart: your music, your walk." },
-      { to: "op-1", kind: "SHARED DESIGN PHILOSOPHY", why: "Teenage Engineering took the iPod's idea — one calm white object — and made it an instrument." },
+      {
+        to: "op-1",
+        kind: "SHARED DESIGN PHILOSOPHY",
+        why: "Teenage Engineering took the iPod's idea — one calm white object — and made it an instrument.",
+      },
       { to: "imac-g3", kind: "SAME MAKER", why: "Three years earlier the iMac made Apple fun; the iPod made it serious again." },
     ],
   },
@@ -513,7 +597,11 @@ export const OBJECTS: MuseumObject[] = [
     collected: "11 JUL 2026",
     note: "It had a handle. Not because you'd carry it, but so you'd trust it enough to touch it.",
     relations: [
-      { to: "macintosh", kind: "SAME MAKER", why: "Fourteen years apart, the two Macs that saved the company, both all-in-one and both a little cute." },
+      {
+        to: "macintosh",
+        kind: "SAME MAKER",
+        why: "Fourteen years apart, the two Macs that saved the company, both all-in-one and both a little cute.",
+      },
     ],
   },
   {
@@ -579,7 +667,11 @@ export const OBJECTS: MuseumObject[] = [
     collected: "03 JUN 2026",
     note: "Sapper based it on a Japanese bento box: black, plain, and everything inside arranged. The red dot is still there.",
     relations: [
-      { to: "braun-t3", kind: "SHARED DESIGN PHILOSOPHY", why: "A black box and a white box, both refusing to tell you anything until you open them." },
+      {
+        to: "braun-t3",
+        kind: "SHARED DESIGN PHILOSOPHY",
+        why: "A black box and a white box, both refusing to tell you anything until you open them.",
+      },
     ],
   },
   {
@@ -593,9 +685,7 @@ export const OBJECTS: MuseumObject[] = [
     sourceUrl: "https://knowyourmeme.com/memes/indestructible-nokia-3310",
     collected: "06 MAY 2026",
     note: "126 million sold. Saved because the internet decided it was indestructible and then made it true.",
-    relations: [
-      { to: "utah-teapot", kind: "SAME IDEA", why: "Objects the internet adopted and turned into folklore." },
-    ],
+    relations: [{ to: "utah-teapot", kind: "SAME IDEA", why: "Objects the internet adopted and turned into folklore." }],
   },
   {
     id: "next-cern",
@@ -611,7 +701,11 @@ export const OBJECTS: MuseumObject[] = [
     note: "'This machine is a server. DO NOT POWER IT DOWN!!' The first object in this museum, in every sense.",
     relations: [
       { to: "macintosh", kind: "SAME IDEA", why: "Jobs's second computer company built the machine the web was born on." },
-      { to: "stanford-bunny", kind: "SAME ERA", why: "1990 and 1994: the web and the bunny, two things a few researchers made for themselves that everyone then used." },
+      {
+        to: "stanford-bunny",
+        kind: "SAME ERA",
+        why: "1990 and 1994: the web and the bunny, two things a few researchers made for themselves that everyone then used.",
+      },
     ],
   },
 
@@ -629,7 +723,11 @@ export const OBJECTS: MuseumObject[] = [
     collected: "16 FEB 2026",
     note: "Lange spent ten minutes with her. Florence Owens Thompson hated the photograph for the rest of her life.",
     relations: [
-      { to: "pather-panchali", kind: "SAME IDEA", why: "Poverty looked at with a camera that refuses to look away, twenty years and half a world apart." },
+      {
+        to: "pather-panchali",
+        kind: "SAME IDEA",
+        why: "Poverty looked at with a camera that refuses to look away, twenty years and half a world apart.",
+      },
       { to: "atget", kind: "SAME IDEA", why: "Both were commissioned as documents and became art by accident." },
     ],
   },
@@ -661,7 +759,11 @@ export const OBJECTS: MuseumObject[] = [
     collected: "13 APR 2026",
     note: "He called them 'documents for artists' and sold them for a few francs. Every shopfront in Paris, before it vanished.",
     relations: [
-      { to: "man-with-movie-camera", kind: "SAME ERA", why: "Two ways of collecting a whole city: Atget shop by shop, Vertov hour by hour." },
+      {
+        to: "man-with-movie-camera",
+        kind: "SAME ERA",
+        why: "Two ways of collecting a whole city: Atget shop by shop, Vertov hour by hour.",
+      },
     ],
   },
   {
@@ -692,9 +794,7 @@ export const OBJECTS: MuseumObject[] = [
     sourceUrl: "https://science.nasa.gov/resource/voyager-1s-pale-blue-dot/",
     collected: "14 FEB 2026",
     note: "Carl Sagan had to argue for the camera to be turned around. It was almost not taken.",
-    relations: [
-      { to: "golden-record", kind: "SAME MAKER", why: "The same spacecraft: one object looking back, one object sent forward." },
-    ],
+    relations: [{ to: "golden-record", kind: "SAME MAKER", why: "The same spacecraft: one object looking back, one object sent forward." }],
   },
 
   // ─── FILM ──────────────────────────────────────────────────────────────
@@ -757,7 +857,11 @@ export const OBJECTS: MuseumObject[] = [
     collected: "16 FEB 2026",
     note: "Ray was a graphic designer first — he drew the storyboards as a book. You can see the layouts in every frame.",
     relations: [
-      { to: "lettera-22", kind: "SAME ERA", why: "1950 and 1955: Ray designed book covers before films, and typed the script on a machine like this." },
+      {
+        to: "lettera-22",
+        kind: "SAME ERA",
+        why: "1950 and 1955: Ray designed book covers before films, and typed the script on a machine like this.",
+      },
     ],
   },
   {
@@ -771,9 +875,7 @@ export const OBJECTS: MuseumObject[] = [
     sourceUrl: "https://www.institut-lumiere.org/",
     collected: "29 MAR 2026",
     note: "Camera, printer and projector in one wooden box. Hand-cranked at sixteen frames a second.",
-    relations: [
-      { to: "leica-m3", kind: "SAME IDEA", why: "Two instruments from the same lineage — a machine for looking that you hold." },
-    ],
+    relations: [{ to: "leica-m3", kind: "SAME IDEA", why: "Two instruments from the same lineage — a machine for looking that you hold." }],
   },
 
   // ─── MUSIC ─────────────────────────────────────────────────────────────
@@ -790,7 +892,11 @@ export const OBJECTS: MuseumObject[] = [
     collected: "05 APR 2026",
     note: "A commercial failure, discontinued after 12,000 units. Then hip-hop found it in pawn shops.",
     relations: [
-      { to: "sl-1200", kind: "SAME IDEA", why: "Two Japanese machines built for one purpose and used for another; the turntable became an instrument, the drum box became a genre." },
+      {
+        to: "sl-1200",
+        kind: "SAME IDEA",
+        why: "Two Japanese machines built for one purpose and used for another; the turntable became an instrument, the drum box became a genre.",
+      },
       { to: "op-1", kind: "INFLUENCE", why: "Every OP-1 sequencer step owes its colour-coding to the 808's traffic-light buttons." },
       { to: "braun-et66", kind: "VISUAL RELATIONSHIP", why: "Colour used only where a hand needs it. Grey everywhere else." },
     ],
@@ -807,9 +913,7 @@ export const OBJECTS: MuseumObject[] = [
     sourceUrl: "https://en.wikipedia.org/wiki/Technics_SL-1200",
     collected: "05 APR 2026",
     note: "Made for hi-fi shops, adopted by DJs because the motor was strong enough to be pushed backwards.",
-    relations: [
-      { to: "walkman", kind: "SAME ERA", why: "Japan, the seventies: one machine for the room and one for the street." },
-    ],
+    relations: [{ to: "walkman", kind: "SAME ERA", why: "Japan, the seventies: one machine for the room and one for the street." }],
   },
   {
     id: "op-1",
@@ -824,7 +928,11 @@ export const OBJECTS: MuseumObject[] = [
     collected: "14 MAR 2026",
     note: "Stockholm's answer to Braun. The whole company is a Rams tribute that plays music.",
     relations: [
-      { to: "braun-t3", kind: "SHARED DESIGN PHILOSOPHY", why: "The OP-1 is what the T3 would be if it could make sounds instead of receive them." },
+      {
+        to: "braun-t3",
+        kind: "SHARED DESIGN PHILOSOPHY",
+        why: "The OP-1 is what the T3 would be if it could make sounds instead of receive them.",
+      },
       { to: "game-boy", kind: "VISUAL RELATIONSHIP", why: "Grey body, small screen, four coloured buttons — the same object grammar." },
     ],
   },
@@ -840,9 +948,7 @@ export const OBJECTS: MuseumObject[] = [
     sourceUrl: "https://en.wikipedia.org/wiki/Walkman",
     collected: "14 MAR 2026",
     note: "Two headphone jacks, because Sony assumed nobody would want to listen alone. They were wrong within a year.",
-    relations: [
-      { to: "game-boy", kind: "SAME IDEA", why: "The two objects that turned a commute into private time." },
-    ],
+    relations: [{ to: "game-boy", kind: "SAME IDEA", why: "The two objects that turned a commute into private time." }],
   },
   {
     id: "golden-record",
@@ -858,7 +964,11 @@ export const OBJECTS: MuseumObject[] = [
     note: "A record sleeve with playback instructions for aliens. The most optimistic piece of graphic design ever made.",
     relations: [
       { to: "sl-1200", kind: "SAME IDEA", why: "1972 and 1977: the record as a machine-readable object, on Earth and off it." },
-      { to: "lego-patent", kind: "VISUAL RELATIONSHIP", why: "Instructions drawn so that they could be understood without a shared language." },
+      {
+        to: "lego-patent",
+        kind: "VISUAL RELATIONSHIP",
+        why: "Instructions drawn so that they could be understood without a shared language.",
+      },
     ],
   },
 
@@ -876,7 +986,11 @@ export const OBJECTS: MuseumObject[] = [
     collected: "31 JAN 2026",
     note: "Newell needed something to render, and his wife suggested the teapot on the table. It's been in every 3D program since, and in Toy Story.",
     relations: [
-      { to: "stanford-bunny", kind: "SAME IDEA", why: "The two reference models — a teapot from 1975, a rabbit from 1994 — that every graphics student has met." },
+      {
+        to: "stanford-bunny",
+        kind: "SAME IDEA",
+        why: "The two reference models — a teapot from 1975, a rabbit from 1994 — that every graphics student has met.",
+      },
       { to: "comic-sans", kind: "SAME IDEA", why: "Both are jokes that outlived their punchline and became infrastructure." },
     ],
   },
@@ -892,9 +1006,7 @@ export const OBJECTS: MuseumObject[] = [
     sourceUrl: "https://graphics.stanford.edu/data/3Dscanrep/",
     collected: "31 JAN 2026",
     note: "The original rabbit was bought at a garden shop on University Avenue. It's still on Levoy's desk.",
-    relations: [
-      { to: "blossfeldt", kind: "SAME IDEA", why: "Reference forms made for other people to work from." },
-    ],
+    relations: [{ to: "blossfeldt", kind: "SAME IDEA", why: "Reference forms made for other people to work from." }],
   },
   {
     id: "comic-sans",

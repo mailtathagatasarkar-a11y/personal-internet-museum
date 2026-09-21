@@ -343,7 +343,6 @@ body {
   pointer-events: none;
 }
 
-
 .label[data-hover] .obj-micro {
   opacity: 1;
   color: var(--accent);
@@ -472,7 +471,6 @@ body {
   stroke: var(--accent);
   opacity: 0.4;
 }
-
 
 /* ─── HUD ─────────────────────────────────────────────────────────────── */
 .hud {
@@ -617,7 +615,9 @@ body {
   display: inline-block;
   width: 18px;
   color: var(--ink-3);
-  transition: transform 0.25s ease, color 0.25s ease;
+  transition:
+    transform 0.25s ease,
+    color 0.25s ease;
 }
 .rel:hover .name::before,
 .rel.hot .name::before {
@@ -645,7 +645,10 @@ body {
   max-height: 0;
   overflow: hidden;
   opacity: 0;
-  transition: max-height 0.35s ease, opacity 0.35s ease, margin 0.35s ease;
+  transition:
+    max-height 0.35s ease,
+    opacity 0.35s ease,
+    margin 0.35s ease;
 }
 .rel:hover .why,
 .rel.hot .why {

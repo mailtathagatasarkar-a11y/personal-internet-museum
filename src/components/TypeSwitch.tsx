@@ -34,7 +34,10 @@ export function setType(id: string) {
 
 export function TypeSwitch() {
   const current = useSyncExternalStore(subscribe, read, () => "");
-  const index = Math.max(0, TYPE_PAIRINGS.findIndex((t) => t.id === current));
+  const index = Math.max(
+    0,
+    TYPE_PAIRINGS.findIndex((t) => t.id === current),
+  );
   const pairing = TYPE_PAIRINGS[index];
 
   useEffect(() => {
@@ -50,8 +53,8 @@ export function TypeSwitch() {
     return () => window.removeEventListener("keydown", onKey);
   }, [index]);
 
-  // Chrome only while comparing; the chosen pairing shows nothing.
-  if (!pairing.id) return null;
+  // Chrome only while comparing; the chosen pairing shows nothing, and stills never do.
+  if (!pairing.id || new URLSearchParams(window.location.search).has("still")) return null;
   return (
     <div className="hud mono" data-hud style={{ left: "50%", bottom: 22, transform: "translateX(-50%)", color: "var(--ink-3)" }}>
       <button type="button" className="hud-link paper-strip" onClick={() => setType(TYPE_PAIRINGS[(index + 1) % TYPE_PAIRINGS.length].id)}>

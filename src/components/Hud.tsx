@@ -63,14 +63,33 @@ export function Controls({ onReset, onSearch, onDrift, onZoom, onHelp, searchOpe
         Drift
       </button>
       <span style={{ display: "inline-flex", gap: 14 }}>
-        <button type="button" className="hud-link" onClick={() => onZoom(-1)} aria-label="Zoom out" style={{ width: 14, textAlign: "center" }}>
+        <button
+          type="button"
+          className="hud-link"
+          onClick={() => onZoom(-1)}
+          aria-label="Zoom out"
+          style={{ width: 14, textAlign: "center" }}
+        >
           −
         </button>
-        <button type="button" className="hud-link" onClick={() => onZoom(1)} aria-label="Zoom in" style={{ width: 14, textAlign: "center" }}>
+        <button
+          type="button"
+          className="hud-link"
+          onClick={() => onZoom(1)}
+          aria-label="Zoom in"
+          style={{ width: 14, textAlign: "center" }}
+        >
           +
         </button>
       </span>
-      <button type="button" className="hud-link" onClick={onHelp} aria-current={legendOpen} aria-label="Keys" style={{ width: 14, textAlign: "center" }}>
+      <button
+        type="button"
+        className="hud-link"
+        onClick={onHelp}
+        aria-current={legendOpen}
+        aria-label="Keys"
+        style={{ width: 14, textAlign: "center" }}
+      >
         ?
       </button>
     </div>
@@ -107,7 +126,12 @@ export function Legend({ onClose }: { onClose: () => void }) {
             <span style={{ color: "var(--ink-3)", textTransform: "none", letterSpacing: "0.02em" }}>{v}</span>
           </div>
         ))}
-        <button type="button" className="hud-link" onClick={onClose} style={{ gridColumn: "1 / -1", justifySelf: "start", marginTop: 6, color: "var(--ink-3)" }}>
+        <button
+          type="button"
+          className="hud-link"
+          onClick={onClose}
+          style={{ gridColumn: "1 / -1", justifySelf: "start", marginTop: 6, color: "var(--ink-3)" }}
+        >
           Close ×
         </button>
       </motion.div>
@@ -233,7 +257,11 @@ export function Search({ initial = "", onSelect, onClose }: { initial?: string; 
   }, [q]);
 
   return (
-    <div className="hud" data-hud style={{ left: "50%", top: "12vh", transform: "translateX(-50%)", width: "min(600px, calc(100vw - 48px))" }}>
+    <div
+      className="hud"
+      data-hud
+      style={{ left: "50%", top: "12vh", transform: "translateX(-50%)", width: "min(600px, calc(100vw - 48px))" }}
+    >
       <motion.div
         className="paper-strip"
         initial={{ opacity: 0, y: 6 }}
@@ -268,9 +296,13 @@ export function Search({ initial = "", onSelect, onClose }: { initial?: string; 
         <div className="index-list" style={{ marginTop: 12 }}>
           {hits.map((o, i) => (
             <button key={o.id} type="button" className="search-hit" data-active={i === cursor} onClick={() => onSelect(o.id)}>
-              <span className="mono" style={{ color: "var(--ink-3)" }}>{String(o.index).padStart(3, "0")}</span>
+              <span className="mono" style={{ color: "var(--ink-3)" }}>
+                {String(o.index).padStart(3, "0")}
+              </span>
               <span>
-                <span className="serif" style={{ fontSize: 20 }}>{o.title}</span>
+                <span className="serif" style={{ fontSize: 20 }}>
+                  {o.title}
+                </span>
                 <span style={{ color: "var(--ink-2)", fontSize: 13, marginLeft: 10 }}>{o.creator}</span>
               </span>
               <span className="mono" style={{ color: "var(--ink-3)" }}>

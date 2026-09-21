@@ -36,14 +36,7 @@ function ConnectionsImpl({ from, to, hot, thread, peek }: Props) {
         to.map((id) => {
           const o = placedById[id];
           return (
-            <line
-              key={id}
-              className={`${peek ? "peek" : "on"}${hot === id ? " hot" : ""}`}
-              x1={from.x}
-              y1={from.y}
-              x2={o.x}
-              y2={o.y}
-            />
+            <line key={id} className={`${peek ? "peek" : "on"}${hot === id ? " hot" : ""}`} x1={from.x} y1={from.y} x2={o.x} y2={o.y} />
           );
         })}
     </svg>

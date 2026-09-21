@@ -74,7 +74,6 @@ function ObjectNodeImpl({ obj, state, wantFull, onSelect, onHover, onFocus, wasD
           onLoad={() => setLoaded(true)}
         />
       )}
-
     </div>
   );
 }
