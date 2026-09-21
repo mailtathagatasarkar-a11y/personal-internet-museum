@@ -1,0 +1,532 @@
+{
+  "braun-t3": {
+    "src": "/objects/braun-t3.jpg",
+    "width": 1400,
+    "height": 933,
+    "license": "CC BY 4.0",
+    "artist": "Filip Triner",
+    "page": "https://commons.wikimedia.org/wiki/File:Braun-t4-transistor-radio-design-dieter-rams-only-once-shop-4.jpg",
+    "thumb": "/objects/t/braun-t3.jpg",
+    "processed": true
+  },
+  "braun-sk4": {
+    "src": "/objects/braun-sk4.jpg",
+    "width": 1400,
+    "height": 852,
+    "license": "CC0",
+    "artist": "Alf van Beem",
+    "page": "https://commons.wikimedia.org/wiki/File:1956_Braun_Phonosuper_SK4_Schneewittchensarg.JPG",
+    "thumb": "/objects/t/braun-sk4.jpg",
+    "processed": true
+  },
+  "vitsoe-606": {
+    "src": "/objects/vitsoe-606.jpg",
+    "width": 1400,
+    "height": 1027,
+    "license": "CC BY-SA 3.0",
+    "artist": "Vitsoe at English Wikipedia",
+    "page": "https://commons.wikimedia.org/wiki/File:606-Universal-Shelving-System.jpg",
+    "thumb": "/objects/t/vitsoe-606.jpg",
+    "processed": true
+  },
+  "braun-et66": {
+    "src": "/objects/braun-et66.jpg",
+    "width": 948,
+    "height": 1400,
+    "license": "CC BY-SA 2.0",
+    "artist": "Pinot Dita from Kuwait",
+    "page": "https://commons.wikimedia.org/wiki/File:1987_Braun_calculator_ET66_by_Dieter_Rams_(13964223413).jpg",
+    "thumb": "/objects/t/braun-et66.jpg",
+    "processed": true
+  },
+  "olivetti-valentine": {
+    "src": "/objects/olivetti-valentine.jpg",
+    "width": 1280,
+    "height": 1064,
+    "license": "CC BY-SA 3.0",
+    "artist": "Folletto at Italian Wikipedia",
+    "page": "https://commons.wikimedia.org/wiki/File:Olivetti-Valentine.jpg",
+    "thumb": "/objects/t/olivetti-valentine.jpg",
+    "processed": true
+  },
+  "tizio": {
+    "src": "/objects/tizio.jpg",
+    "width": 1050,
+    "height": 1400,
+    "license": "CC BY-SA 4.0",
+    "artist": "Manuelarosi",
+    "page": "https://commons.wikimedia.org/wiki/File:Lampada_Tizio.jpg",
+    "thumb": "/objects/t/tizio.jpg",
+    "processed": true
+  },
+  "helvetica": {
+    "src": "/objects/helvetica.jpg",
+    "width": 1184,
+    "height": 1400,
+    "license": "Public domain",
+    "artist": "GearedBull Jim Hood",
+    "page": "https://commons.wikimedia.org/wiki/File:HelveticaSpecimenCH.svg",
+    "thumb": "/objects/t/helvetica.jpg",
+    "processed": true
+  },
+  "futura": {
+    "src": "/objects/futura.jpg",
+    "width": 1123,
+    "height": 816,
+    "license": "CC BY 2.0",
+    "artist": "James Puckett from Boulder, USA",
+    "page": "https://commons.wikimedia.org/wiki/File:Futura_Inline_Type_Specimen_(8056809802).jpg",
+    "thumb": "/objects/t/futura.jpg",
+    "processed": true
+  },
+  "johnston": {
+    "src": "/objects/johnston.jpg",
+    "width": 1280,
+    "height": 960,
+    "license": "CC BY 2.0",
+    "artist": "R/DV/RS",
+    "page": "https://commons.wikimedia.org/wiki/File:Victoria_underground_roundel_2007-06-04.jpg",
+    "thumb": "/objects/t/johnston.jpg",
+    "processed": true
+  },
+  "trajan": {
+    "src": "/objects/trajan.jpg",
+    "width": 1050,
+    "height": 1400,
+    "license": "CC BY 2.0",
+    "artist": "Jeremy Keith from Brighton &amp; Hove, United Kingdom",
+    "page": "https://commons.wikimedia.org/wiki/File:Trajan_(2959610060).jpg",
+    "thumb": "/objects/t/trajan.jpg",
+    "processed": true
+  },
+  "comic-sans": {
+    "src": "/objects/comic-sans.jpg",
+    "width": 1184,
+    "height": 1400,
+    "license": "Public domain",
+    "artist": "GearedBull at English Wikipedia",
+    "page": "https://commons.wikimedia.org/wiki/File:ComicSansSpec3.svg",
+    "thumb": "/objects/t/comic-sans.jpg",
+    "processed": true
+  },
+  "barcelona-pavilion": {
+    "src": "/objects/barcelona-pavilion.jpg",
+    "width": 1400,
+    "height": 937,
+    "license": "CC BY 3.0",
+    "artist": "Ashley Pomeroy at English Wikipedia",
+    "page": "https://commons.wikimedia.org/wiki/File:The_Barcelona_Pavilion,_Barcelona,_2010.jpg",
+    "thumb": "/objects/t/barcelona-pavilion.jpg",
+    "processed": true
+  },
+  "farnsworth": {
+    "src": "/objects/farnsworth.jpg",
+    "width": 1400,
+    "height": 933,
+    "license": "CC BY-SA 3.0",
+    "artist": "Victor Grigas",
+    "page": "https://commons.wikimedia.org/wiki/File:Farnsworth_House_by_Mies_Van_Der_Rohe_-_exterior-8.jpg",
+    "thumb": "/objects/t/farnsworth.jpg",
+    "processed": true
+  },
+  "casa-malaparte": {
+    "src": "/objects/casa-malaparte.jpg",
+    "width": 1050,
+    "height": 1400,
+    "license": "CC BY-SA 4.0",
+    "artist": "FriedrichFrisch",
+    "page": "https://commons.wikimedia.org/wiki/File:Villa_Malaparte_view_from_above.jpg",
+    "thumb": "/objects/t/casa-malaparte.jpg",
+    "processed": true
+  },
+  "nakagin": {
+    "src": "/objects/nakagin.jpg",
+    "width": 934,
+    "height": 1400,
+    "license": "CC BY-SA 3.0",
+    "artist": "Jordy Meow",
+    "page": "https://commons.wikimedia.org/wiki/File:Nakagin.jpg",
+    "thumb": "/objects/t/nakagin.jpg",
+    "processed": true
+  },
+  "chandigarh": {
+    "src": "/objects/chandigarh.jpg",
+    "width": 1400,
+    "height": 1120,
+    "license": "CC BY-SA 4.0",
+    "artist": "UnpetitproleX",
+    "page": "https://commons.wikimedia.org/wiki/File:Palace_of_Assembly_Chandigarh.jpg",
+    "thumb": "/objects/t/chandigarh.jpg",
+    "processed": true
+  },
+  "iim-ahmedabad": {
+    "src": "/objects/iim-ahmedabad.jpg",
+    "width": 1400,
+    "height": 788,
+    "license": "CC BY-SA 4.0",
+    "artist": "Perspectives - The Photography Club, IIM Ahmedabad",
+    "page": "https://commons.wikimedia.org/wiki/File:Louis_Kahn_Plaza,_IIM_Ahmedabad.jpg",
+    "thumb": "/objects/t/iim-ahmedabad.jpg",
+    "processed": true
+  },
+  "barbican": {
+    "src": "/objects/barbican.jpg",
+    "width": 912,
+    "height": 1400,
+    "license": "CC BY-SA 4.0",
+    "artist": "Tilman2007",
+    "page": "https://commons.wikimedia.org/wiki/File:1352667_II_BARBICAN,_Cromwell_Tower_City_of_London_London_20250613_0001.jpg",
+    "thumb": "/objects/t/barbican.jpg",
+    "processed": true
+  },
+  "eames-lounge": {
+    "src": "/objects/eames-lounge.jpg",
+    "width": 1400,
+    "height": 1134,
+    "license": "CC BY 2.5",
+    "artist": "sailko",
+    "page": "https://commons.wikimedia.org/wiki/File:Ngv_design,_charles_eames_and_herman_miller,_lounge_chair_670,_1956.JPG",
+    "thumb": "/objects/t/eames-lounge.jpg",
+    "processed": true
+  },
+  "wassily": {
+    "src": "/objects/wassily.jpg",
+    "width": 1400,
+    "height": 1315,
+    "license": "CC BY-SA 4.0",
+    "artist": "© 1971markus",
+    "page": "https://commons.wikimedia.org/wiki/File:Marcel_Breuer_-_Wassily_Chair.jpg",
+    "thumb": "/objects/t/wassily.jpg",
+    "processed": true
+  },
+  "anglepoise": {
+    "src": "/objects/anglepoise.jpg",
+    "width": 1211,
+    "height": 1400,
+    "license": "CC0",
+    "artist": "Daderot",
+    "page": "https://commons.wikimedia.org/wiki/File:Type_1227_desk_lamp,_Anglepoise,_designed_by_George_Carwardine,_manufactured_by_Herbert_Terry_and_Sons,_1935_-_Design_Museum,_Kensington_-_London_-_DSC01571.jpg",
+    "thumb": "/objects/t/anglepoise.jpg",
+    "processed": true
+  },
+  "leica-m3": {
+    "src": "/objects/leica-m3.jpg",
+    "width": 1399,
+    "height": 1400,
+    "license": "CC BY-SA 2.0 fr",
+    "artist": "Rama",
+    "page": "https://commons.wikimedia.org/wiki/File:Leica_M3_mg_3848.jpg",
+    "thumb": "/objects/t/leica-m3.jpg",
+    "processed": true
+  },
+  "moka": {
+    "src": "/objects/moka.jpg",
+    "width": 1126,
+    "height": 1294,
+    "license": "CC BY-SA 4.0",
+    "artist": "Bialetti Industrie",
+    "page": "https://commons.wikimedia.org/wiki/File:Moka_Express_Bialetti.png",
+    "thumb": "/objects/t/moka.jpg",
+    "processed": true
+  },
+  "casio-f91w": {
+    "src": "/objects/casio-f91w.jpg",
+    "width": 950,
+    "height": 1400,
+    "license": "CC BY-SA 3.0",
+    "artist": "Ashley Pomeroy",
+    "page": "https://commons.wikimedia.org/wiki/File:Casio_F-91W_5051.jpg",
+    "thumb": "/objects/t/casio-f91w.jpg",
+    "processed": true
+  },
+  "lamy-2000": {
+    "src": "/objects/lamy-2000.jpg",
+    "width": 1400,
+    "height": 613,
+    "license": "CC BY 2.0",
+    "artist": "M Dreibelbis from Cleveland Ohio",
+    "page": "https://commons.wikimedia.org/wiki/File:Lamy_2000_(26986461785).jpg",
+    "thumb": "/objects/t/lamy-2000.jpg",
+    "processed": true
+  },
+  "migrant-mother": {
+    "src": "/objects/migrant-mother.jpg",
+    "width": 1077,
+    "height": 1400,
+    "license": "Public domain",
+    "artist": "Dorothea Lange",
+    "page": "https://commons.wikimedia.org/wiki/File:Lange-MigrantMother02.jpg",
+    "thumb": "/objects/t/migrant-mother.jpg",
+    "processed": true
+  },
+  "muybridge": {
+    "src": "/objects/muybridge.jpg",
+    "width": 1400,
+    "height": 863,
+    "license": "Public domain",
+    "artist": "Eadweard Muybridge",
+    "page": "https://commons.wikimedia.org/wiki/File:The_Horse_in_Motion_high_res.jpg",
+    "thumb": "/objects/t/muybridge.jpg",
+    "processed": true
+  },
+  "atget": {
+    "src": "/objects/atget.jpg",
+    "width": 1093,
+    "height": 1400,
+    "license": "CC0",
+    "artist": "Eugène Atget",
+    "page": "https://commons.wikimedia.org/wiki/File:Boutique_Journaux,_Rue_de_S%C3%A8vres,_Paris_MET_DP124590.jpg",
+    "thumb": "/objects/t/atget.jpg",
+    "processed": true
+  },
+  "blossfeldt": {
+    "src": "/objects/blossfeldt.jpg",
+    "width": 1400,
+    "height": 1019,
+    "license": "Public domain",
+    "artist": "Karl Blossfeldt (Life time: d. 1932)",
+    "page": "https://commons.wikimedia.org/wiki/File:Picture_from_Urformen_derKunst_by_Karl_Blossfeldt,_p._10.jpg",
+    "thumb": "/objects/t/blossfeldt.jpg",
+    "processed": true
+  },
+  "pale-blue-dot": {
+    "src": "/objects/pale-blue-dot.jpg",
+    "width": 1400,
+    "height": 1385,
+    "license": "Public domain",
+    "artist": "NASA/JPL-Caltech",
+    "page": "https://commons.wikimedia.org/wiki/File:Pale_Blue_Dot_from_Voyager_1_-_PIA23645.png",
+    "thumb": "/objects/t/pale-blue-dot.jpg",
+    "processed": true
+  },
+  "metropolis": {
+    "src": "/objects/metropolis.jpg",
+    "width": 1400,
+    "height": 1036,
+    "license": "Public domain",
+    "artist": "Boris Konstantinovitch Bilinsky (1900–1948)",
+    "page": "https://commons.wikimedia.org/wiki/File:1927_Boris_Bilinski_(1900-1948)_Plakat_f%C3%BCr_den_Film_Metropolis,_Staatliche_Museen_zu_Berlin.jpg",
+    "thumb": "/objects/t/metropolis.jpg",
+    "processed": true
+  },
+  "man-with-movie-camera": {
+    "src": "/objects/man-with-movie-camera.jpg",
+    "width": 640,
+    "height": 480,
+    "license": "Public domain",
+    "artist": "Dziga Vertov",
+    "page": "https://commons.wikimedia.org/wiki/File:Man_with_a_Movie_Camera_by_Dziga_Vertov.jpg",
+    "thumb": "/objects/t/man-with-movie-camera.jpg",
+    "processed": true
+  },
+  "trip-to-the-moon": {
+    "src": "/objects/trip-to-the-moon.jpg",
+    "width": 1181,
+    "height": 914,
+    "license": "Public domain",
+    "artist": "Breve Storia del Cinema",
+    "page": "https://commons.wikimedia.org/wiki/File:A_Trip_to_the_Moon_(Le_Voyage_dans_la_Lune).jpg",
+    "thumb": "/objects/t/trip-to-the-moon.jpg",
+    "processed": true
+  },
+  "pather-panchali": {
+    "src": "/objects/pather-panchali.jpg",
+    "width": 1400,
+    "height": 1065,
+    "license": "Public domain",
+    "artist": "Satyajit Ray/Government of West Bengal",
+    "page": "https://commons.wikimedia.org/wiki/File:Publicity_still_from_Pather_Panchali.jpg",
+    "thumb": "/objects/t/pather-panchali.jpg",
+    "processed": true
+  },
+  "cinematographe": {
+    "src": "/objects/cinematographe.jpg",
+    "width": 907,
+    "height": 1400,
+    "license": "CC BY-SA 4.0",
+    "artist": "Victorgrigas",
+    "page": "https://commons.wikimedia.org/wiki/File:Institut_Lumi%C3%A8re_-_CINEMATOGRAPHE_Camera.jpg",
+    "thumb": "/objects/t/cinematographe.jpg",
+    "processed": true
+  },
+  "tr-808": {
+    "src": "/objects/tr-808.jpg",
+    "width": 1400,
+    "height": 817,
+    "license": "CC BY-SA 2.0",
+    "artist": "Roland_TR-808_&amp;_909.jpg: Brandon Daniel derivative work: Clusternote (talk)",
+    "page": "https://commons.wikimedia.org/wiki/File:Roland_TR-808_(large).jpg",
+    "thumb": "/objects/t/tr-808.jpg",
+    "processed": true
+  },
+  "sl-1200": {
+    "src": "/objects/sl-1200.jpg",
+    "width": 1400,
+    "height": 1050,
+    "license": "CC BY-SA 4.0",
+    "artist": "BMRR",
+    "page": "https://commons.wikimedia.org/wiki/File:Technics_SL-1200_Original_1972.jpg",
+    "thumb": "/objects/t/sl-1200.jpg",
+    "processed": true
+  },
+  "op-1": {
+    "src": "/objects/op-1.jpg",
+    "width": 1080,
+    "height": 1080,
+    "license": "CC BY-SA 2.0",
+    "artist": "justin lincoln",
+    "page": "https://commons.wikimedia.org/wiki/File:The_OP-1_by_Teenage_Engineering.jpg",
+    "thumb": "/objects/t/op-1.jpg",
+    "processed": true
+  },
+  "walkman": {
+    "src": "/objects/walkman.jpg",
+    "width": 882,
+    "height": 1400,
+    "license": "CC BY-SA 4.0",
+    "artist": "Binarysequence",
+    "page": "https://commons.wikimedia.org/wiki/File:Original_Sony_Walkman_TPS-L2.JPG",
+    "thumb": "/objects/t/walkman.jpg",
+    "processed": true
+  },
+  "golden-record": {
+    "src": "/objects/golden-record.jpg",
+    "width": 1400,
+    "height": 1400,
+    "license": "Public domain",
+    "artist": "NASA/JPL",
+    "page": "https://commons.wikimedia.org/wiki/File:The_Sounds_of_Earth_Record_Cover_-_GPN-2000-001978.jpg",
+    "thumb": "/objects/t/golden-record.jpg",
+    "processed": true
+  },
+  "ipod": {
+    "src": "/objects/ipod.jpg",
+    "width": 1012,
+    "height": 1400,
+    "license": "CC BY-SA 4.0",
+    "artist": "Miguelon756-5303",
+    "page": "https://commons.wikimedia.org/wiki/File:IPod1stWIKIPEDIA.png",
+    "thumb": "/objects/t/ipod.jpg",
+    "processed": true
+  },
+  "imac-g3": {
+    "src": "/objects/imac-g3.jpg",
+    "width": 1400,
+    "height": 1305,
+    "license": "CC BY-SA 4.0",
+    "artist": "Alterations by David Fuchs; original by Rama, licensed CC-by-SA",
+    "page": "https://commons.wikimedia.org/wiki/File:IMac_G3_Bondi_Blue,_three-quarters_view.png",
+    "thumb": "/objects/t/imac-g3.jpg",
+    "processed": true
+  },
+  "macintosh": {
+    "src": "/objects/macintosh.jpg",
+    "width": 1400,
+    "height": 1291,
+    "license": "CC BY 3.0",
+    "artist": "Sailko",
+    "page": "https://commons.wikimedia.org/wiki/File:Computer_macintosh_128k,_1984_(all_about_Apple_onlus).jpg",
+    "thumb": "/objects/t/macintosh.jpg",
+    "processed": true
+  },
+  "xerox-alto": {
+    "src": "/objects/xerox-alto.jpg",
+    "width": 931,
+    "height": 1400,
+    "license": "CC BY 4.0",
+    "artist": "Bc4040",
+    "page": "https://commons.wikimedia.org/wiki/File:Xero_Alto_Computer.jpg",
+    "thumb": "/objects/t/xerox-alto.jpg",
+    "processed": true
+  },
+  "game-boy": {
+    "src": "/objects/game-boy.jpg",
+    "width": 875,
+    "height": 1400,
+    "license": "Public domain",
+    "artist": "Evan-Amos",
+    "page": "https://commons.wikimedia.org/wiki/File:Game-Boy-Original.jpg",
+    "thumb": "/objects/t/game-boy.jpg",
+    "processed": true
+  },
+  "thinkpad": {
+    "src": "/objects/thinkpad.jpg",
+    "width": 1400,
+    "height": 934,
+    "license": "CC BY-SA 3.0",
+    "artist": "Johannes Maximilian",
+    "page": "https://commons.wikimedia.org/wiki/File:IBM_ThinkPad_720C.jpg",
+    "thumb": "/objects/t/thinkpad.jpg",
+    "processed": true
+  },
+  "nokia-3310": {
+    "src": "/objects/nokia-3310.jpg",
+    "width": 933,
+    "height": 1400,
+    "license": "CC BY-SA 4.0",
+    "artist": "Multicherry",
+    "page": "https://commons.wikimedia.org/wiki/File:Nokia_3310_grey_front_(tidied_and_enhanced).jpg",
+    "thumb": "/objects/t/nokia-3310.jpg",
+    "processed": true
+  },
+  "next-cern": {
+    "src": "/objects/next-cern.jpg",
+    "width": 1400,
+    "height": 1050,
+    "license": "CC BY-SA 3.0",
+    "artist": "User:Coolcaesar at en.wikipedia",
+    "page": "https://commons.wikimedia.org/wiki/File:First_Web_Server.jpg",
+    "thumb": "/objects/t/next-cern.jpg",
+    "processed": true
+  },
+  "utah-teapot": {
+    "src": "/objects/utah-teapot.jpg",
+    "width": 1400,
+    "height": 1050,
+    "license": "CC BY-SA 4.0",
+    "artist": "The wub",
+    "page": "https://commons.wikimedia.org/wiki/File:Utah_Teapot_circa_1974,_Computer_History_Museum.jpg",
+    "thumb": "/objects/t/utah-teapot.jpg",
+    "processed": true
+  },
+  "stanford-bunny": {
+    "src": "/objects/stanford-bunny.jpg",
+    "width": 1400,
+    "height": 471,
+    "license": "Public domain",
+    "artist": "Trevorgoodchild (talk)",
+    "page": "https://commons.wikimedia.org/wiki/File:Stanford_bunny_qem.png",
+    "thumb": "/objects/t/stanford-bunny.jpg",
+    "processed": true
+  },
+  "lego-patent": {
+    "src": "/objects/lego-patent.jpg",
+    "width": 953,
+    "height": 1400,
+    "license": "Public domain",
+    "artist": "Christiansen, Godtfred Kirk",
+    "page": "https://commons.wikimedia.org/wiki/File:US3005282A_Toy_building_brick_(1958_filed,_1961_published)_by_Christiansen_Godtfred_Kirk_-_Lego_brick,_p.2,_Fig._7~12.png",
+    "thumb": "/objects/t/lego-patent.jpg",
+    "processed": true
+  },
+  "lettera-22": {
+    "src": "/objects/lettera-22.jpg",
+    "width": 1264,
+    "height": 1057,
+    "license": "Public domain",
+    "artist": "",
+    "page": "https://commons.wikimedia.org/wiki/File:Olivetti_Lettera_22_by_LjL.jpeg",
+    "thumb": "/objects/t/lettera-22.jpg",
+    "processed": true
+  },
+  "barcelona-chair": {
+    "src": "/objects/barcelona-chair.jpg",
+    "width": 1286,
+    "height": 1400,
+    "license": "CC BY 2.5",
+    "artist": "sailko",
+    "page": "https://commons.wikimedia.org/wiki/File:Ngv_design,_ludwig_mies_van_der_rohe_%26_co,_barcelona_chair.JPG",
+    "thumb": "/objects/t/barcelona-chair.jpg",
+    "processed": true
+  }
+}

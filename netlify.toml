@@ -1,0 +1,13 @@
+# Netlify builds the static export and serves out/ as files.
+[build]
+  command = "npm run build"
+  publish = "out"
+
+[build.environment]
+  NODE_VERSION = "22"
+
+# Images never change once published; let browsers keep them.
+[[headers]]
+  for = "/objects/*"
+  [headers.values]
+    Cache-Control = "public, max-age=31536000, immutable"
