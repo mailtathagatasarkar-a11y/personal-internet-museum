@@ -1512,10 +1512,10 @@
   "qr-code": {
     "src": "/objects/qr-code.jpg",
     "width": 1400,
-    "height": 786,
-    "license": "CC BY-SA 3.0",
-    "artist": "Zephyris",
-    "page": "https://commons.wikimedia.org/wiki/File:QR_Code_Structure_Example_2.svg",
+    "height": 1400,
+    "license": "CC0",
+    "artist": "Yacàwotçã",
+    "page": "https://commons.wikimedia.org/wiki/File:QR_code_example.svg",
     "thumb": "/objects/t/qr-code.jpg",
     "processed": true
   },

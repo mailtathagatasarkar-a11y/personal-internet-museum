@@ -735,10 +735,17 @@ body {
   margin-top: 2px;
 }
 
-/* A strip of paper under HUD text that must stay legible over the map. */
+/* HUD text sits straight on the poster, as type does on a poster. Over an
+   image it keeps a soft halo of paper around each glyph — no boxes. */
 .paper-strip {
-  background: var(--paper);
-  box-shadow: 0 0 0 10px var(--paper);
+  text-shadow:
+    0 0 2px var(--paper),
+    0 0 4px var(--paper),
+    0 0 8px var(--paper),
+    0 0 14px var(--paper);
+}
+.paper-strip .dot {
+  box-shadow: 0 0 0 3px var(--paper);
 }
 
 /* A sheet laid on the paper: for anything that opens and must read as the
