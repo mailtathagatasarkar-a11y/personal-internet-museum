@@ -196,6 +196,27 @@ body {
   opacity: var(--far);
 }
 
+/* A room shown where the hall wraps. Inert: the real one is a hall away. */
+.ghost {
+  position: absolute;
+  pointer-events: none;
+}
+
+/* The hall on either side of the room in focus, under a sheet of paper. */
+.veil {
+  position: absolute;
+  top: 0;
+  height: 100%;
+  background: var(--paper);
+  pointer-events: none;
+  z-index: 3500;
+  opacity: 0;
+  transition: opacity 0.55s cubic-bezier(0.4, 0, 0.2, 1);
+}
+.veil[data-on="true"] {
+  opacity: 0.68;
+}
+
 /* The dots: one per room, the current one filled. */
 .dot {
   width: 9px;

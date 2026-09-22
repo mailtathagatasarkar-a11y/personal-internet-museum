@@ -51,11 +51,29 @@ export const ROOM_PLACES: RoomPlace[] = ROOMS.map((r, i) => {
 });
 export const roomById = Object.fromEntries(ROOM_PLACES.map((r) => [r.id, r])) as Record<string, RoomPlace>;
 
+/** One step along the hall: a room and the paper after it. */
+export const STRIDE = ROOM_SIZE.w + GUTTER;
+/**
+ * The hall is a ring. Going past the last room arrives at the first, so the
+ * museum has no ends: this is the distance after which it repeats.
+ */
+export const HALL = STRIDE * ROOMS.length;
+
 /** The hall: rooms side by side. */
 export const WORLD = {
   width: ROOMS.length * ROOM_SIZE.w + (ROOMS.length - 1) * GUTTER,
   height: ROOM_SIZE.h,
 } as const;
+
+/**
+ * A slot is a place in the hall, which may be one turn of the ring away from
+ * the room that stands there: slot −1 is the last room, slot `rooms` the first.
+ */
+export const slotRoom = (slot: number) => ((slot % ROOMS.length) + ROOMS.length) % ROOMS.length;
+export const slotLeft = (slot: number) => slot * STRIDE;
+export const slotCenter = (slot: number) => ({ x: slot * STRIDE + ROOM_SIZE.w / 2, y: ROOM_SIZE.h / 2 });
+/** How far the camera may travel: the hall, plus the room it wraps around to at either end. */
+export const TRAVEL = { origin: { x: -STRIDE, y: 0 }, size: { w: HALL + STRIDE + ROOM_SIZE.w, h: ROOM_SIZE.h } } as const;
 
 /** Cell coordinates → world units, within a room. */
 export const cellX = (col: number, room = 0) => ROOM_PLACES[room].left + MARGIN + col * GRID.cell;

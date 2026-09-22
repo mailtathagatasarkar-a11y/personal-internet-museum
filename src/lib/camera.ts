@@ -65,16 +65,20 @@ export function zoomAt(cam: Camera, px: number, py: number, factor: number, minS
  * never left floating in a corner. That allowance grows with the overflow
  * from zero, so zooming out to the floor slides the poster into the centre
  * instead of snapping it there on the frame it first fits.
+ *
+ * `origin` is where the travelled region starts in world units — the hall
+ * reaches one room to either side of itself, into the rooms it wraps around to.
  */
-export function constrain(cam: Camera, vp: Size, world: Size): Camera {
-  const ww = world.w * cam.s;
-  const wh = world.h * cam.s;
-  const axis = (pos: number, size: number, view: number) => {
-    if (size <= view) return (view - size) / 2;
+export function constrain(cam: Camera, vp: Size, world: Size, origin: { x: number; y: number } = { x: 0, y: 0 }): Camera {
+  const axis = (pos: number, org: number, size: number, view: number) => {
+    // Work in the screen position of the region's near edge, then convert back.
+    const edge = pos + org * cam.s;
+    const put = (v: number) => v - org * cam.s;
+    if (size <= view) return put((view - size) / 2);
     const m = Math.min(view * 0.45, (size - view) / 2);
-    return clamp(pos, view - m - size, m);
+    return put(clamp(edge, view - m - size, m));
   };
-  return { x: axis(cam.x, ww, vp.w), y: axis(cam.y, wh, vp.h), s: cam.s };
+  return { x: axis(cam.x, origin.x, world.w * cam.s, vp.w), y: axis(cam.y, origin.y, world.h * cam.s, vp.h), s: cam.s };
 }
 
 /** Camera that shows `rect` with `pad` px around it, never closer than maxS. */

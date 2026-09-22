@@ -27,8 +27,8 @@ the readout now says *Technology*.
 | --- | --- |
 | Drag | Pan (with inertia) |
 | Wheel / pinch | Zoom toward the cursor — never further out than one room |
-| Drag sideways at the floor | Turn the page: the hall slides to the next room and settles |
-| The dots (bottom centre) · `[` `]` · `PageUp` `PageDown` | Pick a room · previous / next room |
+| Drag sideways at the floor | Turn the page: the hall slides to the next room and settles on it |
+| The dots (bottom centre) · `[` `]` · `PageUp` `PageDown` | Pick a room · previous / next room, the short way round |
 | Double-click on the floor | Zoom in |
 | Click a territory name (far zoom) | Fly to that territory |
 | Click an object | Open it: the camera moves, the reading column appears |
@@ -63,7 +63,12 @@ on its floor:
 
 The rooms sit side by side in one world with two cells of paper between them, so moving
 between rooms is a camera slide, connections and threads can run across the hall, and
-the next room's edge shows at the side of the frame at the floor. Each room's layout
+the next room's edge shows at the side of the frame at the floor. The hall is a ring:
+past the last room is the first again. Copies of the end rooms stand at either end
+(`GhostRoom`) so there is always a room on both sides; crossing onto one moves the camera
+a whole hall along, onto the room itself, which looks exactly the same. The room in focus
+is the only one at full strength — the hall on either side sits under a sheet of paper,
+which lifts the moment the camera moves so you can see where you are going. Each room's layout
 lives in `src/data/rooms/<room>.ts`: the headline fragments, the territory label cells,
 and every object's cell span (`[col, row, cols, rows, fit]`). The grid is 26 × 18 and the
 composition follows three rules: an image never shares an edge with another image, text

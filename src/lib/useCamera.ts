@@ -25,6 +25,8 @@ export interface CameraApi {
 interface Options {
   viewport: () => Size;
   world: Size;
+  /** Where the travelled region starts in world units. Defaults to the origin. */
+  worldOrigin?: () => { x: number; y: number };
   minScale: () => number;
   /** Fired on every user gesture, so selection state can react to manual travel. */
   onGesture?: (kind: "pan" | "zoom") => void;
@@ -126,7 +128,10 @@ export function useCamera(opts: Options): CameraApi {
     [get, set, stop],
   );
 
-  const applyUser = useCallback((c: Camera) => set(constrain(c, optsRef.current.viewport(), optsRef.current.world)), [set]);
+  const applyUser = useCallback(
+    (c: Camera) => set(constrain(c, optsRef.current.viewport(), optsRef.current.world, optsRef.current.worldOrigin?.())),
+    [set],
+  );
 
   const bind = useCallback(
     (el: HTMLElement | null) => {
@@ -220,7 +225,12 @@ export function useCamera(opts: Options): CameraApi {
           prev = now;
           const decay = Math.exp(-dt / 300);
           const cam = get();
-          const next = constrain({ ...cam, x: cam.x + v.x * dt, y: cam.y + v.y * dt }, optsRef.current.viewport(), optsRef.current.world);
+          const next = constrain(
+            { ...cam, x: cam.x + v.x * dt, y: cam.y + v.y * dt },
+            optsRef.current.viewport(),
+            optsRef.current.world,
+            optsRef.current.worldOrigin?.(),
+          );
           if (next.x !== cam.x + v.x * dt) v.x = 0;
           if (next.y !== cam.y + v.y * dt) v.y = 0;
           set(next);

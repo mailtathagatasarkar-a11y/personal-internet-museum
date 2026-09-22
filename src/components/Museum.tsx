@@ -4,23 +4,28 @@ import { useCallback, useEffect, useMemo, useRef, useState } from "react";
 import { AnimatePresence, motion, useMotionValueEvent } from "motion/react";
 import {
   GRID,
-  GUTTER,
+  HALL,
   PLACED,
   ROOM_PLACES,
   ROOM_SIZE,
+  STRIDE,
   TERRITORY_PLACES,
+  TRAVEL,
   WORLD,
   cellX,
   cellY,
   placedById,
+  slotCenter,
+  slotRoom,
   territoryById,
   threadById,
   type TerritoryPlace,
 } from "@/data/museum";
 import type { TerritoryId } from "@/data/territories";
 import { centerOn, clamp, constrain, fitRect, fitScale, frameObject, toScreen, union, worldCenter, zoomAt, type Size } from "@/lib/camera";
-import { useCamera } from "@/lib/useCamera";
+import { useCamera, type CameraApi } from "@/lib/useCamera";
 import { Connections } from "./Connections";
+import { GhostRoom } from "./GhostRoom";
 import { GridLayer } from "./GridLayer";
 import { LabelLayer } from "./LabelLayer";
 import { DetailPanel } from "./DetailPanel";
@@ -32,11 +37,14 @@ import { TerritoryLayer } from "./TerritoryLayer";
 type Tier = "far" | "medium" | "close";
 
 const WORLD_SIZE: Size = { w: WORLD.width, h: WORLD.height };
+const TRAVEL_SIZE: Size = { w: TRAVEL.size.w, h: TRAVEL.size.h };
 const ROOM: Size = { w: ROOM_SIZE.w, h: ROOM_SIZE.h };
 const LAST_ROOM = ROOM_PLACES.length - 1;
 
-/** The room whose centre is nearest a world x. */
-const roomAt = (wx: number) => clamp(Math.round((wx - ROOM_SIZE.w / 2) / (ROOM_SIZE.w + GUTTER)), 0, LAST_ROOM);
+/** The slot — a place in the hall, which may be a turn of the ring away — nearest a world x. */
+const slotAt = (wx: number) => Math.round((wx - ROOM_SIZE.w / 2) / STRIDE);
+/** How far the paper reaches over the hall on either side of the room in focus. */
+const VEIL_REACH = STRIDE * 3;
 
 const smooth = (a: number, b: number, v: number) => {
   const t = clamp((v - a) / (b - a), 0, 1);
@@ -77,27 +85,41 @@ export default function Museum() {
   const vpRef = useRef<Size>({ w: 1440, h: 900 });
   const [narrow, setNarrow] = useState(false);
 
-  /** The room the visitor is in: the one nearest the centre of the view. */
-  const [room, setRoom] = useState(0);
+  /**
+   * Where the visitor is. The slot is the place in the hall the camera is at,
+   * which while the hall wraps may be one turn of the ring from the room that
+   * stands there; the room is what that slot shows.
+   */
+  const [slot, setSlot] = useState(0);
+  const slotRef = useRef(0);
+  useEffect(() => {
+    slotRef.current = slot;
+  }, [slot]);
+  const room = slotRoom(slot);
   const roomRef = useRef(0);
   useEffect(() => {
     roomRef.current = room;
   }, [room]);
   /** The nudge under the dots, until the visitor has changed rooms once. */
   const [slid, setSlid] = useState(false);
+  /** The camera is in motion: every room is at full strength while travelling. */
+  const [moving, setMoving] = useState(false);
 
-  // Fit one room: the poster view. A phone is too narrow for a poster, so it
+  // Fit one slot: the poster view. A phone is too narrow for a poster, so it
   // starts inside the room's first territory at a readable size and pans.
-  const homeCamera = useCallback((index: number = roomRef.current) => {
+  const homeCamera = useCallback((atSlot: number = slotRef.current) => {
     const vp = vpRef.current;
-    const r = ROOM_PLACES[index];
+    const index = slotRoom(atSlot);
+    const c = slotCenter(atSlot);
     if (vp.w < 760) {
       const s = Math.max(fitScale(vp, ROOM, 24), Math.min(0.24, (vp.h - 120) / ROOM_SIZE.h));
-      const first = TERRITORY_PLACES.find((t) => t.room === index)?.center ?? r.center;
-      return centerOn(vp, first.x, first.y, s);
+      const first = TERRITORY_PLACES.find((t) => t.room === index);
+      // The same point of the room, wherever in the ring this slot is.
+      if (first) return centerOn(vp, first.center.x - ROOM_PLACES[index].left + atSlot * STRIDE, first.center.y, s);
+      return centerOn(vp, c.x, c.y, s);
     }
     // Centred exactly, so the zoom floor and the poster agree to the pixel.
-    return centerOn(vp, r.center.x, r.center.y, fitScale(vp, ROOM, 44));
+    return centerOn(vp, c.x, c.y, fitScale(vp, ROOM, 44));
   }, []);
   const [measured, setMeasured] = useState(false);
   const measuredRef = useRef(false);
@@ -161,11 +183,30 @@ export default function Museum() {
   const touchedRef = useRef(false);
   // Where ← → have got to among the current object's connections.
   const stepRef = useRef(0);
+  // The camera, reachable from callbacks declared before it exists.
+  const cameraRef = useRef<CameraApi | null>(null);
+
+  /**
+   * Arrive at a slot. Past either end of the hall the camera is standing on a
+   * copy of a room (see GhostRoom); it is moved a whole hall along, onto the
+   * room itself, which looks exactly the same — so the ring has no seam.
+   */
+  const settleSlot = useCallback((atSlot: number) => {
+    const cam = cameraRef.current;
+    const wrapped = slotRoom(atSlot);
+    if (cam && atSlot !== wrapped) {
+      const c = cam.get();
+      // The difference is a whole number of turns of the ring, in slots.
+      cam.set({ ...c, x: c.x + (atSlot - wrapped) * STRIDE * c.s });
+    }
+    setSlot(wrapped);
+  }, []);
 
   // ── Camera ────────────────────────────────────────────────────────────
   const camera = useCamera({
     viewport: () => vpRef.current,
-    world: WORLD_SIZE,
+    world: TRAVEL_SIZE,
+    worldOrigin: () => TRAVEL.origin,
     minScale,
     onGesture: (kind) => {
       touchedRef.current = true;
@@ -178,21 +219,22 @@ export default function Museum() {
     onSettle: (release) => {
       const cam = camera.get();
       const vp = vpRef.current;
-      // A phone never sees a whole room, so it pans freely; the dots turn its pages.
-      if (vp.w < 760 || cam.s > minScale() * 1.06) return;
+      // A phone never sees a whole room, so it pans freely; the dots turn its
+      // pages. It still steps back onto the hall if it has panned off the end.
+      if (vp.w < 760 || cam.s > minScale() * 1.06) {
+        const at = slotAt(worldCenter(cam, vp).cx);
+        if (at !== slotRoom(at)) settleSlot(at);
+        return;
+      }
       const c = worldCenter(cam, vp);
-      const here = roomRef.current;
-      const dx = c.cx - ROOM_PLACES[here].center.x;
+      const here = slotRef.current;
+      const dx = c.cx - slotCenter(here).x;
       const flick = release && Math.abs(release.vx) > 0.35 && Math.abs(release.vx) > Math.abs(release.vy) ? -Math.sign(release.vx) : 0;
-      const next = flick
-        ? clamp(here + flick, 0, LAST_ROOM)
-        : Math.abs(dx) > ROOM_SIZE.w * 0.2
-          ? clamp(here + Math.sign(dx), 0, LAST_ROOM)
-          : roomAt(c.cx);
+      const next = flick ? here + flick : Math.abs(dx) > ROOM_SIZE.w * 0.2 ? here + Math.sign(dx) : slotAt(c.cx);
       const target = homeCamera(next);
-      if (Math.abs(target.x - cam.x) < 1 && Math.abs(target.y - cam.y) < 1 && Math.abs(target.s - cam.s) < 1e-4) return;
+      if (next === here && Math.abs(target.x - cam.x) < 1 && Math.abs(target.y - cam.y) < 1 && Math.abs(target.s - cam.s) < 1e-4) return;
       if (next !== here) setSlid(true);
-      camera.flyTo(target, { duration: 0.6, lift: false });
+      camera.flyTo(target, { duration: 0.6, lift: false }).then(() => settleSlot(next));
     },
     onDoubleClick: (w) => {
       const cam = camera.get();
@@ -226,6 +268,10 @@ export default function Museum() {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
+  useEffect(() => {
+    cameraRef.current = camera;
+  }, [camera]);
+
   // Gestures.
   useEffect(() => camera.bind(viewportRef.current), [camera]);
 
@@ -253,7 +299,7 @@ export default function Museum() {
       touchedRef.current = true;
       camera.set(homeCamera(r - 1));
       const timer = setTimeout(() => {
-        setRoom(r - 1);
+        setSlot(r - 1);
         setSlid(true);
         setEntering(false);
         setReady(true);
@@ -331,6 +377,30 @@ export default function Museum() {
     window.history.replaceState(null, "", url);
   }, [ready, selectedId, threadId, room]);
 
+  // Travelling: while the camera moves at all, by hand or in flight, every
+  // room is at full strength, so the visitor can see where they are going.
+  useEffect(() => {
+    let timer: number | null = null;
+    let on = false;
+    const bump = () => {
+      if (!on) {
+        on = true;
+        setMoving(true);
+      }
+      if (timer) clearTimeout(timer);
+      timer = window.setTimeout(() => {
+        on = false;
+        timer = null;
+        setMoving(false);
+      }, 180);
+    };
+    const unsubs = [camera.x.on("change", bump), camera.s.on("change", bump)];
+    return () => {
+      unsubs.forEach((u) => u());
+      if (timer) clearTimeout(timer);
+    };
+  }, [camera]);
+
   // Zoom → disclosure. CSS variables on the world do the fading; React only
   // learns about tier changes.
   useMotionValueEvent(camera.s, "change", (v) => {
@@ -354,10 +424,10 @@ export default function Museum() {
       raf = null;
       const cam = camera.get();
       const c = worldCenter(cam, vpRef.current);
-      const here = roomAt(c.cx);
-      setRoom(here);
-      const ranked = TERRITORY_PLACES.filter((t) => t.room === here)
-        .map((t) => ({ t, d: Math.hypot(t.center.x - c.cx, t.center.y - c.cy) }))
+      const here = slotAt(c.cx);
+      setSlot(here);
+      const ranked = TERRITORY_PLACES.filter((t) => t.room === slotRoom(here))
+        .map((t) => ({ t, d: Math.hypot(t.center.x - ROOM_PLACES[slotRoom(here)].left + here * STRIDE - c.cx, t.center.y - c.cy) }))
         .sort((a, b) => a.d - b.d);
       const [a, b] = ranked;
       if (enteringRef.current || cam.s < minScale() * 1.35 || !a) setPlace({ label: "", id: null });
@@ -468,10 +538,19 @@ export default function Museum() {
     [camera, homeCamera, minScale],
   );
 
-  /** Turn to a room: the camera slides along the hall at the floor. */
+  /**
+   * Turn to a room: the camera slides along the hall at the floor, the short
+   * way round the ring — from the first room, the last one is one step left.
+   */
   const goToRoom = useCallback(
-    (index: number) => {
-      const next = clamp(index, 0, LAST_ROOM);
+    (index: number, direction?: 1 | -1) => {
+      const here = slotRef.current;
+      const wanted = slotRoom(index);
+      // The nearest slot showing that room, or the next one in a given direction.
+      const candidates = [-1, 0, 1].map((turn) => wanted + (Math.round((here - wanted) / ROOM_PLACES.length) + turn) * ROOM_PLACES.length);
+      const next = direction
+        ? candidates.filter((s) => Math.sign(s - here) === direction).sort((a, b) => Math.abs(a - here) - Math.abs(b - here))[0]
+        : candidates.sort((a, b) => Math.abs(a - here) - Math.abs(b - here))[0];
       touchedRef.current = true;
       setEntering(false);
       setSelectedId(null);
@@ -480,11 +559,14 @@ export default function Museum() {
       setHot(null);
       setPreviewThreadId(null);
       setSlid(true);
-      const hops = Math.abs(next - roomRef.current);
-      camera.flyTo(homeCamera(next), { duration: hops === 0 ? 0.6 : 0.8 + 0.3 * hops, lift: false });
+      const hops = Math.abs(next - here);
+      camera.flyTo(homeCamera(next), { duration: hops === 0 ? 0.6 : 0.8 + 0.3 * hops, lift: false }).then(() => settleSlot(next));
     },
-    [camera, homeCamera],
+    [camera, homeCamera, settleSlot],
   );
+
+  /** One room along the hall, in a direction, wrapping at either end. */
+  const stepRoom = useCallback((dir: 1 | -1) => goToRoom(slotRoom(slotRef.current + dir), dir), [goToRoom]);
 
   const reset = useCallback(() => {
     setSelectedId(null);
@@ -637,17 +719,17 @@ export default function Museum() {
           break;
         case "]":
         case "PageDown":
-          goToRoom(roomRef.current + 1);
+          stepRoom(1);
           break;
         case "[":
         case "PageUp":
-          goToRoom(roomRef.current - 1);
+          stepRoom(-1);
           break;
       }
     };
     window.addEventListener("keydown", onKey);
     return () => window.removeEventListener("keydown", onKey);
-  }, [back, deselect, drift, goToRoom, legendOpen, openSearch, reset, search.open, step, zoom]);
+  }, [back, deselect, drift, legendOpen, openSearch, reset, search.open, step, stepRoom, zoom]);
 
   // ── Derived per-object state ──────────────────────────────────────────
   const relatedIds = useMemo(() => new Set(selected?.relations.map((r) => r.to) ?? []), [selected]);
@@ -715,6 +797,9 @@ export default function Museum() {
           }}
         >
           <GridLayer />
+          {/* The hall wraps: the last room stands to the left of the first, the first to the right of the last. */}
+          <GhostRoom index={LAST_ROOM} dx={-HALL} />
+          <GhostRoom index={0} dx={HALL} />
           <TerritoryLayer onSelect={goToTerritoryPlace} onHover={setHoverTerritory} />
           <Connections
             from={linesFrom}
@@ -739,6 +824,11 @@ export default function Museum() {
             );
           })}
           <LabelLayer stateFor={stateFor} tagFor={tagFor} hoverId={hoverId} />
+          {/* The room you are in is the one in focus; the hall on either side
+              steps back under a sheet of paper, and comes forward again the
+              moment the camera moves, so you can see where you are going. */}
+          <div className="veil" data-on={!moving && !still} style={{ left: slot * STRIDE - VEIL_REACH, width: VEIL_REACH }} />
+          <div className="veil" data-on={!moving && !still} style={{ left: slot * STRIDE + ROOM_SIZE.w, width: VEIL_REACH }} />
         </motion.div>
       </div>
 
