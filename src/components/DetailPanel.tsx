@@ -2,6 +2,7 @@
 
 import { motion } from "motion/react";
 import { accession, placedById, territoryById, threadsFor, type PlacedObject } from "@/data/museum";
+import type { TerritoryId } from "@/data/territories";
 import type { Thread } from "@/data/threads";
 
 interface Props {
@@ -14,7 +15,7 @@ interface Props {
   onFollowThread: (id: string) => void;
   /** Pointing at a thread shows its members in the museum before you follow it. */
   onPreviewThread: (id: string | null) => void;
-  onTerritory: (id: string) => void;
+  onTerritory: (id: TerritoryId) => void;
   /** Open the search with a query: the creator, or the decade. */
   onSearch: (query: string) => void;
 }

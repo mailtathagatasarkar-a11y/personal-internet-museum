@@ -1,0 +1,70 @@
+{
+  "roundhay-garden": {
+    "q": "Roundhay Garden Scene",
+    "min": 300
+  },
+  "edison-bulb": {
+    "q": "Edison light bulb replica"
+  },
+  "trojan-room-coffee-pot": {
+    "t": "File:Trojan Room coffee pot xcoffee.png",
+    "q": "Trojan Room coffee pot",
+    "min": 100
+  },
+  "fiskars-scissors": {
+    "q": "Fiskars scissors"
+  },
+  "kikkoman-bottle": {
+    "q": "Kikkoman soy sauce bottle"
+  },
+  "luxo-l1": {
+    "q": "Luxo lamp"
+  },
+  "vespa": {
+    "q": "Vespa 150 scooter"
+  },
+  "leatherman-pst": {
+    "q": "Leatherman multitool"
+  },
+  "stanley-thermos": {
+    "q": "Stanley thermos bottle"
+  },
+  "akai-mpc60": {
+    "q": "Akai MPC"
+  },
+  "composing-stick": {
+    "q": "Winkelhaken Bleisatz"
+  },
+  "munsell": {
+    "q": "Munsell color system"
+  },
+  "sbb-clock": {
+    "q": "Bahnhofsuhr SBB Zürich"
+  },
+  "exit-sign": {
+    "t": "File:ISO 7010 E001.svg",
+    "q": "ISO 7010 E001 emergency exit"
+  },
+  "din-1451": {
+    "q": "DIN 1451 Mittelschrift"
+  },
+  "transport-typeface": {
+    "q": "UK road sign Transport typeface motorway"
+  },
+  "upc-barcode": {
+    "t": "File:UPC-A-036000291452.svg",
+    "q": "UPC-A barcode"
+  },
+  "feynman-diagram": {
+    "q": "Feynman diagram"
+  },
+  "metronome": {
+    "q": "Metronom Mälzel"
+  },
+  "film-leader": {
+    "q": "film countdown leader 35mm"
+  },
+  "grey-card": {
+    "q": "gray card photography"
+  }
+}

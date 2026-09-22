@@ -30,6 +30,7 @@ function ObjectNodeImpl({ obj, state, wantFull, onSelect, onHover, onFocus, wasD
       data-id={obj.id}
       data-state={state}
       data-territory={obj.territory}
+      data-room={obj.room}
       role="button"
       tabIndex={0}
       aria-label={`${obj.title}, ${obj.creator}, ${obj.year}`}
@@ -59,9 +60,18 @@ function ObjectNodeImpl({ obj, state, wantFull, onSelect, onHover, onFocus, wasD
         if (e.currentTarget.matches(":focus-visible")) onFocus(obj.id);
       }}
     >
-      {/* Plain <img>: the museum scales these itself, so next/image's sizing would fight the camera. */}
+      {/* Plain <img>: the museum scales these itself, so next/image's sizing would fight the camera.
+          The first room's thumbnails arrive with the page; the other rooms' as they come into view, or are warmed after entry. */}
       {/* eslint-disable-next-line @next/next/no-img-element */}
-      <img className="obj-img thumb" src={obj.image.thumb} alt="" draggable={false} decoding="async" style={{ objectFit: obj.fit }} />
+      <img
+        className="obj-img thumb"
+        src={obj.image.thumb}
+        alt=""
+        draggable={false}
+        decoding="async"
+        loading={obj.room === 0 ? "eager" : "lazy"}
+        style={{ objectFit: obj.fit }}
+      />
       {full && (
         // eslint-disable-next-line @next/next/no-img-element
         <img

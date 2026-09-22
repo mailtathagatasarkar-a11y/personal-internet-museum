@@ -2,7 +2,8 @@
 
 import { useEffect, useMemo, useRef, useState } from "react";
 import { AnimatePresence, motion } from "motion/react";
-import { COLLECTION, PLACED, placedById, territoryById, type PlacedObject } from "@/data/museum";
+import { COLLECTION, PLACED, ROOM_PLACES, placedById, territoryById, type PlacedObject, type RoomPlace } from "@/data/museum";
+import type { TerritoryId } from "@/data/territories";
 import type { Thread } from "@/data/threads";
 
 /* ─── Masthead ───────────────────────────────────────────────────────── */
@@ -21,7 +22,7 @@ export function Masthead({ large, narrow, onReset }: { large: boolean; narrow: b
               transition={{ duration: 0.4 }}
               style={{ marginBottom: 6, color: "var(--ink-2)" }}
             >
-              {COLLECTION.total} objects · collecting since {COLLECTION.since}
+              {COLLECTION.total} objects · {COLLECTION.rooms} rooms · collecting since {COLLECTION.since}
             </motion.div>
           )}
         </AnimatePresence>
@@ -106,7 +107,8 @@ const KEYS: [string, string][] = [
   ["esc", "step back"],
   ["d", "drift somewhere far"],
   ["/", "index · search"],
-  ["+ − 0", "zoom in · out · whole museum"],
+  ["+ − 0", "zoom in · out · this room"],
+  ["[ ]", "previous · next room"],
 ];
 
 export function Legend({ onClose }: { onClose: () => void }) {
@@ -142,28 +144,93 @@ export function Legend({ onClose }: { onClose: () => void }) {
 /* ─── Readout: where am I ────────────────────────────────────────────── */
 
 interface ReadoutProps {
+  room: RoomPlace;
+  /** The territory under the centre of the view, or "" at the floor. */
   place: string;
-  placeId: string | null;
+  placeId: TerritoryId | null;
   scale: number;
   narrow: boolean;
-  onGo: (id: string) => void;
+  onGo: (id: TerritoryId) => void;
 }
 
-export function Readout({ place, placeId, scale, narrow, onGo }: ReadoutProps) {
+export function Readout({ room, place, placeId, scale, narrow, onGo }: ReadoutProps) {
   // A map-style ratio reads better than a percentage.
   const ratio = scale >= 1 ? `${scale.toFixed(1)} : 1` : `1 : ${(1 / scale).toFixed(1)}`;
   return (
     <div className="hud mono" style={{ left: narrow ? 20 : 28, top: narrow ? 18 : 24, color: "var(--ink-2)" }} data-hud>
       <div className="paper-strip">
-        <span style={{ color: "var(--ink-3)" }}>In </span>
-        {placeId ? (
-          <button type="button" className="hud-link" onClick={() => onGo(placeId)} title="Fit this territory">
-            {place}
-          </button>
-        ) : (
-          <span style={{ color: "var(--ink)" }}>{place}</span>
+        <span style={{ color: "var(--ink-3)" }}>{room.number} </span>
+        <span style={{ color: "var(--ink)" }}>{room.name}</span>
+        {place && (
+          <>
+            <span style={{ color: "var(--ink-3)" }}> · in </span>
+            {placeId ? (
+              <button type="button" className="hud-link" onClick={() => onGo(placeId)} title="Fit this territory">
+                {place}
+              </button>
+            ) : (
+              <span style={{ color: "var(--ink)" }}>{place}</span>
+            )}
+          </>
         )}
         {!narrow && <span style={{ color: "var(--ink-3)", marginLeft: 18 }}>Scale {ratio}</span>}
+      </div>
+    </div>
+  );
+}
+
+/* ─── Dots: the rooms of the hall ────────────────────────────────────── */
+
+interface DotsProps {
+  rooms: RoomPlace[];
+  current: number;
+  /** Show the nudge to slide, until the visitor has turned a page once. */
+  hint: boolean;
+  narrow: boolean;
+  onGo: (index: number) => void;
+}
+
+export function Dots({ rooms, current, hint, narrow, onGo }: DotsProps) {
+  const [hover, setHover] = useState<number | null>(null);
+  const shown = hover ?? current;
+  return (
+    <div className="hud dots" data-hud style={{ left: "50%", bottom: narrow ? 92 : 22, transform: "translateX(-50%)" }}>
+      <div className="paper-strip" style={{ display: "flex", flexDirection: "column", alignItems: "center", gap: 8 }}>
+        <div className="mono dots-name" data-hint={hint && hover === null ? true : undefined}>
+          {hover !== null ? (
+            <>
+              <span style={{ color: "var(--ink-3)" }}>{rooms[shown].number} </span>
+              {rooms[shown].name}
+            </>
+          ) : hint ? (
+            narrow ? (
+              "pick a room"
+            ) : (
+              "slide, or pick a room"
+            )
+          ) : (
+            <>
+              <span style={{ color: "var(--ink-3)" }}>{rooms[shown].number} </span>
+              {rooms[shown].name}
+            </>
+          )}
+        </div>
+        <div style={{ display: "flex", gap: 14, alignItems: "center" }}>
+          {rooms.map((r) => (
+            <button
+              key={r.id}
+              type="button"
+              className="dot"
+              aria-label={`Room ${r.number} · ${r.name}`}
+              aria-current={r.index === current}
+              onClick={() => onGo(r.index)}
+              onPointerEnter={() => setHover(r.index)}
+              onPointerLeave={() => setHover(null)}
+              onFocus={() => setHover(r.index)}
+              onBlur={() => setHover(null)}
+            />
+          ))}
+        </div>
       </div>
     </div>
   );
@@ -240,10 +307,12 @@ export function Search({ initial = "", onSelect, onClose }: { initial?: string; 
 
   const hits = useMemo<PlacedObject[]>(() => {
     const term = q.trim().toLowerCase();
-    // No query: the whole index, in the order of the floor.
-    if (!term) return [...PLACED].sort((a, b) => a.territory.localeCompare(b.territory) || a.index - b.index);
+    // No query: the whole index, room by room, in the order of the floor.
+    if (!term) return [...PLACED].sort((a, b) => a.room - b.room || a.territory.localeCompare(b.territory) || a.index - b.index);
     const score = (o: PlacedObject) => {
-      const hay = [o.title, o.creator, o.maker ?? "", o.year, territoryById[o.territory].name, o.medium].join(" ").toLowerCase();
+      const hay = [o.title, o.creator, o.maker ?? "", o.year, territoryById[o.territory].name, o.medium, ROOM_PLACES[o.room].name]
+        .join(" ")
+        .toLowerCase();
       if (o.title.toLowerCase().startsWith(term)) return 3;
       if (o.title.toLowerCase().includes(term)) return 2;
       if (hay.includes(term)) return 1;
@@ -294,20 +363,31 @@ export function Search({ initial = "", onSelect, onClose }: { initial?: string; 
         />
         <div className="index-list" style={{ marginTop: 12 }}>
           {hits.map((o, i) => (
-            <button key={o.id} type="button" className="search-hit" data-active={i === cursor} onClick={() => onSelect(o.id)}>
-              <span className="mono" style={{ color: "var(--ink-3)" }}>
-                {String(o.index).padStart(3, "0")}
-              </span>
-              <span>
-                <span className="serif" style={{ fontSize: 20 }}>
-                  {o.title}
+            <div key={o.id} style={{ display: "contents" }}>
+              {!q.trim() && (i === 0 || hits[i - 1].room !== o.room) && (
+                <div className="mono index-room">
+                  <span style={{ color: "var(--ink-3)" }}>{ROOM_PLACES[o.room].number} </span>
+                  {ROOM_PLACES[o.room].name}
+                  <span style={{ color: "var(--ink-3)", marginLeft: 12, textTransform: "none", letterSpacing: "0.02em" }}>
+                    {ROOM_PLACES[o.room].line}
+                  </span>
+                </div>
+              )}
+              <button type="button" className="search-hit" data-active={i === cursor} onClick={() => onSelect(o.id)}>
+                <span className="mono" style={{ color: "var(--ink-3)" }}>
+                  {String(o.index).padStart(3, "0")}
                 </span>
-                <span style={{ color: "var(--ink-2)", fontSize: 13, marginLeft: 10 }}>{o.creator}</span>
-              </span>
-              <span className="mono" style={{ color: "var(--ink-3)" }}>
-                {o.year} · {territoryById[o.territory].name}
-              </span>
-            </button>
+                <span>
+                  <span className="serif" style={{ fontSize: 20 }}>
+                    {o.title}
+                  </span>
+                  <span style={{ color: "var(--ink-2)", fontSize: 13, marginLeft: 10 }}>{o.creator}</span>
+                </span>
+                <span className="mono" style={{ color: "var(--ink-3)" }}>
+                  {o.year} · {territoryById[o.territory].name}
+                </span>
+              </button>
+            </div>
           ))}
         </div>
       </motion.div>

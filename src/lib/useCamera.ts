@@ -28,6 +28,8 @@ interface Options {
   minScale: () => number;
   /** Fired on every user gesture, so selection state can react to manual travel. */
   onGesture?: (kind: "pan" | "zoom") => void;
+  /** Fired once a gesture has come to rest: the hand lifted, the coasting stopped, the wheel went quiet. A release passes its velocity, px/ms. */
+  onSettle?: (release?: { vx: number; vy: number }) => void;
   onDoubleClick?: (world: { x: number; y: number }) => void;
 }
 
@@ -53,6 +55,16 @@ export function useCamera(opts: Options): CameraApi {
     py: 0,
   });
   const drag = useRef({ moved: false });
+  const settleTimer = useRef<number | null>(null);
+  const settle = useCallback((release?: { vx: number; vy: number }) => optsRef.current.onSettle?.(release), []);
+  /** A settle that waits for the wheel to go quiet. */
+  const settleSoon = useCallback(() => {
+    if (settleTimer.current) clearTimeout(settleTimer.current);
+    settleTimer.current = window.setTimeout(() => {
+      settleTimer.current = null;
+      settle();
+    }, 160);
+  }, [settle]);
 
   const get = useCallback((): Camera => ({ x: x.get(), y: y.get(), s: s.get() }), [x, y, s]);
   const set = useCallback(
@@ -71,6 +83,8 @@ export function useCamera(opts: Options): CameraApi {
     inertia.current = null;
     if (wheel.current.raf) cancelAnimationFrame(wheel.current.raf);
     wheel.current.raf = null;
+    if (settleTimer.current) clearTimeout(settleTimer.current);
+    settleTimer.current = null;
   }, []);
 
   const flyTo = useCallback(
@@ -122,6 +136,7 @@ export function useCamera(opts: Options): CameraApi {
       let start = { x: 0, y: 0 };
       let velocity = { x: 0, y: 0 };
       let pinch: { dist: number; mid: { x: number; y: number } } | null = null;
+      let pinchEnded = false;
 
       const onDown = (e: PointerEvent) => {
         if (e.button !== 0) return;
@@ -181,18 +196,24 @@ export function useCamera(opts: Options): CameraApi {
         pointers.delete(e.pointerId);
         if (el.hasPointerCapture(e.pointerId)) el.releasePointerCapture(e.pointerId);
         if (pointers.size > 0) {
+          if (pinch) pinchEnded = true;
           pinch = null;
           const p = [...pointers.values()][0];
           last = { x: p.x, y: p.y, t: performance.now() };
           velocity = { x: 0, y: 0 };
           return;
         }
+        const wasPinch = drag.current.moved && pinchEnded;
+        pinchEnded = false;
         pinch = null;
         if (!drag.current.moved) return;
-        // Inertia: the camera has weight, so it coasts to a stop.
+        if (wasPinch) return settle();
         const stale = performance.now() - last.t > 80;
         let v = stale ? { x: 0, y: 0 } : { ...velocity };
-        if (Math.hypot(v.x, v.y) < 0.05) return;
+        // At the floor the hall is a row of pages: no coasting, the release itself decides.
+        if (get().s <= optsRef.current.minScale() * 1.06) return settle({ vx: v.x, vy: v.y });
+        // Inertia: the camera has weight, so it coasts to a stop.
+        if (Math.hypot(v.x, v.y) < 0.05) return settle();
         let prev = performance.now();
         const step = (now: number) => {
           const dt = Math.min(48, now - prev);
@@ -204,8 +225,11 @@ export function useCamera(opts: Options): CameraApi {
           if (next.y !== cam.y + v.y * dt) v.y = 0;
           set(next);
           v = { x: v.x * decay, y: v.y * decay };
-          if (Math.hypot(v.x, v.y) > 0.01) inertia.current = requestAnimationFrame(step);
-          else inertia.current = null;
+          if (Math.hypot(v.x, v.y) > 0.04) inertia.current = requestAnimationFrame(step);
+          else {
+            inertia.current = null;
+            settle();
+          }
         };
         inertia.current = requestAnimationFrame(step);
       };
@@ -240,6 +264,7 @@ export function useCamera(opts: Options): CameraApi {
               const target = Math.exp(done ? w.targetLog : nextLog);
               applyUser(zoomAt(cam, w.px, w.py, target / cam.s, optsRef.current.minScale(), MAX_SCALE));
               w.raf = done ? null : requestAnimationFrame(tick);
+              if (done) settle();
             };
             w.raf = requestAnimationFrame(tick);
           }
@@ -248,6 +273,7 @@ export function useCamera(opts: Options): CameraApi {
           stop();
           const cam = get();
           applyUser({ ...cam, x: cam.x - e.deltaX, y: cam.y - e.deltaY });
+          settleSoon();
         }
       };
 
@@ -273,7 +299,7 @@ export function useCamera(opts: Options): CameraApi {
         el.removeEventListener("dblclick", onDbl);
       };
     },
-    [applyUser, get, set, stop],
+    [applyUser, get, set, settle, settleSoon, stop],
   );
 
   useEffect(() => () => stop(), [stop]);

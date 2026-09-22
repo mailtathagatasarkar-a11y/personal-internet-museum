@@ -34,19 +34,27 @@ async function hasRealAlpha(file) {
   return transparent / (data.length / 4) > 0.01;
 }
 
+const REDO = process.argv.includes("--redo");
 for (const [id, entry] of Object.entries(manifest)) {
+  if (entry.processed && !REDO) continue;
   const raw = ["jpg", "png"].map((e) => path.join(RAW, `${id}.${e}`)).find((p) => fs.existsSync(p));
-  if (!raw) { console.log("no raw for", id); continue; }
+  if (!raw) {
+    console.log("no raw for", id);
+    continue;
+  }
   // Cut-outs are flattened onto the paper colour: the museum floor is a flat
   // tone, so a JPEG on paper reads exactly like a transparent PNG at a
   // fraction of the weight.
-  const alpha = false; void hasRealAlpha;
+  const alpha = false;
+  void hasRealAlpha;
   const ext = alpha ? "png" : "jpg";
   const full = path.join(OBJ, `${id}.${ext}`);
   const thumb = path.join(THUMB, `${id}.${ext}`);
 
   let pipeline = sharp(raw).rotate().resize({ width: 1400, height: 1400, fit: "inside", withoutEnlargement: true });
-  pipeline = alpha ? pipeline.png({ compressionLevel: 9, palette: false }) : pipeline.flatten({ background: "#f2eee6" }).jpeg({ quality: 82, mozjpeg: true });
+  pipeline = alpha
+    ? pipeline.png({ compressionLevel: 9, palette: false })
+    : pipeline.flatten({ background: "#f2eee6" }).jpeg({ quality: 82, mozjpeg: true });
   const info = await pipeline.toFile(full);
 
   let tp = sharp(raw).rotate().resize({ width: 480, height: 480, fit: "inside", withoutEnlargement: true });

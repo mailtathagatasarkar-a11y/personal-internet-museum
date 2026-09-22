@@ -1,0 +1,129 @@
+{
+  "id": "systems",
+  "number": "04",
+  "name": "Systems",
+  "seed": 3,
+  "line": "Not pictures. Instructions. Maps of how things fit. Read the key, go anywhere.",
+  "headline": [
+    {
+      "lines": ["Not", "pictures."],
+      "col": 0,
+      "row": 0,
+      "cols": 4,
+      "rows": 2
+    },
+    {
+      "lines": ["Instructions", "for looking."],
+      "col": 12,
+      "row": 5,
+      "cols": 6,
+      "rows": 2
+    },
+    {
+      "lines": ["Maps of how", "things fit."],
+      "col": 1,
+      "row": 12,
+      "cols": 5,
+      "rows": 2
+    },
+    {
+      "lines": ["Read the key.", "Go anywhere."],
+      "col": 18,
+      "row": 15,
+      "cols": 6,
+      "rows": 2
+    }
+  ],
+  "labels": {
+    "oddities": {
+      "col": 0,
+      "row": 2,
+      "cols": 4
+    },
+    "design": {
+      "col": 11,
+      "row": 0,
+      "cols": 3
+    },
+    "typography": {
+      "col": 20,
+      "row": 0,
+      "cols": 4
+    },
+    "technology": {
+      "col": 0,
+      "row": 7,
+      "cols": 4
+    },
+    "architecture": {
+      "col": 11,
+      "row": 8,
+      "cols": 4
+    },
+    "music": {
+      "col": 19,
+      "row": 7,
+      "cols": 3
+    },
+    "film": {
+      "col": 0,
+      "row": 15,
+      "cols": 2
+    },
+    "photography": {
+      "col": 10,
+      "row": 15,
+      "cols": 4
+    }
+  },
+  "zones": {
+    "oddities": {
+      "col": 0,
+      "row": 0,
+      "cols": 10,
+      "rows": 7
+    },
+    "design": {
+      "col": 11,
+      "row": 0,
+      "cols": 8,
+      "rows": 8
+    },
+    "typography": {
+      "col": 20,
+      "row": 0,
+      "cols": 6,
+      "rows": 7
+    },
+    "technology": {
+      "col": 0,
+      "row": 7,
+      "cols": 10,
+      "rows": 8
+    },
+    "architecture": {
+      "col": 11,
+      "row": 8,
+      "cols": 7,
+      "rows": 6
+    },
+    "music": {
+      "col": 19,
+      "row": 7,
+      "cols": 7,
+      "rows": 6
+    },
+    "film": {
+      "col": 0,
+      "row": 15,
+      "cols": 9,
+      "rows": 3
+    },
+    "photography": {
+      "col": 10,
+      "row": 15,
+      "cols": 6,
+      "rows": 3
+    }
+  }
+}

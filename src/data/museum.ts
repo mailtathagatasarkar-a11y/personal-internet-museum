@@ -1,5 +1,5 @@
 import images from "./images.json";
-import { CELLS, GRID, HEADLINE, TERRITORY_LABELS } from "./layout";
+import { GRID, ROOMS, type RoomLayout } from "./layout";
 import { OBJECTS, objectById, type MuseumObject } from "./objects";
 import { TERRITORIES, territoryById, type TerritoryId } from "./territories";
 import { THREADS, threadById, threadsFor } from "./threads";
@@ -16,17 +16,63 @@ interface ImageEntry {
 
 const IMAGES = images as Record<string, ImageEntry>;
 
-/** Half a cell of empty grid around everything, like the poster's margin. */
+/** Half a cell of empty grid around each room, like the poster's margin. */
 export const MARGIN = GRID.cell * 0.5;
-export const WORLD = { width: GRID.cell * GRID.cols + MARGIN * 2, height: GRID.cell * GRID.rows + MARGIN * 2 } as const;
-/** Cell coordinates → world units. */
-export const cellX = (col: number) => MARGIN + col * GRID.cell;
+/** One room: one poster. Every room is the same size, so the floor is the same floor everywhere. */
+export const ROOM_SIZE = { w: GRID.cell * GRID.cols + MARGIN * 2, h: GRID.cell * GRID.rows + MARGIN * 2 } as const;
+/** Paper between rooms. At the floor the next room's edge shows at the side of the frame. */
+export const GUTTER = GRID.cell * 2;
+
+/** A room placed in the hall. */
+export interface RoomPlace extends RoomLayout {
+  /** 0-based position in the hall. */
+  index: number;
+  /** "02" */
+  number: string;
+  left: number;
+  top: number;
+  w: number;
+  h: number;
+  center: { x: number; y: number };
+}
+
+export const ROOM_PLACES: RoomPlace[] = ROOMS.map((r, i) => {
+  const left = i * (ROOM_SIZE.w + GUTTER);
+  return {
+    ...r,
+    index: i,
+    number: String(i + 1).padStart(2, "0"),
+    left,
+    top: 0,
+    w: ROOM_SIZE.w,
+    h: ROOM_SIZE.h,
+    center: { x: left + ROOM_SIZE.w / 2, y: ROOM_SIZE.h / 2 },
+  };
+});
+export const roomById = Object.fromEntries(ROOM_PLACES.map((r) => [r.id, r])) as Record<string, RoomPlace>;
+
+/** The hall: rooms side by side. */
+export const WORLD = {
+  width: ROOMS.length * ROOM_SIZE.w + (ROOMS.length - 1) * GUTTER,
+  height: ROOM_SIZE.h,
+} as const;
+
+/** Cell coordinates → world units, within a room. */
+export const cellX = (col: number, room = 0) => ROOM_PLACES[room].left + MARGIN + col * GRID.cell;
 export const cellY = (row: number) => MARGIN + row * GRID.cell;
+
+/** Which room an object hangs in: the one whose layout places it. */
+const roomOf: Record<string, number> = {};
+ROOMS.forEach((r, i) => {
+  for (const id of Object.keys(r.cells)) roomOf[id] = i;
+});
 
 /** An object with everything the museum needs to place and draw it. */
 export interface PlacedObject extends MuseumObject {
   /** Accession number, 1-based, in collection order. */
   index: number;
+  /** The room it hangs in, 0-based. */
+  room: number;
   /** Centre and box, in world units, from the object's cells. */
   x: number;
   y: number;
@@ -39,48 +85,77 @@ export interface PlacedObject extends MuseumObject {
   image: ImageEntry;
 }
 
+/** Stands in for an image not yet fetched, in development only; a build refuses. */
+const MISSING: ImageEntry = {
+  src: "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='4' height='3'%3E%3Crect width='4' height='3' fill='%23d9d3c5'/%3E%3C/svg%3E",
+  thumb:
+    "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='4' height='3'%3E%3Crect width='4' height='3' fill='%23d9d3c5'/%3E%3C/svg%3E",
+  width: 4,
+  height: 3,
+  license: "",
+  artist: "",
+  page: "",
+};
+
 export const PLACED: PlacedObject[] = OBJECTS.map((o, i) => {
-  const image = IMAGES[o.id];
-  if (!image) throw new Error(`No image for ${o.id}`);
-  const cell = CELLS[o.id];
-  if (!cell) throw new Error(`No cells for ${o.id}`);
-  const [col, row, cols, rows, fit = "cover"] = cell;
+  let image = IMAGES[o.id];
+  if (!image) {
+    if (process.env.NODE_ENV === "production") throw new Error(`No image for ${o.id}`);
+    console.warn(`No image yet for ${o.id}`);
+    image = MISSING;
+  }
+  const room = roomOf[o.id];
+  if (room === undefined) throw new Error(`No room places ${o.id}`);
+  const [col, row, cols, rows, fit = "cover"] = ROOMS[room].cells[o.id];
   const w = cols * GRID.cell;
   const h = rows * GRID.cell;
-  const left = cellX(col);
+  const left = cellX(col, room);
   const top = cellY(row);
-  return { ...o, index: i + 1, x: left + w / 2, y: top + h / 2, w, h, left, top, fit, image };
+  return { ...o, index: i + 1, room, x: left + w / 2, y: top + h / 2, w, h, left, top, fit, image };
 });
 
 export const placedById: Record<string, PlacedObject> = Object.fromEntries(PLACED.map((o) => [o.id, o]));
 
-export const COUNT_BY_TERRITORY = TERRITORIES.reduce(
-  (acc, t) => ({ ...acc, [t.id]: PLACED.filter((o) => o.territory === t.id).length }),
-  {} as Record<TerritoryId, number>,
+/** A territory as it appears in one room: its objects' centroid, and where its name is set. */
+export interface TerritoryPlace {
+  id: TerritoryId;
+  name: string;
+  room: number;
+  count: number;
+  center: { x: number; y: number };
+  label: { x: number; y: number; w: number };
+}
+
+export const TERRITORY_PLACES: TerritoryPlace[] = ROOM_PLACES.flatMap((room) =>
+  TERRITORIES.flatMap((t) => {
+    const members = PLACED.filter((o) => o.room === room.index && o.territory === t.id);
+    const label = room.labels[t.id];
+    if (!members.length || !label) return [];
+    const cx = members.reduce((a, o) => a + o.x, 0) / members.length;
+    const cy = members.reduce((a, o) => a + o.y, 0) / members.length;
+    return [
+      {
+        id: t.id,
+        name: t.name,
+        room: room.index,
+        count: members.length,
+        center: { x: cx, y: cy },
+        label: { x: cellX(label.col, room.index), y: cellY(label.row), w: label.cols * GRID.cell },
+      },
+    ];
+  }),
 );
 
-/** Where a territory is: the centroid of its objects, plus where its name is set. */
-export const TERRITORY_PLACES = TERRITORIES.map((t) => {
-  const members = PLACED.filter((o) => o.territory === t.id);
-  const cx = members.reduce((a, o) => a + o.x, 0) / members.length;
-  const cy = members.reduce((a, o) => a + o.y, 0) / members.length;
-  const label = TERRITORY_LABELS[t.id];
-  return { ...t, center: { x: cx, y: cy }, label: { x: cellX(label.col), y: cellY(label.row), w: label.cols * GRID.cell } };
-});
+/** A territory's place in a given room, if it has one there. */
+export const territoryPlace = (id: TerritoryId, room: number) => TERRITORY_PLACES.find((t) => t.id === id && t.room === room);
 
-export const territoryPlaceById = Object.fromEntries(TERRITORY_PLACES.map((t) => [t.id, t])) as Record<
-  TerritoryId,
-  (typeof TERRITORY_PLACES)[number]
->;
-
-/** Museum-wide numbers shown on the masthead. The collection is larger than what is on view. */
+/** Museum-wide numbers shown on the masthead. */
 export const COLLECTION = {
   owner: "Tathagata",
   subtitle: "A personal internet museum",
-  headline: HEADLINE,
-  /** What is actually here. The brief imagines 184; the collection grows toward it. */
+  /** What is actually here. The collection grows room by room. */
   total: PLACED.length,
-  onView: PLACED.length,
+  rooms: ROOMS.length,
   since: 2026,
 } as const;
 
@@ -88,4 +163,4 @@ export function accession(n: number): string {
   return `№ ${String(n).padStart(3, "0")}`;
 }
 
-export { OBJECTS, objectById, TERRITORIES, territoryById, THREADS, threadById, threadsFor, GRID, HEADLINE };
+export { OBJECTS, objectById, TERRITORIES, territoryById, THREADS, threadById, threadsFor, GRID, ROOMS };

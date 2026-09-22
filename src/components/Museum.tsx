@@ -4,15 +4,18 @@ import { useCallback, useEffect, useMemo, useRef, useState } from "react";
 import { AnimatePresence, motion, useMotionValueEvent } from "motion/react";
 import {
   GRID,
+  GUTTER,
   PLACED,
+  ROOM_PLACES,
+  ROOM_SIZE,
   TERRITORY_PLACES,
   WORLD,
   cellX,
   cellY,
   placedById,
   territoryById,
-  territoryPlaceById,
   threadById,
+  type TerritoryPlace,
 } from "@/data/museum";
 import type { TerritoryId } from "@/data/territories";
 import { centerOn, clamp, constrain, fitRect, fitScale, frameObject, toScreen, union, worldCenter, zoomAt, type Size } from "@/lib/camera";
@@ -22,13 +25,18 @@ import { GridLayer } from "./GridLayer";
 import { LabelLayer } from "./LabelLayer";
 import { DetailPanel } from "./DetailPanel";
 import { EdgeMarkers } from "./EdgeMarkers";
-import { Controls, Legend, Masthead, Readout, Search, ThreadBanner, Trail } from "./Hud";
+import { Controls, Dots, Legend, Masthead, Readout, Search, ThreadBanner, Trail } from "./Hud";
 import { ObjectNode, type ObjectState } from "./ObjectNode";
 import { TerritoryLayer } from "./TerritoryLayer";
 
 type Tier = "far" | "medium" | "close";
 
 const WORLD_SIZE: Size = { w: WORLD.width, h: WORLD.height };
+const ROOM: Size = { w: ROOM_SIZE.w, h: ROOM_SIZE.h };
+const LAST_ROOM = ROOM_PLACES.length - 1;
+
+/** The room whose centre is nearest a world x. */
+const roomAt = (wx: number) => clamp(Math.round((wx - ROOM_SIZE.w / 2) / (ROOM_SIZE.w + GUTTER)), 0, LAST_ROOM);
 
 const smooth = (a: number, b: number, v: number) => {
   const t = clamp((v - a) / (b - a), 0, 1);
@@ -69,21 +77,31 @@ export default function Museum() {
   const vpRef = useRef<Size>({ w: 1440, h: 900 });
   const [narrow, setNarrow] = useState(false);
 
-  // Fit the whole museum: the poster view. A phone is too narrow for the
-  // poster, so it starts inside DESIGN at a readable size and pans from there.
-  const homeCamera = useCallback(() => {
+  /** The room the visitor is in: the one nearest the centre of the view. */
+  const [room, setRoom] = useState(0);
+  const roomRef = useRef(0);
+  useEffect(() => {
+    roomRef.current = room;
+  }, [room]);
+  /** The nudge under the dots, until the visitor has changed rooms once. */
+  const [slid, setSlid] = useState(false);
+
+  // Fit one room: the poster view. A phone is too narrow for a poster, so it
+  // starts inside the room's first territory at a readable size and pans.
+  const homeCamera = useCallback((index: number = roomRef.current) => {
     const vp = vpRef.current;
+    const r = ROOM_PLACES[index];
     if (vp.w < 760) {
-      const s = Math.max(fitScale(vp, WORLD_SIZE, 24), Math.min(0.24, (vp.h - 120) / WORLD.height));
-      const design = territoryPlaceById.design.center;
-      return centerOn(vp, design.x, design.y, s);
+      const s = Math.max(fitScale(vp, ROOM, 24), Math.min(0.24, (vp.h - 120) / ROOM_SIZE.h));
+      const first = TERRITORY_PLACES.find((t) => t.room === index)?.center ?? r.center;
+      return centerOn(vp, first.x, first.y, s);
     }
     // Centred exactly, so the zoom floor and the poster agree to the pixel.
-    return centerOn(vp, WORLD.width / 2, WORLD.height / 2, fitScale(vp, WORLD_SIZE, 44));
+    return centerOn(vp, r.center.x, r.center.y, fitScale(vp, ROOM, 44));
   }, []);
   const [measured, setMeasured] = useState(false);
   const measuredRef = useRef(false);
-  // The whole museum, framed, is as far out as anyone can go.
+  // One room, framed, is as far out as anyone can go.
   const minScale = useCallback(() => homeCamera().s, [homeCamera]);
 
   const [selectedId, setSelectedId] = useState<string | null>(null);
@@ -155,6 +173,27 @@ export default function Museum() {
       // Dragging away from an object is how you leave it; zooming is how you look closer.
       if (kind === "pan" && selectedRef.current) setSelectedId(null);
     },
+    // At the floor the hall is a row of posters: let go and one settles into
+    // the frame. A flick, or a drag past a fifth of a room, turns the page.
+    onSettle: (release) => {
+      const cam = camera.get();
+      const vp = vpRef.current;
+      // A phone never sees a whole room, so it pans freely; the dots turn its pages.
+      if (vp.w < 760 || cam.s > minScale() * 1.06) return;
+      const c = worldCenter(cam, vp);
+      const here = roomRef.current;
+      const dx = c.cx - ROOM_PLACES[here].center.x;
+      const flick = release && Math.abs(release.vx) > 0.35 && Math.abs(release.vx) > Math.abs(release.vy) ? -Math.sign(release.vx) : 0;
+      const next = flick
+        ? clamp(here + flick, 0, LAST_ROOM)
+        : Math.abs(dx) > ROOM_SIZE.w * 0.2
+          ? clamp(here + Math.sign(dx), 0, LAST_ROOM)
+          : roomAt(c.cx);
+      const target = homeCamera(next);
+      if (Math.abs(target.x - cam.x) < 1 && Math.abs(target.y - cam.y) < 1 && Math.abs(target.s - cam.s) < 1e-4) return;
+      if (next !== here) setSlid(true);
+      camera.flyTo(target, { duration: 0.6, lift: false });
+    },
     onDoubleClick: (w) => {
       const cam = camera.get();
       const p = toScreen(cam, w.x, w.y);
@@ -209,6 +248,18 @@ export default function Museum() {
     }
     const o = params.get("o");
     const t = params.get("t");
+    const r = Number(params.get("r"));
+    if (!o && !t && r >= 2 && r <= ROOM_PLACES.length) {
+      touchedRef.current = true;
+      camera.set(homeCamera(r - 1));
+      const timer = setTimeout(() => {
+        setRoom(r - 1);
+        setSlid(true);
+        setEntering(false);
+        setReady(true);
+      }, 0);
+      return () => clearTimeout(timer);
+    }
     if (o && placedById[o]) {
       touchedRef.current = true;
       camera.set(frameObject(rectOf(placedById[o]), vp, minScale()));
@@ -239,7 +290,7 @@ export default function Museum() {
     // The poster fades in whole: type set in its faces, every thumbnail
     // decoded. A slow connection is not made to wait past a moment, though.
     let cancelled = false;
-    const thumbs = Array.from(document.querySelectorAll<HTMLImageElement>(".obj-img.thumb"));
+    const thumbs = Array.from(document.querySelectorAll<HTMLImageElement>('.obj[data-room="0"] .obj-img.thumb'));
     const settled = Promise.race([
       Promise.all([document.fonts.ready, Promise.allSettled(thumbs.map((img) => img.decode()))]),
       new Promise((r) => setTimeout(r, 1400)),
@@ -275,8 +326,10 @@ export default function Museum() {
     else url.searchParams.delete("o");
     if (threadId) url.searchParams.set("t", threadId);
     else url.searchParams.delete("t");
+    if (!selectedId && !threadId && room > 0) url.searchParams.set("r", String(room + 1));
+    else url.searchParams.delete("r");
     window.history.replaceState(null, "", url);
-  }, [ready, selectedId, threadId]);
+  }, [ready, selectedId, threadId, room]);
 
   // Zoom → disclosure. CSS variables on the world do the fading; React only
   // learns about tier changes.
@@ -301,12 +354,13 @@ export default function Museum() {
       raf = null;
       const cam = camera.get();
       const c = worldCenter(cam, vpRef.current);
-      const ranked = TERRITORY_PLACES.map((t) => ({
-        t,
-        d: Math.hypot(t.center.x - c.cx, t.center.y - c.cy),
-      })).sort((a, b) => a.d - b.d);
+      const here = roomAt(c.cx);
+      setRoom(here);
+      const ranked = TERRITORY_PLACES.filter((t) => t.room === here)
+        .map((t) => ({ t, d: Math.hypot(t.center.x - c.cx, t.center.y - c.cy) }))
+        .sort((a, b) => a.d - b.d);
       const [a, b] = ranked;
-      if (enteringRef.current || cam.s < minScale() * 1.35) setPlace({ label: "the museum", id: null });
+      if (enteringRef.current || cam.s < minScale() * 1.35 || !a) setPlace({ label: "", id: null });
       else if (b && b.d < a.d * 1.3) setPlace({ label: `${a.t.name} · ${b.t.name}`, id: a.t.id });
       else setPlace({ label: a.t.name, id: a.t.id });
       setScaleReadout(Math.round(cam.s * 100) / 100);
@@ -322,10 +376,11 @@ export default function Museum() {
     };
   }, [camera, minScale]);
 
-  // Warm the cache with the full-size images once the visitor has arrived.
+  // Once the visitor has arrived, warm the cache: the other rooms' thumbnails
+  // first, so turning the page shows a full poster, then every full-size image.
   useEffect(() => {
     if (!ready || entering) return;
-    const queue = PLACED.map((o) => o.image.src);
+    const queue = [...PLACED.filter((o) => o.room !== 0).map((o) => o.image.thumb), ...PLACED.map((o) => o.image.src)];
     let cancelled = false;
     const next = () => {
       if (cancelled || queue.length === 0) return;
@@ -399,12 +454,36 @@ export default function Museum() {
       setHot(null);
       setPreviewThreadId(null);
       stepRef.current = 0;
-      const rect = union(t.members.map((m) => rectOf(placedById[m])));
       const vp = vpRef.current;
-      // A thread that spans the floor is framed as the floor, centred.
+      const rooms = new Set(t.members.map((m) => placedById[m].room));
+      // A thread within one room is framed there; one that runs through the
+      // hall opens on the room of its first member, and ← → walk the rest.
+      if (rooms.size > 1) {
+        camera.flyTo(homeCamera(placedById[t.members[0]].room));
+        return;
+      }
+      const rect = union(t.members.map((m) => rectOf(placedById[m])));
       camera.flyTo(constrain(fitRect(rect, vp, Math.min(140, vp.w * 0.12), minScale(), 0.8), vp, WORLD_SIZE));
     },
-    [camera, minScale],
+    [camera, homeCamera, minScale],
+  );
+
+  /** Turn to a room: the camera slides along the hall at the floor. */
+  const goToRoom = useCallback(
+    (index: number) => {
+      const next = clamp(index, 0, LAST_ROOM);
+      touchedRef.current = true;
+      setEntering(false);
+      setSelectedId(null);
+      setThreadId(null);
+      setInspecting(false);
+      setHot(null);
+      setPreviewThreadId(null);
+      setSlid(true);
+      const hops = Math.abs(next - roomRef.current);
+      camera.flyTo(homeCamera(next), { duration: hops === 0 ? 0.6 : 0.8 + 0.3 * hops, lift: false });
+    },
+    [camera, homeCamera],
   );
 
   const reset = useCallback(() => {
@@ -417,19 +496,27 @@ export default function Museum() {
     camera.flyTo(homeCamera());
   }, [camera, homeCamera]);
 
+  /** Fit a territory as it appears in one room (the current one unless told otherwise). */
   const goToTerritory = useCallback(
-    (id: string) => {
+    (id: TerritoryId, inRoom: number = roomRef.current) => {
       touchedRef.current = true;
       setSelectedId(null);
       setInspecting(false);
       setHoverTerritory(null);
-      const members = PLACED.filter((o) => o.territory === (id as TerritoryId));
+      let members = PLACED.filter((o) => o.territory === id && o.room === inRoom);
+      // A territory this room does not have: the nearest room that has it.
+      if (!members.length) {
+        const place = TERRITORY_PLACES.filter((t) => t.id === id).sort((a, b) => Math.abs(a.room - inRoom) - Math.abs(b.room - inRoom))[0];
+        if (!place) return;
+        members = PLACED.filter((o) => o.territory === id && o.room === place.room);
+      }
       const rect = union(members.map(rectOf));
       const vp = vpRef.current;
       camera.flyTo(constrain(fitRect(rect, vp, Math.min(120, vp.w * 0.1), minScale(), 0.7), vp, WORLD_SIZE));
     },
     [camera, minScale],
   );
+  const goToTerritoryPlace = useCallback((t: TerritoryPlace) => goToTerritory(t.id, t.room), [goToTerritory]);
 
   /** Bring an object into view without opening it (keyboard focus). */
   const peekAt = useCallback(
@@ -548,11 +635,19 @@ export default function Museum() {
         case "D":
           drift();
           break;
+        case "]":
+        case "PageDown":
+          goToRoom(roomRef.current + 1);
+          break;
+        case "[":
+        case "PageUp":
+          goToRoom(roomRef.current - 1);
+          break;
       }
     };
     window.addEventListener("keydown", onKey);
     return () => window.removeEventListener("keydown", onKey);
-  }, [back, deselect, drift, legendOpen, openSearch, reset, search.open, step, zoom]);
+  }, [back, deselect, drift, goToRoom, legendOpen, openSearch, reset, search.open, step, zoom]);
 
   // ── Derived per-object state ──────────────────────────────────────────
   const relatedIds = useMemo(() => new Set(selected?.relations.map((r) => r.to) ?? []), [selected]);
@@ -620,7 +715,7 @@ export default function Museum() {
           }}
         >
           <GridLayer />
-          <TerritoryLayer onSelect={goToTerritory} onHover={setHoverTerritory} />
+          <TerritoryLayer onSelect={goToTerritoryPlace} onHover={setHoverTerritory} />
           <Connections
             from={linesFrom}
             to={linesTo}
@@ -670,12 +765,14 @@ export default function Museum() {
           <Masthead large={(tier === "far" || entering) && !selected && !thread} narrow={narrow} onReset={reset} />
           <Trail ids={narrow ? trail.slice(-2) : trail} current={selectedId} onSelect={select} />
           <Readout
+            room={ROOM_PLACES[selected ? selected.room : room]}
             place={selected ? territoryById[selected.territory].name : place.label}
             placeId={selected ? selected.territory : place.id}
             scale={scaleReadout}
             narrow={narrow}
-            onGo={goToTerritory}
+            onGo={(id) => goToTerritory(id, selected ? selected.room : roomRef.current)}
           />
+          <Dots rooms={ROOM_PLACES} current={room} hint={!slid && !selected && !thread} narrow={narrow} onGo={goToRoom} />
           <Controls
             onReset={reset}
             onSearch={() => (search.open ? setSearch({ open: false, query: "" }) : openSearch())}
@@ -733,7 +830,7 @@ export default function Museum() {
             onHover={setHot}
             onFollowThread={followThread}
             onPreviewThread={setPreviewThreadId}
-            onTerritory={goToTerritory}
+            onTerritory={(id) => goToTerritory(id, selected.room)}
             onSearch={openSearch}
           />
         )}

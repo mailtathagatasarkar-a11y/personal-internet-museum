@@ -1,14 +1,16 @@
 # A Personal Internet Museum
 
-Phase 01 prototype. One spatial museum built from hardcoded demo data; no landing page,
-no accounts, no backend. The museum is the homepage.
+Phase 01 prototype. A spatial museum built from hardcoded demo data; no landing page,
+no accounts, no backend. The museum is the homepage. It is a hall of four rooms, each a
+poster on the same grid with its own line, and 197 objects between them.
 
 ```bash
 npm install
 npm run dev
 ```
 
-Open <http://localhost:3000>. Desktop is the hero; phones start inside DESIGN and pan.
+Open <http://localhost:3000>. Desktop is the hero; phones start inside a room's first
+territory and pan.
 
 ## The loop it prototypes
 
@@ -24,7 +26,9 @@ the readout now says *Technology*.
 | Input | Effect |
 | --- | --- |
 | Drag | Pan (with inertia) |
-| Wheel / pinch | Zoom toward the cursor — never further out than the whole museum |
+| Wheel / pinch | Zoom toward the cursor — never further out than one room |
+| Drag sideways at the floor | Turn the page: the hall slides to the next room and settles |
+| The dots (bottom centre) · `[` `]` · `PageUp` `PageDown` | Pick a room · previous / next room |
 | Double-click on the floor | Zoom in |
 | Click a territory name (far zoom) | Fly to that territory |
 | Click an object | Open it: the camera moves, the reading column appears |
@@ -40,25 +44,33 @@ the readout now says *Technology*.
 | `Backspace` | Back along the trail |
 | `D` / **Drift** | Somewhere far from here, chosen for you |
 | `+` `−` `0` `/` `?` | Zoom in, out, reset, index/search, keys |
-| **Reset** · **Index** · **Drift** | The whole museum · every object as a list (type to filter) · somewhere far |
+| **Reset** · **Index** · **Drift** | This room, whole · every object, room by room (type to filter) · somewhere far, maybe another room |
 | `Tab` | Objects are focusable; focus brings one into view, `Enter` opens it |
-| `?o=braun-t3` · `?t=functional-minimalism` | The address follows the visit, so a place can be sent |
+| `?o=braun-t3` · `?t=functional-minimalism` · `?r=3` | The address follows the visit, so a place can be sent |
 
 ## Type & layout
 
 The register is the grid poster: warm grey paper, a hairline square grid, images set
 into cells (some spanning several), and one bold, tight, all-caps grotesk — **Inter
 Tight** — doing the headline, the territory names, the titles and the text, with
-**Fragment Mono** for notation. The museum's opening line is set in fragments among the
-objects on the floor:
+**Fragment Mono** for notation. Each room's line is set in fragments among the objects
+on its floor:
 
-> EVERYTHING I SAVED / FROM THE INTERNET. / NONE OF IT IS MINE. / ALL OF IT IS ME.
+> 01 THE COLLECTION — EVERYTHING I SAVED / FROM THE INTERNET. / NONE OF IT IS MINE. / ALL OF IT IS ME.
+> 02 FIRSTS — NOTHING HERE / WAS ASKED FOR. / IT WAS NEW / BEFORE IT WAS GOOD.
+> 03 TOOLS — MADE TO BE USED. / WORN BY USE. / BETTER FOR IT. / STILL HERE.
+> 04 SYSTEMS — NOT PICTURES. / INSTRUCTIONS FOR LOOKING. / MAPS OF HOW THINGS FIT. / READ THE KEY. GO ANYWHERE.
 
-Every object's cell span lives in `src/data/layout.ts` (`[col, row, cols, rows, fit]`),
-alongside the headline fragments and the territory label cells. The grid is 26 × 18 and
-the composition follows three rules: an image never shares an edge with another image,
-text blocks own whole cells, and about half the cells stay empty. Times (the WSJ/Ogilvy
-register) stays reachable for comparison with `?type=t` or by pressing `T`.
+The rooms sit side by side in one world with two cells of paper between them, so moving
+between rooms is a camera slide, connections and threads can run across the hall, and
+the next room's edge shows at the side of the frame at the floor. Each room's layout
+lives in `src/data/rooms/<room>.ts`: the headline fragments, the territory label cells,
+and every object's cell span (`[col, row, cols, rows, fit]`). The grid is 26 × 18 and the
+composition follows three rules: an image never shares an edge with another image, text
+blocks own whole cells, and about half the cells stay empty. Room 01 was composed by
+hand; rooms 02–04 by `scripts/compose-room.mjs` from a zone map in `scripts/rooms/`, under
+the same rules. Times (the WSJ/Ogilvy register) stays reachable for comparison with
+`?type=t` or by pressing `T`.
 
 ## How it is built
 
@@ -98,10 +110,13 @@ scripts/          fetch-images.mjs (Wikimedia Commons → .cache/raw)
 
 ## Imagery
 
-Every image is a public-domain or Creative-Commons file from Wikimedia Commons, chosen
-by hand and served locally so the museum runs offline. Attribution and licence for each
-object are in `src/data/images.json` and shown at the foot of its reading column.
-Regenerate with `node scripts/fetch-images.mjs && node scripts/process-images.mjs`.
+Every image is a public-domain or Creative-Commons file from Wikimedia Commons, served
+locally so the museum runs offline. Attribution and licence for each object are in
+`src/data/images.json` and shown at the foot of its reading column. Room 01's files were
+chosen by hand from contact sheets; the later rooms' by `scripts/find-images.mjs`
+(an exact title where one is known, otherwise the best search hit of a usable size),
+recorded in `scripts/sources.json` and reviewed on contact sheets. Regenerate with
+`node scripts/fetch-images.mjs && node scripts/process-images.mjs`.
 
 Judgement calls worth knowing:
 
@@ -110,8 +125,12 @@ Judgement calls worth knowing:
 - **Villa Savoye** was swapped for the **Barbican Estate**: France has no freedom of
   panorama, so no exterior photographs of it are on Commons.
 - The ThinkPad shown is the **720C** (1993), the second of Sapper's black boxes.
-- The masthead counts what is actually here (53). The brief imagines 184; growing the
-  collection toward that is a content job through the same pipeline.
+- **Harry Beck's Tube map** has no free image (Beck died in 1974), so Systems has
+  **Charles Booth's poverty map** of 1889 instead — a stronger "read the key" object anyway.
+- The **Ur-Leica** is shown as the first photograph taken with it (the Eisenmarkt, Wetzlar,
+  1914); the **Leatherman** as a later model of the PST; the **Akai MPC** as the 2000XL. Each
+  card says so.
+- The masthead counts what is actually here: 197 objects in four rooms.
 
 ## Out of scope (deliberately)
 

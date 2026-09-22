@@ -1,0 +1,35 @@
+{
+  "id": "firsts",
+  "number": "02",
+  "name": "Firsts",
+  "seed": 11,
+  "line": "Nothing here was asked for. It was new before it was good.",
+  "headline": [
+    { "lines": ["Nothing", "here"], "col": 0, "row": 0, "cols": 4, "rows": 2 },
+    { "lines": ["was asked", "for."], "col": 12, "row": 5, "cols": 5, "rows": 2 },
+    { "lines": ["It was", "new"], "col": 1, "row": 11, "cols": 4, "rows": 2 },
+    { "lines": ["before it", "was good."], "col": 19, "row": 16, "cols": 5, "rows": 2 }
+  ],
+  "labels": {
+    "technology": { "col": 0, "row": 2, "cols": 4 },
+    "photography": { "col": 11, "row": 0, "cols": 4 },
+    "typography": { "col": 20, "row": 0, "cols": 4 },
+    "architecture": { "col": 19, "row": 4, "cols": 4 },
+    "objects": { "col": 0, "row": 7, "cols": 3 },
+    "design": { "col": 9, "row": 7, "cols": 3 },
+    "oddities": { "col": 0, "row": 13, "cols": 4 },
+    "music": { "col": 10, "row": 13, "cols": 3 },
+    "film": { "col": 18, "row": 11, "cols": 2 }
+  },
+  "zones": {
+    "technology": { "col": 0, "row": 0, "cols": 10, "rows": 7 },
+    "photography": { "col": 11, "row": 0, "cols": 8, "rows": 7 },
+    "typography": { "col": 20, "row": 0, "cols": 6, "rows": 4 },
+    "architecture": { "col": 19, "row": 4, "cols": 7, "rows": 7 },
+    "objects": { "col": 0, "row": 7, "cols": 8, "rows": 6 },
+    "design": { "col": 9, "row": 7, "cols": 7, "rows": 6 },
+    "oddities": { "col": 0, "row": 13, "cols": 9, "rows": 5 },
+    "music": { "col": 10, "row": 13, "cols": 7, "rows": 5 },
+    "film": { "col": 18, "row": 11, "cols": 8, "rows": 7 }
+  }
+}

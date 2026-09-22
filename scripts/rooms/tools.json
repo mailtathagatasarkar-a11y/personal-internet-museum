@@ -1,0 +1,140 @@
+{
+  "id": "tools",
+  "number": "03",
+  "name": "Tools",
+  "seed": 5,
+  "line": "Made to be used. Worn by use. Better for it. Still here.",
+  "headline": [
+    {
+      "lines": ["Made", "to be used."],
+      "col": 0,
+      "row": 0,
+      "cols": 5,
+      "rows": 2
+    },
+    {
+      "lines": ["Worn", "by use."],
+      "col": 12,
+      "row": 5,
+      "cols": 4,
+      "rows": 2
+    },
+    {
+      "lines": ["Better", "for it."],
+      "col": 2,
+      "row": 11,
+      "cols": 4,
+      "rows": 2
+    },
+    {
+      "lines": ["Still", "here."],
+      "col": 20,
+      "row": 16,
+      "cols": 4,
+      "rows": 2
+    }
+  ],
+  "labels": {
+    "objects": {
+      "col": 0,
+      "row": 2,
+      "cols": 3
+    },
+    "technology": {
+      "col": 12,
+      "row": 0,
+      "cols": 4
+    },
+    "typography": {
+      "col": 18,
+      "row": 0,
+      "cols": 4
+    },
+    "design": {
+      "col": 0,
+      "row": 7,
+      "cols": 3
+    },
+    "music": {
+      "col": 11,
+      "row": 7,
+      "cols": 3
+    },
+    "photography": {
+      "col": 18,
+      "row": 6,
+      "cols": 4
+    },
+    "oddities": {
+      "col": 0,
+      "row": 13,
+      "cols": 4
+    },
+    "film": {
+      "col": 8,
+      "row": 13,
+      "cols": 2
+    },
+    "architecture": {
+      "col": 16,
+      "row": 12,
+      "cols": 4
+    }
+  },
+  "zones": {
+    "objects": {
+      "col": 0,
+      "row": 0,
+      "cols": 11,
+      "rows": 7
+    },
+    "technology": {
+      "col": 12,
+      "row": 0,
+      "cols": 5,
+      "rows": 7
+    },
+    "typography": {
+      "col": 18,
+      "row": 0,
+      "cols": 8,
+      "rows": 6
+    },
+    "design": {
+      "col": 0,
+      "row": 7,
+      "cols": 10,
+      "rows": 6
+    },
+    "music": {
+      "col": 11,
+      "row": 7,
+      "cols": 6,
+      "rows": 6
+    },
+    "photography": {
+      "col": 18,
+      "row": 6,
+      "cols": 8,
+      "rows": 6
+    },
+    "oddities": {
+      "col": 0,
+      "row": 13,
+      "cols": 7,
+      "rows": 5
+    },
+    "film": {
+      "col": 8,
+      "row": 13,
+      "cols": 7,
+      "rows": 5
+    },
+    "architecture": {
+      "col": 16,
+      "row": 12,
+      "cols": 10,
+      "rows": 6
+    }
+  }
+}

@@ -63,6 +63,61 @@ export const THREADS: Thread[] = [
     note: "Instruments and players I saved because they look like they sound.",
     members: ["braun-sk4", "sl-1200", "tr-808", "walkman", "op-1", "golden-record"],
   },
+  // ── Threads that run through more than one room open on their first member's room; ← → walk the rest. ──
+  {
+    id: "first-light",
+    name: "First light",
+    note: "First light, first face, first colour, first look inside, first look back.",
+    members: ["niepce-le-gras", "boulevard-du-temple", "cornelius-self-portrait", "tartan-ribbon", "rontgen-hand", "earthrise"],
+  },
+  {
+    id: "games-before-games",
+    name: "Games before games",
+    note: "Two games on lab equipment, one in a bar, one in a pocket.",
+    members: ["tennis-for-two", "spacewar", "pong", "game-boy"],
+  },
+  {
+    id: "the-loom-and-the-moon",
+    name: "The loom and the Moon",
+    note: "A pattern in holes, then a program in thread.",
+    members: ["jacquard-loom", "difference-engine", "punch-card", "apollo-guidance-computer"],
+  },
+  {
+    id: "in-every-toolbox",
+    name: "In every toolbox",
+    note: "Cheap, everywhere, and you'd notice if any of it changed.",
+    members: ["stanley-knife", "duct-tape", "cable-tie", "paper-clip", "zippo", "bic-cristal"],
+  },
+  {
+    id: "sixteen-pads",
+    name: "Sixteen pads",
+    note: "Machines that turned rhythm into a grid of buttons.",
+    members: ["akai-mpc60", "tr-808", "fairlight-cmi", "op-1"],
+  },
+  {
+    id: "kit-of-the-century",
+    name: "The kit of the century",
+    note: "What the people who photographed the twentieth century carried.",
+    members: ["nikon-f", "leica-m3", "hasselblad-500c", "rolleiflex", "tri-x"],
+  },
+  {
+    id: "drawing-the-dead",
+    name: "Drawing the dead",
+    note: "Three Victorians who found a picture changes minds faster than a table.",
+    members: ["snow-cholera-map", "nightingale-rose", "minard"],
+  },
+  {
+    id: "letters-to-nobody",
+    name: "Letters to nobody",
+    note: "Messages made for readers who share none of our language.",
+    members: ["pioneer-plaque", "arecibo-message", "golden-record", "rosetta-stone"],
+  },
+  {
+    id: "alphabets-for-hands",
+    name: "Alphabets for hands",
+    note: "Letters arranged for the body that uses them, not the eye that reads them.",
+    members: ["braille", "morse-code", "qwerty", "type-case", "hangul"],
+  },
 ];
 
 export const threadById: Record<string, Thread> = Object.fromEntries(THREADS.map((t) => [t.id, t]));

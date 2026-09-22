@@ -528,5 +528,1445 @@
     "page": "https://commons.wikimedia.org/wiki/File:Ngv_design,_ludwig_mies_van_der_rohe_%26_co,_barcelona_chair.JPG",
     "thumb": "/objects/t/barcelona-chair.jpg",
     "processed": true
+  },
+  "niepce-le-gras": {
+    "src": "/objects/niepce-le-gras.jpg",
+    "width": 1400,
+    "height": 973,
+    "license": "Public domain",
+    "artist": "Joseph Nicéphore Niépce",
+    "page": "https://commons.wikimedia.org/wiki/File:View_from_the_Window_at_Le_Gras,_Joseph_Nic%C3%A9phore_Ni%C3%A9pce.jpg",
+    "thumb": "/objects/t/niepce-le-gras.jpg",
+    "processed": true
+  },
+  "boulevard-du-temple": {
+    "src": "/objects/boulevard-du-temple.jpg",
+    "width": 1400,
+    "height": 1006,
+    "license": "Public domain",
+    "artist": "Louis Daguerre",
+    "page": "https://commons.wikimedia.org/wiki/File:Boulevard_du_Temple_by_Daguerre.jpg",
+    "thumb": "/objects/t/boulevard-du-temple.jpg",
+    "processed": true
+  },
+  "cornelius-self-portrait": {
+    "src": "/objects/cornelius-self-portrait.jpg",
+    "width": 1067,
+    "height": 1400,
+    "license": "Public domain",
+    "artist": "Robert Cornelius",
+    "page": "https://commons.wikimedia.org/wiki/File:RobertCornelius.jpg",
+    "thumb": "/objects/t/cornelius-self-portrait.jpg",
+    "processed": true
+  },
+  "tartan-ribbon": {
+    "src": "/objects/tartan-ribbon.jpg",
+    "width": 1100,
+    "height": 900,
+    "license": "Public domain",
+    "artist": "James Clerk Maxwell",
+    "page": "https://commons.wikimedia.org/wiki/File:Tartan_Ribbon.jpg",
+    "thumb": "/objects/t/tartan-ribbon.jpg",
+    "processed": true
+  },
+  "rontgen-hand": {
+    "src": "/objects/rontgen-hand.jpg",
+    "width": 974,
+    "height": 1400,
+    "license": "Public domain",
+    "artist": "Wilhelm Röntgen",
+    "page": "https://commons.wikimedia.org/wiki/File:First_medical_X-ray_by_Wilhelm_R%C3%B6ntgen_of_his_wife_Anna_Bertha_Ludwig%27s_hand_-_18951222.jpg",
+    "thumb": "/objects/t/rontgen-hand.jpg",
+    "processed": true
+  },
+  "earthrise": {
+    "src": "/objects/earthrise.jpg",
+    "width": 1400,
+    "height": 1400,
+    "license": "Public domain",
+    "artist": "NASA/Bill Anders",
+    "page": "https://commons.wikimedia.org/wiki/File:NASA-Apollo8-Dec24-Earthrise.jpg",
+    "thumb": "/objects/t/earthrise.jpg",
+    "processed": true
+  },
+  "first-flight": {
+    "src": "/objects/first-flight.jpg",
+    "width": 1400,
+    "height": 908,
+    "license": "Public domain",
+    "artist": "John T. Daniels",
+    "page": "https://commons.wikimedia.org/wiki/File:First_flight2.jpg",
+    "thumb": "/objects/t/first-flight.jpg",
+    "processed": true
+  },
+  "kinetoscope": {
+    "src": "/objects/kinetoscope.jpg",
+    "width": 500,
+    "height": 719,
+    "license": "Public domain",
+    "artist": "Albert Tissandier",
+    "page": "https://commons.wikimedia.org/wiki/File:Kinetoscope.jpg",
+    "thumb": "/objects/t/kinetoscope.jpg",
+    "processed": true
+  },
+  "great-train-robbery": {
+    "src": "/objects/great-train-robbery.jpg",
+    "width": 720,
+    "height": 576,
+    "license": "Public domain",
+    "artist": "Edwin Stanton Porter",
+    "page": "https://commons.wikimedia.org/wiki/File:The_Great_Train_Robbery_0021.jpg",
+    "thumb": "/objects/t/great-train-robbery.jpg",
+    "processed": true
+  },
+  "arrival-of-a-train": {
+    "src": "/objects/arrival-of-a-train.jpg",
+    "width": 991,
+    "height": 650,
+    "license": "Public domain",
+    "artist": "Louis Lumière",
+    "page": "https://commons.wikimedia.org/wiki/File:Arriv%C3%A9e_d%E2%80%99un_train_%C3%A0_La_Ciotat_1897.png",
+    "thumb": "/objects/t/arrival-of-a-train.jpg",
+    "processed": true
+  },
+  "gutenberg-bible": {
+    "src": "/objects/gutenberg-bible.jpg",
+    "width": 1400,
+    "height": 875,
+    "license": "CC BY-SA 2.0",
+    "artist": "NYC Wanderer (Kevin Eng)",
+    "page": "https://commons.wikimedia.org/wiki/File:Gutenberg_Bible,_Lenox_Copy,_New_York_Public_Library,_2009._Pic_01.jpg",
+    "thumb": "/objects/t/gutenberg-bible.jpg",
+    "processed": true
+  },
+  "times-new-roman": {
+    "src": "/objects/times-new-roman.jpg",
+    "width": 1001,
+    "height": 1400,
+    "license": "CC BY 2.0",
+    "artist": "James Puckett from Boulder, USA",
+    "page": "https://commons.wikimedia.org/wiki/File:Ludlow_Times_New_Roman_Type_Specimen_(14204771208).jpg",
+    "thumb": "/objects/t/times-new-roman.jpg",
+    "processed": true
+  },
+  "jacquard-loom": {
+    "src": "/objects/jacquard-loom.jpg",
+    "width": 1400,
+    "height": 932,
+    "license": "CC BY-SA 4.0",
+    "artist": "Stephencdickson",
+    "page": "https://commons.wikimedia.org/wiki/File:A_Jacquard_loom_showing_information_punchcards,_National_Museum_of_Scotland.jpg",
+    "thumb": "/objects/t/jacquard-loom.jpg",
+    "processed": true
+  },
+  "difference-engine": {
+    "src": "/objects/difference-engine.jpg",
+    "width": 1400,
+    "height": 1013,
+    "license": "CC BY-SA 4.0",
+    "artist": "User:geni",
+    "page": "https://commons.wikimedia.org/wiki/File:Babbage_Difference_Engine.jpg",
+    "thumb": "/objects/t/difference-engine.jpg",
+    "processed": true
+  },
+  "eniac": {
+    "src": "/objects/eniac.jpg",
+    "width": 1340,
+    "height": 1024,
+    "license": "Public domain",
+    "artist": "Unknown authorUnknown author",
+    "page": "https://commons.wikimedia.org/wiki/File:Glen_Beck_and_Betty_Snyder_program_the_ENIAC_in_building_328_at_the_Ballistic_Research_Laboratory.jpg",
+    "thumb": "/objects/t/eniac.jpg",
+    "processed": true
+  },
+  "transistor": {
+    "src": "/objects/transistor.jpg",
+    "width": 500,
+    "height": 448,
+    "license": "Public domain",
+    "artist": "Federal employee",
+    "page": "https://commons.wikimedia.org/wiki/File:Replica-of-first-transistor.jpg",
+    "thumb": "/objects/t/transistor.jpg",
+    "processed": true
+  },
+  "intel-4004": {
+    "src": "/objects/intel-4004.jpg",
+    "width": 1400,
+    "height": 933,
+    "license": "CC BY-SA 4.0",
+    "artist": "Thomas Nguyen",
+    "page": "https://commons.wikimedia.org/wiki/File:Intel_C4004.jpg",
+    "thumb": "/objects/t/intel-4004.jpg",
+    "processed": true
+  },
+  "engelbart-mouse": {
+    "src": "/objects/engelbart-mouse.jpg",
+    "width": 600,
+    "height": 360,
+    "license": "CC BY-SA 3.0",
+    "artist": "SRI International",
+    "page": "https://commons.wikimedia.org/wiki/File:SRI_Computer_Mouse.jpg",
+    "thumb": "/objects/t/engelbart-mouse.jpg",
+    "processed": true
+  },
+  "altair-8800": {
+    "src": "/objects/altair-8800.jpg",
+    "width": 1400,
+    "height": 1263,
+    "license": "Public domain",
+    "artist": "Swtpc6800 en:User:Swtpc6800 Michael Holley",
+    "page": "https://commons.wikimedia.org/wiki/File:Altair_8800_Computer.jpg",
+    "thumb": "/objects/t/altair-8800.jpg",
+    "processed": true
+  },
+  "ibm-simon": {
+    "src": "/objects/ibm-simon.jpg",
+    "width": 754,
+    "height": 1400,
+    "license": "Public domain",
+    "artist": "Bcos47",
+    "page": "https://commons.wikimedia.org/wiki/File:IBM_Simon_Personal_Communicator.png",
+    "thumb": "/objects/t/ibm-simon.jpg",
+    "processed": true
+  },
+  "apollo-guidance-computer": {
+    "src": "/objects/apollo-guidance-computer.jpg",
+    "width": 1400,
+    "height": 958,
+    "license": "Public domain",
+    "artist": "The original uploader was Grabert at German Wikipedia.",
+    "page": "https://commons.wikimedia.org/wiki/File:Agc_view.jpg",
+    "thumb": "/objects/t/apollo-guidance-computer.jpg",
+    "processed": true
+  },
+  "sputnik": {
+    "src": "/objects/sputnik.jpg",
+    "width": 1094,
+    "height": 896,
+    "license": "Public domain",
+    "artist": "NSSDC, NASA[1]",
+    "page": "https://commons.wikimedia.org/wiki/File:Sputnik_asm.jpg",
+    "thumb": "/objects/t/sputnik.jpg",
+    "processed": true
+  },
+  "thonet-14": {
+    "src": "/objects/thonet-14.jpg",
+    "width": 930,
+    "height": 1400,
+    "license": "FAL",
+    "artist": "Henry Townsend",
+    "page": "https://commons.wikimedia.org/wiki/File:Thonet_Chair_No._14.JPG",
+    "thumb": "/objects/t/thonet-14.jpg",
+    "processed": true
+  },
+  "red-blue-chair": {
+    "src": "/objects/red-blue-chair.jpg",
+    "width": 741,
+    "height": 1107,
+    "license": "Public domain",
+    "artist": "Picture taken by User:Ellywa",
+    "page": "https://commons.wikimedia.org/wiki/File:Rietveld_chair_1.JPG",
+    "thumb": "/objects/t/red-blue-chair.jpg",
+    "processed": true
+  },
+  "regency-tr1": {
+    "src": "/objects/regency-tr1.jpg",
+    "width": 1152,
+    "height": 1400,
+    "license": "CC BY-SA 2.0",
+    "artist": "Joe Haupt from USA",
+    "page": "https://commons.wikimedia.org/wiki/File:Vintage_Regency_TR-1_Transistor_Radio_(Black),_Circa_1954_(10196911826).jpg",
+    "thumb": "/objects/t/regency-tr1.jpg",
+    "processed": true
+  },
+  "sholes-glidden": {
+    "src": "/objects/sholes-glidden.jpg",
+    "width": 1400,
+    "height": 1296,
+    "license": "CC BY-SA 4.0",
+    "artist": "Dr. Bernd Gross",
+    "page": "https://commons.wikimedia.org/wiki/File:Sholes-Glidden_1874.jpg",
+    "thumb": "/objects/t/sholes-glidden.jpg",
+    "processed": true
+  },
+  "smiley": {
+    "src": "/objects/smiley.jpg",
+    "width": 1400,
+    "height": 1400,
+    "license": "Public domain",
+    "artist": "Pumbaa80",
+    "page": "https://commons.wikimedia.org/wiki/File:Smiley.svg",
+    "thumb": "/objects/t/smiley.jpg",
+    "processed": true
+  },
+  "benz-motorwagen": {
+    "src": "/objects/benz-motorwagen.jpg",
+    "width": 1400,
+    "height": 944,
+    "license": "CC BY-SA 3.0",
+    "artist": "DaimlerChrysler AG",
+    "page": "https://commons.wikimedia.org/wiki/File:Patent-Motorwagen_Nr.1_Benz_2.jpg",
+    "thumb": "/objects/t/benz-motorwagen.jpg",
+    "processed": true
+  },
+  "model-t": {
+    "src": "/objects/model-t.jpg",
+    "width": 670,
+    "height": 527,
+    "license": "Public domain",
+    "artist": "Harry Shipler",
+    "page": "https://commons.wikimedia.org/wiki/File:1910Ford-T.jpg",
+    "thumb": "/objects/t/model-t.jpg",
+    "processed": true
+  },
+  "kodak-brownie": {
+    "src": "/objects/kodak-brownie.jpg",
+    "width": 1400,
+    "height": 933,
+    "license": "CC0",
+    "artist": "cogdogblog",
+    "page": "https://commons.wikimedia.org/wiki/File:2014-365-233_The_Basic_Brownie_Camera_(14809795240).jpg",
+    "thumb": "/objects/t/kodak-brownie.jpg",
+    "processed": true
+  },
+  "ur-leica": {
+    "src": "/objects/ur-leica.jpg",
+    "width": 1400,
+    "height": 944,
+    "license": "Public domain",
+    "artist": "Oskar Barnack (died 1936, in Bad Nauheim, Germany)",
+    "page": "https://commons.wikimedia.org/wiki/File:1914_Oskar_Barnack_Wetzlar_Eisenmarkt.jpg",
+    "thumb": "/objects/t/ur-leica.jpg",
+    "processed": true
+  },
+  "rover-safety-bicycle": {
+    "src": "/objects/rover-safety-bicycle.jpg",
+    "width": 1400,
+    "height": 1050,
+    "license": "CC BY-SA 3.0",
+    "artist": "Jonathan Cardy",
+    "page": "https://commons.wikimedia.org/wiki/File:Rover_safety_bicycle_of_1885_(right).jpg",
+    "thumb": "/objects/t/rover-safety-bicycle.jpg",
+    "processed": true
+  },
+  "crystal-palace": {
+    "src": "/objects/crystal-palace.jpg",
+    "width": 1400,
+    "height": 952,
+    "license": "Public domain",
+    "artist": "J. McNeven",
+    "page": "https://commons.wikimedia.org/wiki/File:Crystal_Palace_interior.jpg",
+    "thumb": "/objects/t/crystal-palace.jpg",
+    "processed": true
+  },
+  "home-insurance-building": {
+    "src": "/objects/home-insurance-building.jpg",
+    "width": 660,
+    "height": 880,
+    "license": "Public domain",
+    "artist": "Chicago Architectural Photographing Company",
+    "page": "https://commons.wikimedia.org/wiki/File:Home_Insurance_Building.JPG",
+    "thumb": "/objects/t/home-insurance-building.jpg",
+    "processed": true
+  },
+  "eiffel-construction": {
+    "src": "/objects/eiffel-construction.jpg",
+    "width": 1100,
+    "height": 1400,
+    "license": "Public domain",
+    "artist": "Louis-Emile Durandelle",
+    "page": "https://commons.wikimedia.org/wiki/File:Louis-Emile_Durandelle,_The_Eiffel_Tower_-_State_of_the_Construction,_1888.jpg",
+    "thumb": "/objects/t/eiffel-construction.jpg",
+    "processed": true
+  },
+  "fagus-factory": {
+    "src": "/objects/fagus-factory.jpg",
+    "width": 1400,
+    "height": 933,
+    "license": "CC BY-SA 4.0",
+    "artist": "Zedstyle",
+    "page": "https://commons.wikimedia.org/wiki/File:WikiLoveMonuments_UMZ_Fagus_Front_2022.jpg",
+    "thumb": "/objects/t/fagus-factory.jpg",
+    "processed": true
+  },
+  "phonograph": {
+    "src": "/objects/phonograph.jpg",
+    "width": 1400,
+    "height": 934,
+    "license": "GFDL 1.2",
+    "artist": "Gregory F. Maxwell &lt;gmaxwell@gmail.com&gt; PGP:0xB0413BFA",
+    "page": "https://commons.wikimedia.org/wiki/File:Edison_tinfoil_Kruesi_phonograph_(replica).jpg",
+    "thumb": "/objects/t/phonograph.jpg",
+    "processed": true
+  },
+  "theremin": {
+    "src": "/objects/theremin.jpg",
+    "width": 1400,
+    "height": 859,
+    "license": "Public domain",
+    "artist": "Renato Toppo",
+    "page": "https://commons.wikimedia.org/wiki/File:Clara_Rockmore.jpg",
+    "thumb": "/objects/t/theremin.jpg",
+    "processed": true
+  },
+  "moog-modular": {
+    "src": "/objects/moog-modular.jpg",
+    "width": 1400,
+    "height": 1400,
+    "license": "CC BY-SA 3.0",
+    "artist": "Maximilian Schönherr",
+    "page": "https://commons.wikimedia.org/wiki/File:Moog_und_ARP_Synthesizer.jpg",
+    "thumb": "/objects/t/moog-modular.jpg",
+    "processed": true
+  },
+  "telecaster": {
+    "src": "/objects/telecaster.jpg",
+    "width": 1400,
+    "height": 950,
+    "license": "CC BY 4.0",
+    "artist": "Anil Öztas",
+    "page": "https://commons.wikimedia.org/wiki/File:Fender_Custom_Shop_Telecaster_--_2024_--_0051-85.jpg",
+    "thumb": "/objects/t/telecaster.jpg",
+    "processed": true
+  },
+  "fairlight-cmi": {
+    "src": "/objects/fairlight-cmi.jpg",
+    "width": 612,
+    "height": 612,
+    "license": "CC BY 2.0",
+    "artist": "starpause kid",
+    "page": "https://commons.wikimedia.org/wiki/File:Fairlight_green_screen.jpg",
+    "thumb": "/objects/t/fairlight-cmi.jpg",
+    "processed": true
+  },
+  "tennis-for-two": {
+    "src": "/objects/tennis-for-two.jpg",
+    "width": 705,
+    "height": 626,
+    "license": "Public domain",
+    "artist": "Brookhaven National Laboratory (BNL)",
+    "page": "https://commons.wikimedia.org/wiki/File:Tennis_For_Two_on_a_DuMont_Lab_Oscilloscope_Type_304-A.jpg",
+    "thumb": "/objects/t/tennis-for-two.jpg",
+    "processed": true
+  },
+  "spacewar": {
+    "src": "/objects/spacewar.jpg",
+    "width": 1400,
+    "height": 941,
+    "license": "CC BY 2.0",
+    "artist": "Joi Ito from Inbamura, Japan",
+    "page": "https://commons.wikimedia.org/wiki/File:Spacewar!-PDP-1-20070512.jpg",
+    "thumb": "/objects/t/spacewar.jpg",
+    "processed": true
+  },
+  "pong": {
+    "src": "/objects/pong.jpg",
+    "width": 800,
+    "height": 600,
+    "license": "Public domain",
+    "artist": "Bumm13 [2]",
+    "page": "https://commons.wikimedia.org/wiki/File:Pong.png",
+    "thumb": "/objects/t/pong.jpg",
+    "processed": true
+  },
+  "first-computer-bug": {
+    "src": "/objects/first-computer-bug.jpg",
+    "width": 1400,
+    "height": 1108,
+    "license": "Public domain",
+    "artist": "Courtesy of the Naval Surface Warfare Center, Dahlgren, VA., 1988.",
+    "page": "https://commons.wikimedia.org/wiki/File:First_Computer_Bug,_1947.jpg",
+    "thumb": "/objects/t/first-computer-bug.jpg",
+    "processed": true
+  },
+  "bic-cristal": {
+    "src": "/objects/bic-cristal.jpg",
+    "width": 1400,
+    "height": 1050,
+    "license": "CC BY-SA 3.0",
+    "artist": "Carlos Delgado",
+    "page": "https://commons.wikimedia.org/wiki/File:4_Bic_Cristal_pens_and_caps.jpg",
+    "thumb": "/objects/t/bic-cristal.jpg",
+    "processed": true
+  },
+  "polaroid-sx70": {
+    "src": "/objects/polaroid-sx70.jpg",
+    "width": 1050,
+    "height": 1400,
+    "license": "CC BY 2.0",
+    "artist": "Michael Gatchell",
+    "page": "https://commons.wikimedia.org/wiki/File:Polaroid_SX-70_camera.jpg",
+    "thumb": "/objects/t/polaroid-sx70.jpg",
+    "processed": true
+  },
+  "chemex": {
+    "src": "/objects/chemex.jpg",
+    "width": 1050,
+    "height": 1400,
+    "license": "CC BY 4.0",
+    "artist": "Hay Kranen",
+    "page": "https://commons.wikimedia.org/wiki/File:Chemex_coffeemaker_with_filter.jpg",
+    "thumb": "/objects/t/chemex.jpg",
+    "processed": true
+  },
+  "g-shock-dw5600": {
+    "src": "/objects/g-shock-dw5600.jpg",
+    "width": 1050,
+    "height": 1400,
+    "license": "CC BY-SA 4.0",
+    "artist": "Md. Rifat Hasan Jihan",
+    "page": "https://commons.wikimedia.org/wiki/File:CASIO_G-Shock_GW-M5610U.jpg",
+    "thumb": "/objects/t/g-shock-dw5600.jpg",
+    "processed": true
+  },
+  "citroen-2cv": {
+    "src": "/objects/citroen-2cv.jpg",
+    "width": 1400,
+    "height": 1111,
+    "license": "CC0",
+    "artist": "2538O",
+    "page": "https://commons.wikimedia.org/wiki/File:Citro%C3%ABn_2CV_400_in_Amsterdam,_Netherlands.jpg",
+    "thumb": "/objects/t/citroen-2cv.jpg",
+    "processed": true
+  },
+  "brompton": {
+    "src": "/objects/brompton.jpg",
+    "width": 1400,
+    "height": 1400,
+    "license": "CC0",
+    "artist": "Bossphotography",
+    "page": "https://commons.wikimedia.org/wiki/File:Brompton_bicycle_half_folded_and_loaded.jpg",
+    "thumb": "/objects/t/brompton.jpg",
+    "processed": true
+  },
+  "opinel-no8": {
+    "src": "/objects/opinel-no8.jpg",
+    "width": 1400,
+    "height": 550,
+    "license": "CC BY-SA 4.0",
+    "artist": "Kuroczynski",
+    "page": "https://commons.wikimedia.org/wiki/File:Opinel_knife_No._08.jpg",
+    "thumb": "/objects/t/opinel-no8.jpg",
+    "processed": true
+  },
+  "swiss-army-knife": {
+    "src": "/objects/swiss-army-knife.jpg",
+    "width": 1400,
+    "height": 780,
+    "license": "Public domain",
+    "artist": "Jonas Bergsten",
+    "page": "https://commons.wikimedia.org/wiki/File:Swiss_army_knife_open_20050612_(cropped).jpg",
+    "thumb": "/objects/t/swiss-army-knife.jpg",
+    "processed": true
+  },
+  "zippo": {
+    "src": "/objects/zippo.jpg",
+    "width": 1299,
+    "height": 1400,
+    "license": "CC BY-SA 2.0",
+    "artist": "Joe Haupt from USA",
+    "page": "https://commons.wikimedia.org/wiki/File:Vintage_Zippo_Chrome_Cigarette_Lighter_(16459779285).jpg",
+    "thumb": "/objects/t/zippo.jpg",
+    "processed": true
+  },
+  "stanley-knife": {
+    "src": "/objects/stanley-knife.jpg",
+    "width": 1400,
+    "height": 1045,
+    "license": "CC BY-SA 4.0",
+    "artist": "TaurusEmerald",
+    "page": "https://commons.wikimedia.org/wiki/File:Stanley_99E_Utility_Knife.jpg",
+    "thumb": "/objects/t/stanley-knife.jpg",
+    "processed": true
+  },
+  "maglite": {
+    "src": "/objects/maglite.jpg",
+    "width": 768,
+    "height": 522,
+    "license": "CC BY-SA 3.0",
+    "artist": "KMJ at German Wikipedia",
+    "page": "https://commons.wikimedia.org/wiki/File:Flashlight.jpg",
+    "thumb": "/objects/t/maglite.jpg",
+    "processed": true
+  },
+  "nalgene": {
+    "src": "/objects/nalgene.jpg",
+    "width": 1400,
+    "height": 1052,
+    "license": "CC BY 2.0",
+    "artist": "Olgierd (Creative Commons licensed only)",
+    "page": "https://commons.wikimedia.org/wiki/File:Nalgene_Wide_Mouth_water_bottle_(49110583652).jpg",
+    "thumb": "/objects/t/nalgene.jpg",
+    "processed": true
+  },
+  "duct-tape": {
+    "src": "/objects/duct-tape.jpg",
+    "width": 1400,
+    "height": 1229,
+    "license": "Public domain",
+    "artist": "Evan-Amos",
+    "page": "https://commons.wikimedia.org/wiki/File:Duct-tape.jpg",
+    "thumb": "/objects/t/duct-tape.jpg",
+    "processed": true
+  },
+  "post-it": {
+    "src": "/objects/post-it.jpg",
+    "width": 800,
+    "height": 600,
+    "license": "CC BY-SA 3.0",
+    "artist": "DangApricot (Erik Breedon)",
+    "page": "https://commons.wikimedia.org/wiki/File:PostItNotePad.JPG",
+    "thumb": "/objects/t/post-it.jpg",
+    "processed": true
+  },
+  "paper-clip": {
+    "src": "/objects/paper-clip.jpg",
+    "width": 1400,
+    "height": 914,
+    "license": "CC BY-SA 3.0",
+    "artist": "Kuebi Armin Kübelbeck",
+    "page": "https://commons.wikimedia.org/wiki/File:Surface_Tension_01.jpg",
+    "thumb": "/objects/t/paper-clip.jpg",
+    "processed": true
+  },
+  "land-rover-series-1": {
+    "src": "/objects/land-rover-series-1.jpg",
+    "width": 1400,
+    "height": 971,
+    "license": "CC BY-SA 4.0",
+    "artist": "DeFacto",
+    "page": "https://commons.wikimedia.org/wiki/File:Land_Rover_Series_I_1948_(HUE_166).jpg",
+    "thumb": "/objects/t/land-rover-series-1.jpg",
+    "processed": true
+  },
+  "ibm-selectric": {
+    "src": "/objects/ibm-selectric.jpg",
+    "width": 1400,
+    "height": 1000,
+    "license": "CC BY-SA 3.0",
+    "artist": "Hannes Grobe",
+    "page": "https://commons.wikimedia.org/wiki/File:IBM_Selectric_II_typewriter_hg.jpg",
+    "thumb": "/objects/t/ibm-selectric.jpg",
+    "processed": true
+  },
+  "hp-35": {
+    "src": "/objects/hp-35.jpg",
+    "width": 1243,
+    "height": 1400,
+    "license": "CC BY 2.0",
+    "artist": "Seth Morabito",
+    "page": "https://commons.wikimedia.org/wiki/File:HP_35_Calculator.jpg",
+    "thumb": "/objects/t/hp-35.jpg",
+    "processed": true
+  },
+  "model-m": {
+    "src": "/objects/model-m.jpg",
+    "width": 1400,
+    "height": 734,
+    "license": "CC0",
+    "artist": "Wilfredor",
+    "page": "https://commons.wikimedia.org/wiki/File:IBM_Model_M_Spanish_layout_Keyboard.jpg",
+    "thumb": "/objects/t/model-m.jpg",
+    "processed": true
+  },
+  "palm-pilot": {
+    "src": "/objects/palm-pilot.jpg",
+    "width": 1125,
+    "height": 1400,
+    "license": "CC BY-SA 3.0",
+    "artist": "Letdorf",
+    "page": "https://commons.wikimedia.org/wiki/File:PalmPilot_Professional.jpg",
+    "thumb": "/objects/t/palm-pilot.jpg",
+    "processed": true
+  },
+  "slide-rule": {
+    "src": "/objects/slide-rule.jpg",
+    "width": 1400,
+    "height": 1050,
+    "license": "CC BY-SA 4.0",
+    "artist": "ArnoldReinhold",
+    "page": "https://commons.wikimedia.org/wiki/File:Pickett_N4ES_slide_rule.agr.jpg",
+    "thumb": "/objects/t/slide-rule.jpg",
+    "processed": true
+  },
+  "stratocaster": {
+    "src": "/objects/stratocaster.jpg",
+    "width": 751,
+    "height": 1400,
+    "license": "CC BY-SA 4.0",
+    "artist": "User:Lightburst",
+    "page": "https://commons.wikimedia.org/wiki/File:1958_Fender_Stratocaster.jpg",
+    "thumb": "/objects/t/stratocaster.jpg",
+    "processed": true
+  },
+  "shure-sm58": {
+    "src": "/objects/shure-sm58.jpg",
+    "width": 1400,
+    "height": 933,
+    "license": "CC BY 2.0",
+    "artist": "Marcel Grieder from Switzerland",
+    "page": "https://commons.wikimedia.org/wiki/File:Microphone_(Shure_SM58)_(4900485245).jpg",
+    "thumb": "/objects/t/shure-sm58.jpg",
+    "processed": true
+  },
+  "yamaha-dx7": {
+    "src": "/objects/yamaha-dx7.jpg",
+    "width": 1311,
+    "height": 1400,
+    "license": "CC BY 4.0",
+    "artist": "Yamaha DX7.jpg: Leo-setä Yamaha DX7 Table 4 f.jpg: iixorbiusii and Georgfotoart ",
+    "page": "https://commons.wikimedia.org/wiki/File:Yamaha_DX7_synthesizer_-_combined_image_with_diagonal_and_top_views.jpg",
+    "thumb": "/objects/t/yamaha-dx7.jpg",
+    "processed": true
+  },
+  "koss-porta-pro": {
+    "src": "/objects/koss-porta-pro.jpg",
+    "width": 1337,
+    "height": 962,
+    "license": "CC0",
+    "artist": "Cooper55566",
+    "page": "https://commons.wikimedia.org/wiki/File:Porta_Pro_Koss_Headphones.jpg",
+    "thumb": "/objects/t/koss-porta-pro.jpg",
+    "processed": true
+  },
+  "bolex-h16": {
+    "src": "/objects/bolex-h16.jpg",
+    "width": 1400,
+    "height": 1050,
+    "license": "CC BY 4.0",
+    "artist": "Manuel Schmalstieg",
+    "page": "https://commons.wikimedia.org/wiki/File:Paillard-Bolex_H16_Reflex_camera_1956.jpg",
+    "thumb": "/objects/t/bolex-h16.jpg",
+    "processed": true
+  },
+  "arriflex-35": {
+    "src": "/objects/arriflex-35.jpg",
+    "width": 1400,
+    "height": 1092,
+    "license": "CC BY 3.0",
+    "artist": "Biswarup Ganguly",
+    "page": "https://commons.wikimedia.org/wiki/File:Arriflex_-_35mm_Movie_Camera_-_Kolkata_2012-10-09_1590.JPG",
+    "thumb": "/objects/t/arriflex-35.jpg",
+    "processed": true
+  },
+  "steadicam": {
+    "src": "/objects/steadicam.jpg",
+    "width": 1050,
+    "height": 1400,
+    "license": "CC BY-SA 2.0",
+    "artist": "Stephen Walli from Redmond, United States",
+    "page": "https://commons.wikimedia.org/wiki/File:Moving_Camera_Rig.jpg",
+    "thumb": "/objects/t/steadicam.jpg",
+    "processed": true
+  },
+  "clapperboard": {
+    "src": "/objects/clapperboard.jpg",
+    "width": 1400,
+    "height": 959,
+    "license": "CC BY 2.0",
+    "artist": "Mattbr",
+    "page": "https://commons.wikimedia.org/wiki/File:Clapperboard,_O2_film,_September_2008.jpg",
+    "thumb": "/objects/t/clapperboard.jpg",
+    "processed": true
+  },
+  "linotype": {
+    "src": "/objects/linotype.jpg",
+    "width": 1400,
+    "height": 932,
+    "license": "CC BY-SA 4.0",
+    "artist": "Paul Broeker",
+    "page": "https://commons.wikimedia.org/wiki/File:Technik-Museum_Kassel_Linotype_Setzmaschine,_vermutlich_bei_der_HNA_in_Kassel_eingesetzt.jpg",
+    "thumb": "/objects/t/linotype.jpg",
+    "processed": true
+  },
+  "letraset": {
+    "src": "/objects/letraset.jpg",
+    "width": 1400,
+    "height": 933,
+    "license": "CC BY 4.0",
+    "artist": "Mk2010",
+    "page": "https://commons.wikimedia.org/wiki/File:Dry-transfer_lettering_sheets.jpg",
+    "thumb": "/objects/t/letraset.jpg",
+    "processed": true
+  },
+  "type-case": {
+    "src": "/objects/type-case.jpg",
+    "width": 1400,
+    "height": 816,
+    "license": "CC BY 2.0",
+    "artist": "Marcin Wichary",
+    "page": "https://commons.wikimedia.org/wiki/File:California_job_case.jpg",
+    "thumb": "/objects/t/type-case.jpg",
+    "processed": true
+  },
+  "shipping-container": {
+    "src": "/objects/shipping-container.jpg",
+    "width": 1400,
+    "height": 1050,
+    "license": "CC BY-SA 4.0",
+    "artist": "AgainErick",
+    "page": "https://commons.wikimedia.org/wiki/File:Shipping_container_stacks_-_Port_of_Rotterdam_-_2017_-_5.jpg",
+    "thumb": "/objects/t/shipping-container.jpg",
+    "processed": true
+  },
+  "quonset-hut": {
+    "src": "/objects/quonset-hut.jpg",
+    "width": 1400,
+    "height": 1050,
+    "license": "CC BY-SA 4.0",
+    "artist": "Cullen328",
+    "page": "https://commons.wikimedia.org/wiki/File:Quonset_hut_in_Cherokee,_Nevada_County,_California.jpg",
+    "thumb": "/objects/t/quonset-hut.jpg",
+    "processed": true
+  },
+  "airstream": {
+    "src": "/objects/airstream.jpg",
+    "width": 1400,
+    "height": 933,
+    "license": "CC BY-SA 4.0",
+    "artist": "Dllu",
+    "page": "https://commons.wikimedia.org/wiki/File:1963_Airstream_trailer_in_Joshua_Tree_dllu.jpg",
+    "thumb": "/objects/t/airstream.jpg",
+    "processed": true
+  },
+  "rubiks-cube": {
+    "src": "/objects/rubiks-cube.jpg",
+    "width": 1400,
+    "height": 1400,
+    "license": "CC BY-SA 3.0",
+    "artist": "Lars Karlsson (Keqs)",
+    "page": "https://commons.wikimedia.org/wiki/File:Rubiks_cube_by_keqs.jpg",
+    "thumb": "/objects/t/rubiks-cube.jpg",
+    "processed": true
+  },
+  "pallet": {
+    "src": "/objects/pallet.jpg",
+    "width": 1400,
+    "height": 950,
+    "license": "CC0",
+    "artist": "W.carter",
+    "page": "https://commons.wikimedia.org/wiki/File:Wooden-pallets_stacked_8.jpg",
+    "thumb": "/objects/t/pallet.jpg",
+    "processed": true
+  },
+  "traffic-cone": {
+    "src": "/objects/traffic-cone.jpg",
+    "width": 1400,
+    "height": 1050,
+    "license": "CC BY-SA 4.0",
+    "artist": "Ser Amantio di Nicolao",
+    "page": "https://commons.wikimedia.org/wiki/File:A_toppled_orange_traffic_cone_at_Huntington_station.jpg",
+    "thumb": "/objects/t/traffic-cone.jpg",
+    "processed": true
+  },
+  "cable-tie": {
+    "src": "/objects/cable-tie.jpg",
+    "width": 1400,
+    "height": 788,
+    "license": "Public domain",
+    "artist": "Mushrooshi",
+    "page": "https://commons.wikimedia.org/wiki/File:ZipTieCrossSection.JPG",
+    "thumb": "/objects/t/cable-tie.jpg",
+    "processed": true
+  },
+  "hasselblad-500c": {
+    "src": "/objects/hasselblad-500c.jpg",
+    "width": 1400,
+    "height": 1199,
+    "license": "Attribution",
+    "artist": "Sole Creator and Copyright Holder: Alfred Hutter aka Gentry",
+    "page": "https://commons.wikimedia.org/wiki/File:Camera---Hasselblad_500---(Gentry).jpg",
+    "thumb": "/objects/t/hasselblad-500c.jpg",
+    "processed": true
+  },
+  "nikon-f": {
+    "src": "/objects/nikon-f.jpg",
+    "width": 1012,
+    "height": 995,
+    "license": "CC BY-SA 4.0",
+    "artist": "OppidumNissenae",
+    "page": "https://commons.wikimedia.org/wiki/File:Coll._Marc%C3%A8_CL_-_Nikon_F_1959.jpg",
+    "thumb": "/objects/t/nikon-f.jpg",
+    "processed": true
+  },
+  "rolleiflex": {
+    "src": "/objects/rolleiflex.jpg",
+    "width": 1400,
+    "height": 1400,
+    "license": "CC BY-SA 3.0",
+    "artist": "Sputniktilt",
+    "page": "https://commons.wikimedia.org/wiki/File:Rolleiflex_f2-8-F.jpg",
+    "thumb": "/objects/t/rolleiflex.jpg",
+    "processed": true
+  },
+  "tri-x": {
+    "src": "/objects/tri-x.jpg",
+    "width": 1400,
+    "height": 934,
+    "license": "CC BY 2.0",
+    "artist": "Håkan Dahlström",
+    "page": "https://commons.wikimedia.org/wiki/File:Kodak_Tri-X_400_Film_(6639715393).jpg",
+    "thumb": "/objects/t/tri-x.jpg",
+    "processed": true
+  },
+  "iso-216": {
+    "src": "/objects/iso-216.jpg",
+    "width": 1025,
+    "height": 1400,
+    "license": "CC BY-SA 3.0",
+    "artist": "User:Bromskloss",
+    "page": "https://commons.wikimedia.org/wiki/File:A_size_illustration2.svg",
+    "thumb": "/objects/t/iso-216.jpg",
+    "processed": true
+  },
+  "goethe-colour-wheel": {
+    "src": "/objects/goethe-colour-wheel.jpg",
+    "width": 600,
+    "height": 913,
+    "license": "Public domain",
+    "artist": "The original uploader was Luestling at German Wikipedia.",
+    "page": "https://commons.wikimedia.org/wiki/File:Goethe,_Farbenkreis_zur_Symbolisierung_des_menschlichen_Geistes-_und_Seelenlebens,_1809.jpg",
+    "thumb": "/objects/t/goethe-colour-wheel.jpg",
+    "processed": true
+  },
+  "signal-flags": {
+    "src": "/objects/signal-flags.jpg",
+    "width": 1248,
+    "height": 848,
+    "license": "Public domain",
+    "artist": "Dodd, Mead and Company",
+    "page": "https://commons.wikimedia.org/wiki/File:1902_International_Code_of_Signals_painting.jpg",
+    "thumb": "/objects/t/signal-flags.jpg",
+    "processed": true
+  },
+  "aiga-symbols": {
+    "src": "/objects/aiga-symbols.jpg",
+    "width": 1400,
+    "height": 1400,
+    "license": "Public domain",
+    "artist": "Roger Cook and Don Shanosky",
+    "page": "https://commons.wikimedia.org/wiki/File:Aiga_toilets_inv.svg",
+    "thumb": "/objects/t/aiga-symbols.jpg",
+    "processed": true
+  },
+  "braille": {
+    "src": "/objects/braille.jpg",
+    "width": 1086,
+    "height": 1400,
+    "license": "CC BY-SA 3.0",
+    "artist": "Original: CommonismNow Vector: LennyWikidata",
+    "page": "https://commons.wikimedia.org/wiki/File:Brailleschrift_05_KMJ.svg",
+    "thumb": "/objects/t/braille.jpg",
+    "processed": true
+  },
+  "morse-code": {
+    "src": "/objects/morse-code.jpg",
+    "width": 1137,
+    "height": 529,
+    "license": "CC BY-SA 4.0",
+    "artist": "F1jmm",
+    "page": "https://commons.wikimedia.org/wiki/File:Lettres_en_code_Morse_fr_en.png",
+    "thumb": "/objects/t/morse-code.jpg",
+    "processed": true
+  },
+  "hangul": {
+    "src": "/objects/hangul.jpg",
+    "width": 1400,
+    "height": 933,
+    "license": "Public domain",
+    "artist": "Government of Joseon",
+    "page": "https://commons.wikimedia.org/wiki/File:Hunminjeongeum_Haerye_10.jpg",
+    "thumb": "/objects/t/hangul.jpg",
+    "processed": true
+  },
+  "rosetta-stone": {
+    "src": "/objects/rosetta-stone.jpg",
+    "width": 1197,
+    "height": 1400,
+    "license": "CC BY-SA 4.0",
+    "artist": "Hans Hillewaert",
+    "page": "https://commons.wikimedia.org/wiki/File:Rosetta_Stone.JPG",
+    "thumb": "/objects/t/rosetta-stone.jpg",
+    "processed": true
+  },
+  "qwerty": {
+    "src": "/objects/qwerty.jpg",
+    "width": 1400,
+    "height": 467,
+    "license": "CC BY-SA 3.0",
+    "artist": "No machine-readable author provided. Denelson83 assumed (based on copyright clai",
+    "page": "https://commons.wikimedia.org/wiki/File:KB_United_States.svg",
+    "thumb": "/objects/t/qwerty.jpg",
+    "processed": true
+  },
+  "ascii-table": {
+    "src": "/objects/ascii-table.jpg",
+    "width": 723,
+    "height": 469,
+    "license": "Public domain",
+    "artist": "ASCII_Code_Chart-Quick_ref_card.jpg: Namazu-tron derivative work: LWChris (talk)",
+    "page": "https://commons.wikimedia.org/wiki/File:US-ASCII_code_chart.png",
+    "thumb": "/objects/t/ascii-table.jpg",
+    "processed": true
+  },
+  "qr-code": {
+    "src": "/objects/qr-code.jpg",
+    "width": 1400,
+    "height": 786,
+    "license": "CC BY-SA 3.0",
+    "artist": "Zephyris",
+    "page": "https://commons.wikimedia.org/wiki/File:QR_Code_Structure_Example_2.svg",
+    "thumb": "/objects/t/qr-code.jpg",
+    "processed": true
+  },
+  "punch-card": {
+    "src": "/objects/punch-card.jpg",
+    "width": 1400,
+    "height": 622,
+    "license": "CC0",
+    "artist": "Fil22plm",
+    "page": "https://commons.wikimedia.org/wiki/File:80-column_punched_card_edited_by_sub-assemblies_of_a_Pentaconta_electromechanical_telephone_exchange.jpg",
+    "thumb": "/objects/t/punch-card.jpg",
+    "processed": true
+  },
+  "von-neumann": {
+    "src": "/objects/von-neumann.jpg",
+    "width": 1400,
+    "height": 810,
+    "license": "CC BY-SA 3.0",
+    "artist": "Kapooht",
+    "page": "https://commons.wikimedia.org/wiki/File:Von_Neumann_Architecture.svg",
+    "thumb": "/objects/t/von-neumann.jpg",
+    "processed": true
+  },
+  "arpanet-map": {
+    "src": "/objects/arpanet-map.jpg",
+    "width": 1000,
+    "height": 716,
+    "license": "Public domain",
+    "artist": "ARPANET",
+    "page": "https://commons.wikimedia.org/wiki/File:Arpanet_logical_map,_march_1977.png",
+    "thumb": "/objects/t/arpanet-map.jpg",
+    "processed": true
+  },
+  "antikythera": {
+    "src": "/objects/antikythera.jpg",
+    "width": 1400,
+    "height": 699,
+    "license": "CC BY-SA 4.0",
+    "artist": "Joyofmuseums",
+    "page": "https://commons.wikimedia.org/wiki/File:Antikythera_Mechanism_-_National_Archaeological_Museum,_Athens_by_Joy_of_Museum.jpg",
+    "thumb": "/objects/t/antikythera.jpg",
+    "processed": true
+  },
+  "chappe-telegraph": {
+    "src": "/objects/chappe-telegraph.jpg",
+    "width": 941,
+    "height": 1400,
+    "license": "CC BY-SA 3.0",
+    "artist": "Mathieu MD",
+    "page": "https://commons.wikimedia.org/wiki/File:T%C3%A9l%C3%A9graphe_Chappe_de_L%C3%A9vignac_2012-03-09T16-02-46.jpg",
+    "thumb": "/objects/t/chappe-telegraph.jpg",
+    "processed": true
+  },
+  "minard": {
+    "src": "/objects/minard.jpg",
+    "width": 1400,
+    "height": 667,
+    "license": "Public domain",
+    "artist": "Charles Minard (1781–1870)",
+    "page": "https://commons.wikimedia.org/wiki/File:Minard.png",
+    "thumb": "/objects/t/minard.jpg",
+    "processed": true
+  },
+  "snow-cholera-map": {
+    "src": "/objects/snow-cholera-map.jpg",
+    "width": 1400,
+    "height": 1313,
+    "license": "Public domain",
+    "artist": "John Snow",
+    "page": "https://commons.wikimedia.org/wiki/File:Snow-cholera-map-1.jpg",
+    "thumb": "/objects/t/snow-cholera-map.jpg",
+    "processed": true
+  },
+  "nightingale-rose": {
+    "src": "/objects/nightingale-rose.jpg",
+    "width": 1400,
+    "height": 766,
+    "license": "Public domain",
+    "artist": "Florence Nightingale",
+    "page": "https://commons.wikimedia.org/wiki/File:Nightingale-mortality.jpg",
+    "thumb": "/objects/t/nightingale-rose.jpg",
+    "processed": true
+  },
+  "mendeleev-table": {
+    "src": "/objects/mendeleev-table.jpg",
+    "width": 619,
+    "height": 784,
+    "license": "Public domain",
+    "artist": "Dmitri Mendeleev",
+    "page": "https://commons.wikimedia.org/wiki/File:Mendeleev%27s_periodic_table_(1869_year).jpg",
+    "thumb": "/objects/t/mendeleev-table.jpg",
+    "processed": true
+  },
+  "pioneer-plaque": {
+    "src": "/objects/pioneer-plaque.jpg",
+    "width": 1400,
+    "height": 1109,
+    "license": "Public domain",
+    "artist": "Designed by Carl Sagan and Frank Drake. Artwork prepared by Linda Salzman Sagan.",
+    "page": "https://commons.wikimedia.org/wiki/File:Pioneer10-plaque.jpg",
+    "thumb": "/objects/t/pioneer-plaque.jpg",
+    "processed": true
+  },
+  "arecibo-message": {
+    "src": "/objects/arecibo-message.jpg",
+    "width": 467,
+    "height": 1400,
+    "license": "CC BY-SA 3.0",
+    "artist": "Arne Nordmann (norro)",
+    "page": "https://commons.wikimedia.org/wiki/File:Arecibo_message.svg",
+    "thumb": "/objects/t/arecibo-message.jpg",
+    "processed": true
+  },
+  "voynich": {
+    "src": "/objects/voynich.jpg",
+    "width": 1062,
+    "height": 1400,
+    "license": "Public domain",
+    "artist": "Unknown authorUnknown author",
+    "page": "https://commons.wikimedia.org/wiki/File:Voynich_Manuscript_(135).jpg",
+    "thumb": "/objects/t/voynich.jpg",
+    "processed": true
+  },
+  "snellen-chart": {
+    "src": "/objects/snellen-chart.jpg",
+    "width": 1123,
+    "height": 1400,
+    "license": "CC BY-SA 3.0",
+    "artist": "Jeff Dahl",
+    "page": "https://commons.wikimedia.org/wiki/File:Snellen_chart.svg",
+    "thumb": "/objects/t/snellen-chart.jpg",
+    "processed": true
+  },
+  "metre-bar": {
+    "src": "/objects/metre-bar.jpg",
+    "width": 1400,
+    "height": 920,
+    "license": "Public domain",
+    "artist": "Unknown authorUnknown author",
+    "page": "https://commons.wikimedia.org/wiki/File:Platinum-Iridium_meter_bar.jpg",
+    "thumb": "/objects/t/metre-bar.jpg",
+    "processed": true
+  },
+  "nolli-map": {
+    "src": "/objects/nolli-map.jpg",
+    "width": 1323,
+    "height": 1400,
+    "license": "Public domain",
+    "artist": "Romplan des Giovanni Battista Nolli (1701-1756)",
+    "page": "https://commons.wikimedia.org/wiki/File:Nolli_Map_Rome,_(1748)_Cutout_with_Palazzo_Zuccari.jpg",
+    "thumb": "/objects/t/nolli-map.jpg",
+    "processed": true
+  },
+  "vitruvian-man": {
+    "src": "/objects/vitruvian-man.jpg",
+    "width": 1030,
+    "height": 1400,
+    "license": "Public domain",
+    "artist": "Leonardo da Vinci",
+    "page": "https://commons.wikimedia.org/wiki/File:Da_Vinci_Vitruve_Luc_Viatour.jpg",
+    "thumb": "/objects/t/vitruvian-man.jpg",
+    "processed": true
+  },
+  "villa-rotonda-plan": {
+    "src": "/objects/villa-rotonda-plan.jpg",
+    "width": 943,
+    "height": 1400,
+    "license": "CC0",
+    "artist": "Andrea Palladio",
+    "page": "https://commons.wikimedia.org/wiki/File:Villa_Almerico_(Villa_Rotunda),_from_I_quattro_libri_dell%27architettura_di_Andrea_Palladio_(Book_2,_page_19)_MET_DP109542.jpg",
+    "thumb": "/objects/t/villa-rotonda-plan.jpg",
+    "processed": true
+  },
+  "manhattan-grid": {
+    "src": "/objects/manhattan-grid.jpg",
+    "width": 1400,
+    "height": 976,
+    "license": "Public domain",
+    "artist": "John Randel. Engraved by P. Maverik.",
+    "page": "https://commons.wikimedia.org/wiki/File:Commissioners%27_Plan_of_1811_by_John_Randel_published_in_1821.jpg",
+    "thumb": "/objects/t/manhattan-grid.jpg",
+    "processed": true
+  },
+  "cerda-barcelona": {
+    "src": "/objects/cerda-barcelona.jpg",
+    "width": 857,
+    "height": 545,
+    "license": "Public domain",
+    "artist": "Ildefons Cerdà. Scanned by ca:user:amadalvarez",
+    "page": "https://commons.wikimedia.org/wiki/File:Cerda-avantprojecteEixample-1955.jpg",
+    "thumb": "/objects/t/cerda-barcelona.jpg",
+    "processed": true
+  },
+  "circle-of-fifths": {
+    "src": "/objects/circle-of-fifths.jpg",
+    "width": 1400,
+    "height": 1400,
+    "license": "CC BY-SA 3.0",
+    "artist": "Just plain Bill",
+    "page": "https://commons.wikimedia.org/wiki/File:Circle_of_fifths_deluxe_4.svg",
+    "thumb": "/objects/t/circle-of-fifths.jpg",
+    "processed": true
+  },
+  "guidonian-hand": {
+    "src": "/objects/guidonian-hand.jpg",
+    "width": 1193,
+    "height": 1400,
+    "license": "Public domain",
+    "artist": "",
+    "page": "https://commons.wikimedia.org/wiki/File:Guidonian_hand.jpg",
+    "thumb": "/objects/t/guidonian-hand.jpg",
+    "processed": true
+  },
+  "tuning-fork": {
+    "src": "/objects/tuning-fork.jpg",
+    "width": 1400,
+    "height": 933,
+    "license": "CC BY-SA 3.0",
+    "artist": "Édouard Hue (User:EdouardHue)",
+    "page": "https://commons.wikimedia.org/wiki/File:Diapason_Wittner_%C3%A0_branches_carr%C3%A9es_%C3%A0_440_Hz.jpg",
+    "thumb": "/objects/t/tuning-fork.jpg",
+    "processed": true
+  },
+  "smpte-bars": {
+    "src": "/objects/smpte-bars.jpg",
+    "width": 1400,
+    "height": 1050,
+    "license": "Public domain",
+    "artist": "Denelson83",
+    "page": "https://commons.wikimedia.org/wiki/File:SMPTE_Color_Bars.svg",
+    "thumb": "/objects/t/smpte-bars.jpg",
+    "processed": true
+  },
+  "zoetrope": {
+    "src": "/objects/zoetrope.jpg",
+    "width": 1400,
+    "height": 831,
+    "license": "CC BY 4.0",
+    "artist": "",
+    "page": "https://commons.wikimedia.org/wiki/File:Zoetrope_(AM_2001.6.1-51).jpg",
+    "thumb": "/objects/t/zoetrope.jpg",
+    "processed": true
+  },
+  "cyanotype-atkins": {
+    "src": "/objects/cyanotype-atkins.jpg",
+    "width": 1052,
+    "height": 1400,
+    "license": "Public domain",
+    "artist": "Anna Atkins",
+    "page": "https://commons.wikimedia.org/wiki/File:Anna_Atkins_Cystoseira_granulata.jpg",
+    "thumb": "/objects/t/cyanotype-atkins.jpg",
+    "processed": true
+  },
+  "roundhay-garden": {
+    "src": "/objects/roundhay-garden.jpg",
+    "width": 1037,
+    "height": 967,
+    "license": "Public domain",
+    "artist": "Louis Le Prince",
+    "page": "https://commons.wikimedia.org/wiki/File:LouisLePrinceFirstFilmEver_RoundhayGardenScene.png",
+    "thumb": "/objects/t/roundhay-garden.jpg",
+    "processed": true
+  },
+  "trojan-room-coffee-pot": {
+    "src": "/objects/trojan-room-coffee-pot.jpg",
+    "width": 142,
+    "height": 159,
+    "license": "CC BY-SA 3.0",
+    "artist": "Quentin Stafford-Fraser",
+    "page": "https://commons.wikimedia.org/wiki/File:Trojan_Room_coffee_pot_xcoffee.png",
+    "thumb": "/objects/t/trojan-room-coffee-pot.jpg",
+    "processed": true
+  },
+  "fiskars-scissors": {
+    "src": "/objects/fiskars-scissors.jpg",
+    "width": 1400,
+    "height": 800,
+    "license": "Public domain",
+    "artist": "Evan-amos",
+    "page": "https://commons.wikimedia.org/wiki/File:Fiskars-scissors.jpg",
+    "thumb": "/objects/t/fiskars-scissors.jpg",
+    "processed": true
+  },
+  "kikkoman-bottle": {
+    "src": "/objects/kikkoman-bottle.jpg",
+    "width": 1050,
+    "height": 1400,
+    "license": "CC BY-SA 3.0",
+    "artist": "Mj-bird",
+    "page": "https://commons.wikimedia.org/wiki/File:Kikkoman_Soy_Sauce,_Perspective-view,_jp-type,.jpg",
+    "thumb": "/objects/t/kikkoman-bottle.jpg",
+    "processed": true
+  },
+  "vespa": {
+    "src": "/objects/vespa.jpg",
+    "width": 1400,
+    "height": 866,
+    "license": "CC BY-SA 2.0 fr",
+    "artist": "Rama",
+    "page": "https://commons.wikimedia.org/wiki/File:Vespa_img_2351.jpg",
+    "thumb": "/objects/t/vespa.jpg",
+    "processed": true
+  },
+  "composing-stick": {
+    "src": "/objects/composing-stick.jpg",
+    "width": 1400,
+    "height": 1050,
+    "license": "CC BY 3.0",
+    "artist": "Wilhei",
+    "page": "https://commons.wikimedia.org/wiki/File:Bleisatz_im_Winkelhaken.jpg",
+    "thumb": "/objects/t/composing-stick.jpg",
+    "processed": true
+  },
+  "munsell": {
+    "src": "/objects/munsell.jpg",
+    "width": 1400,
+    "height": 1400,
+    "license": "CC BY-SA 4.0",
+    "artist": "8-leaf clover",
+    "page": "https://commons.wikimedia.org/wiki/File:Twenty_hues_of_the_Munsell_color_system_at_maximum_chroma.png",
+    "thumb": "/objects/t/munsell.jpg",
+    "processed": true
+  },
+  "exit-sign": {
+    "src": "/objects/exit-sign.jpg",
+    "width": 1400,
+    "height": 1400,
+    "license": "Public domain",
+    "artist": "MaxxL",
+    "page": "https://commons.wikimedia.org/wiki/File:ISO_7010_E001.svg",
+    "thumb": "/objects/t/exit-sign.jpg",
+    "processed": true
+  },
+  "din-1451": {
+    "src": "/objects/din-1451.jpg",
+    "width": 1400,
+    "height": 435,
+    "license": "CC0",
+    "artist": "Mediatus",
+    "page": "https://commons.wikimedia.org/wiki/File:Beispiel_-_Fette_Mittelschrift_DIN_1451_(alt).svg",
+    "thumb": "/objects/t/din-1451.jpg",
+    "processed": true
+  },
+  "upc-barcode": {
+    "src": "/objects/upc-barcode.jpg",
+    "width": 1400,
+    "height": 1205,
+    "license": "CC0",
+    "artist": "toguro",
+    "page": "https://commons.wikimedia.org/wiki/File:UPC-A-036000291452.svg",
+    "thumb": "/objects/t/upc-barcode.jpg",
+    "processed": true
+  },
+  "feynman-diagram": {
+    "src": "/objects/feynman-diagram.jpg",
+    "width": 1188,
+    "height": 1400,
+    "license": "CC BY-SA 4.0",
+    "artist": "Ponor",
+    "page": "https://commons.wikimedia.org/wiki/File:Standard_Model_%E2%80%93_All_Feynman_diagram_vertices.svg",
+    "thumb": "/objects/t/feynman-diagram.jpg",
+    "processed": true
+  },
+  "metronome": {
+    "src": "/objects/metronome.jpg",
+    "width": 1342,
+    "height": 1400,
+    "license": "Public domain",
+    "artist": "Photo: Andreas Praefcke",
+    "page": "https://commons.wikimedia.org/wiki/File:Metronom_M%C3%A4lzel_1815.jpg",
+    "thumb": "/objects/t/metronome.jpg",
+    "processed": true
+  },
+  "grey-card": {
+    "src": "/objects/grey-card.jpg",
+    "width": 1400,
+    "height": 933,
+    "license": "GPL",
+    "artist": "Apostoloff",
+    "page": "https://commons.wikimedia.org/wiki/File:Graukarte.svg",
+    "thumb": "/objects/t/grey-card.jpg",
+    "processed": true
+  },
+  "edison-bulb": {
+    "src": "/objects/edison-bulb.jpg",
+    "width": 937,
+    "height": 1400,
+    "license": "CC BY 3.0",
+    "artist": "HumanisticRationale at English Wikipedia",
+    "page": "https://commons.wikimedia.org/wiki/File:Thomas_Edison_Lightbulbs_1879-1880.jpg",
+    "thumb": "/objects/t/edison-bulb.jpg",
+    "processed": true
+  },
+  "transport-typeface": {
+    "src": "/objects/transport-typeface.jpg",
+    "width": 1024,
+    "height": 699,
+    "license": "CC BY-SA 2.0",
+    "artist": "Andrew Hackney",
+    "page": "https://commons.wikimedia.org/wiki/File:M5_northbound_Junction_16_geograph-1993658-by-Andrew-Hackney.jpg",
+    "thumb": "/objects/t/transport-typeface.jpg",
+    "processed": true
+  },
+  "akai-mpc60": {
+    "src": "/objects/akai-mpc60.jpg",
+    "width": 1400,
+    "height": 890,
+    "license": "Public domain",
+    "artist": "user:withe",
+    "page": "https://commons.wikimedia.org/wiki/File:Akai_MPC2000XL.jpg",
+    "thumb": "/objects/t/akai-mpc60.jpg",
+    "processed": true
+  },
+  "sbb-clock": {
+    "src": "/objects/sbb-clock.jpg",
+    "width": 1400,
+    "height": 1049,
+    "license": "CC BY-SA 4.0",
+    "artist": "Mike is Michi",
+    "page": "https://commons.wikimedia.org/wiki/File:Mondaine_clock_in_Zurich_Hauptbahnhof_main_hall_2026.JPG",
+    "thumb": "/objects/t/sbb-clock.jpg",
+    "processed": true
+  },
+  "van-de-graaf-canon": {
+    "src": "/objects/van-de-graaf-canon.jpg",
+    "width": 1400,
+    "height": 1062,
+    "license": "Public domain",
+    "artist": "jossi",
+    "page": "https://commons.wikimedia.org/wiki/File:Van_de_Graaf_canon_in_book_design.svg",
+    "thumb": "/objects/t/van-de-graaf-canon.jpg",
+    "processed": true
+  },
+  "leatherman-pst": {
+    "src": "/objects/leatherman-pst.jpg",
+    "width": 1400,
+    "height": 783,
+    "license": "CC BY-SA 4.0",
+    "artist": "GerifalteDelSabana",
+    "page": "https://commons.wikimedia.org/wiki/File:Leatherman_Wingman,_primaries_out.jpg",
+    "thumb": "/objects/t/leatherman-pst.jpg",
+    "processed": true
+  },
+  "booth-poverty-map": {
+    "src": "/objects/booth-poverty-map.jpg",
+    "width": 1400,
+    "height": 1283,
+    "license": "CC BY 4.0",
+    "artist": "Charles Booth",
+    "page": "https://commons.wikimedia.org/wiki/File:Descriptive_map_of_London_poverty,_1889_Wellcome_L0074438.jpg",
+    "thumb": "/objects/t/booth-poverty-map.jpg",
+    "processed": true
   }
 }
