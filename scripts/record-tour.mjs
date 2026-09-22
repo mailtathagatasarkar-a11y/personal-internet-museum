@@ -15,6 +15,7 @@
 // scripted camera, just the things a visitor does, with pauses to read.
 // Recorded with --cursor, which paces every pointer action, so the zoom
 // beat is driven from the keyboard to keep the film moving.
+/* eslint-disable-next-line @typescript-eslint/no-unused-expressions */
 async page => {
   const hold = (ms) => page.waitForTimeout(ms);
 
@@ -55,10 +56,11 @@ async page => {
   await hold(1100);
 
   // 06 — The hall: four rooms, and past the last one the first again.
-  for (const _ of [1, 2, 3, 4]) {
+  for (let i = 0; i < 4; i++) {
     await page.keyboard.press(']');
     await hold(1450);
   }
   await hold(1100);
   return 'toured';
 }
+
