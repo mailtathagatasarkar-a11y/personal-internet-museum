@@ -61,15 +61,17 @@ export function zoomAt(cam: Camera, px: number, py: number, factor: number, minS
 /**
  * Keep the museum in the frame. When the world is smaller than the viewport
  * along an axis it sits centred and cannot be dragged; when larger, its edge
- * may come no further in than 45% of the viewport, so the poster is never
- * left floating in a corner.
+ * may come inside the frame by up to 45% of the viewport, so the poster is
+ * never left floating in a corner. That allowance grows with the overflow
+ * from zero, so zooming out to the floor slides the poster into the centre
+ * instead of snapping it there on the frame it first fits.
  */
 export function constrain(cam: Camera, vp: Size, world: Size): Camera {
   const ww = world.w * cam.s;
   const wh = world.h * cam.s;
   const axis = (pos: number, size: number, view: number) => {
     if (size <= view) return (view - size) / 2;
-    const m = view * 0.45;
+    const m = Math.min(view * 0.45, (size - view) / 2);
     return clamp(pos, view - m - size, m);
   };
   return { x: axis(cam.x, ww, vp.w), y: axis(cam.y, wh, vp.h), s: cam.s };

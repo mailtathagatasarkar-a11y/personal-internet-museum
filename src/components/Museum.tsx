@@ -15,7 +15,7 @@ import {
   threadById,
 } from "@/data/museum";
 import type { TerritoryId } from "@/data/territories";
-import { centerOn, clamp, fitRect, fitScale, frameObject, toScreen, union, worldCenter, zoomAt, type Size } from "@/lib/camera";
+import { centerOn, clamp, constrain, fitRect, fitScale, frameObject, toScreen, union, worldCenter, zoomAt, type Size } from "@/lib/camera";
 import { useCamera } from "@/lib/useCamera";
 import { Connections } from "./Connections";
 import { GridLayer } from "./GridLayer";
@@ -105,6 +105,18 @@ export default function Museum() {
   });
   const [legendOpen, setLegendOpen] = useState(false);
   const [ready, setReady] = useState(false);
+  const [curtainGone, setCurtainGone] = useState(false);
+  /** The opening pull-back is in progress: the HUD already reads as the whole museum. */
+  const [entering, setEntering] = useState(true);
+  const enteringRef = useRef(true);
+  useEffect(() => {
+    enteringRef.current = entering;
+  }, [entering]);
+  useEffect(() => {
+    if (!ready || entering || curtainGone) return;
+    const t = setTimeout(() => setCurtainGone(true), 1600);
+    return () => clearTimeout(t);
+  }, [ready, entering, curtainGone]);
   /** Render for a still: no HUD, no entry flight, a fixed frame. `?still=home|og|close`. */
   const [still, setStill] = useState<string | null>(null);
   const [place, setPlace] = useState<{ label: string; id: TerritoryId | null }>({ label: "the museum", id: null });
@@ -139,6 +151,7 @@ export default function Museum() {
     minScale,
     onGesture: (kind) => {
       touchedRef.current = true;
+      setEntering(false);
       // Dragging away from an object is how you leave it; zooming is how you look closer.
       if (kind === "pan" && selectedRef.current) setSelectedId(null);
     },
@@ -189,6 +202,7 @@ export default function Museum() {
       camera.set(stillFrame(stillMode, vp, homeCamera(), minScale()));
       const timer = setTimeout(() => {
         setStill(stillMode);
+        setEntering(false);
         setReady(true);
       }, 0);
       return () => clearTimeout(timer);
@@ -201,6 +215,7 @@ export default function Museum() {
       const timer = setTimeout(() => {
         setSelectedId(o);
         setTrail([o]);
+        setEntering(false);
         setReady(true);
       }, 0);
       return () => clearTimeout(timer);
@@ -208,21 +223,47 @@ export default function Museum() {
     if (t && threadById[t]) {
       touchedRef.current = true;
       const rect = union(threadById[t].members.map((m) => rectOf(placedById[m])));
-      camera.set(fitRect(rect, vp, Math.min(140, vp.w * 0.12), minScale(), 0.8));
+      camera.set(constrain(fitRect(rect, vp, Math.min(140, vp.w * 0.12), minScale(), 0.8), vp, WORLD_SIZE));
       const timer = setTimeout(() => {
         setThreadId(t);
+        setEntering(false);
         setReady(true);
       }, 0);
       return () => clearTimeout(timer);
     }
     const home = homeCamera();
     const t3 = placedById["braun-t3"];
-    camera.set(vp.w < 760 ? home : centerOn(vp, t3.x + 260, t3.y + 140, Math.max(home.s * 2.6, 0.42)));
-    const timer = setTimeout(() => {
-      setReady(true);
-      camera.flyTo(home, { duration: 2.6, lift: false });
-    }, 120);
-    return () => clearTimeout(timer);
+    // Under the curtain the whole poster is drawn once at the floor, so every
+    // image is rastered before the visitor sees any of it.
+    camera.set(home);
+    // The poster fades in whole: type set in its faces, every thumbnail
+    // decoded. A slow connection is not made to wait past a moment, though.
+    let cancelled = false;
+    const thumbs = Array.from(document.querySelectorAll<HTMLImageElement>(".obj-img.thumb"));
+    const settled = Promise.race([
+      Promise.all([document.fonts.ready, Promise.allSettled(thumbs.map((img) => img.decode()))]),
+      new Promise((r) => setTimeout(r, 1400)),
+    ]);
+    const twoFrames = () => new Promise<void>((r) => requestAnimationFrame(() => requestAnimationFrame(() => r())));
+    settled.then(twoFrames).then(() => {
+      if (cancelled) return;
+      if (vp.w < 760) {
+        setReady(true);
+        setEntering(false);
+        return;
+      }
+      camera.set(centerOn(vp, t3.x + 260, t3.y + 140, Math.max(home.s * 2.6, 0.42)));
+      return twoFrames().then(() => {
+        if (cancelled) return;
+        setReady(true);
+        return camera.flyTo(home, { duration: 2.6, lift: false }).then(() => {
+          if (!cancelled) setEntering(false);
+        });
+      });
+    });
+    return () => {
+      cancelled = true;
+    };
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [measured]);
 
@@ -265,7 +306,7 @@ export default function Museum() {
         d: Math.hypot(t.center.x - c.cx, t.center.y - c.cy),
       })).sort((a, b) => a.d - b.d);
       const [a, b] = ranked;
-      if (cam.s < minScale() * 1.35) setPlace({ label: "the museum", id: null });
+      if (enteringRef.current || cam.s < minScale() * 1.35) setPlace({ label: "the museum", id: null });
       else if (b && b.d < a.d * 1.3) setPlace({ label: `${a.t.name} · ${b.t.name}`, id: a.t.id });
       else setPlace({ label: a.t.name, id: a.t.id });
       setScaleReadout(Math.round(cam.s * 100) / 100);
@@ -281,9 +322,9 @@ export default function Museum() {
     };
   }, [camera, minScale]);
 
-  // Warm the cache with the full-size images once the museum is on screen.
+  // Warm the cache with the full-size images once the visitor has arrived.
   useEffect(() => {
-    if (!ready) return;
+    if (!ready || entering) return;
     const queue = PLACED.map((o) => o.image.src);
     let cancelled = false;
     const next = () => {
@@ -298,7 +339,7 @@ export default function Museum() {
       cancelled = true;
       if (!idle) clearTimeout(handle);
     };
-  }, [ready]);
+  }, [ready, entering]);
 
   // ── Actions ───────────────────────────────────────────────────────────
   const select = useCallback(
@@ -360,7 +401,8 @@ export default function Museum() {
       stepRef.current = 0;
       const rect = union(t.members.map((m) => rectOf(placedById[m])));
       const vp = vpRef.current;
-      camera.flyTo(fitRect(rect, vp, Math.min(140, vp.w * 0.12), minScale(), 0.8));
+      // A thread that spans the floor is framed as the floor, centred.
+      camera.flyTo(constrain(fitRect(rect, vp, Math.min(140, vp.w * 0.12), minScale(), 0.8), vp, WORLD_SIZE));
     },
     [camera, minScale],
   );
@@ -384,7 +426,7 @@ export default function Museum() {
       const members = PLACED.filter((o) => o.territory === (id as TerritoryId));
       const rect = union(members.map(rectOf));
       const vp = vpRef.current;
-      camera.flyTo(fitRect(rect, vp, Math.min(120, vp.w * 0.1), minScale(), 0.7));
+      camera.flyTo(constrain(fitRect(rect, vp, Math.min(120, vp.w * 0.1), minScale(), 0.7), vp, WORLD_SIZE));
     },
     [camera, minScale],
   );
@@ -576,9 +618,6 @@ export default function Museum() {
             height: WORLD.height,
             transform: camera.transform,
           }}
-          initial={false}
-          animate={{ opacity: ready ? 1 : 0 }}
-          transition={{ duration: 1.4, ease: "easeOut" }}
         >
           <GridLayer />
           <TerritoryLayer onSelect={goToTerritory} onHover={setHoverTerritory} />
@@ -608,11 +647,27 @@ export default function Museum() {
         </motion.div>
       </div>
 
+      {/* The museum fades up from under a sheet of paper, rather than fading
+          itself in: an opacity animation on the world would promote it to its
+          own layer and cost a full repaint the moment the fade ended. The
+          sheet is taken away only once the camera has landed, when a repaint
+          changes nothing on screen. */}
+      {!curtainGone && (
+        <motion.div
+          className="curtain"
+          aria-hidden="true"
+          initial={false}
+          // Not quite opaque: an opaque sheet would let the renderer skip
+          // drawing the poster beneath it, and the point is to draw it early.
+          animate={{ opacity: ready ? 0 : 0.995 }}
+          transition={{ duration: still ? 0 : 1.4, ease: "easeOut" }}
+        />
+      )}
       <div className="grain" aria-hidden="true" />
 
       {still ? null : (
         <>
-          <Masthead large={tier === "far" && !selected && !thread} narrow={narrow} onReset={reset} />
+          <Masthead large={(tier === "far" || entering) && !selected && !thread} narrow={narrow} onReset={reset} />
           <Trail ids={narrow ? trail.slice(-2) : trail} current={selectedId} onSelect={select} />
           <Readout
             place={selected ? territoryById[selected.territory].name : place.label}
@@ -638,6 +693,32 @@ export default function Museum() {
 
       <AnimatePresence>
         {thread && <ThreadBanner key={thread.id} thread={thread} condensed={!!selected} onClose={() => setThreadId(null)} />}
+      </AnimatePresence>
+
+      {/* Behind whatever is open, the museum recedes. */}
+      <AnimatePresence>
+        {selected && !previewThread && (
+          <motion.div
+            key="scrim-side"
+            className={`scrim side${narrow ? " narrow" : ""}`}
+            aria-hidden="true"
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            transition={{ duration: 0.6, delay: 0.3 }}
+          />
+        )}
+        {(search.open || legendOpen) && (
+          <motion.div
+            key="scrim-modal"
+            className="scrim modal"
+            aria-hidden="true"
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            transition={{ duration: 0.3 }}
+          />
+        )}
       </AnimatePresence>
 
       <AnimatePresence>

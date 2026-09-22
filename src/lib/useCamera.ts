@@ -37,7 +37,7 @@ export function useCamera(opts: Options): CameraApi {
   const x = useMotionValue(0);
   const y = useMotionValue(0);
   const s = useMotionValue(0.2);
-  const transform = useMotionTemplate`translate3d(${x}px, ${y}px, 0) scale(${s})`;
+  const transform = useMotionTemplate`translate(${x}px, ${y}px) scale(${s})`;
 
   const optsRef = useRef(opts);
   useEffect(() => {

@@ -113,12 +113,12 @@ export function Legend({ onClose }: { onClose: () => void }) {
   return (
     <div className="hud" data-hud style={{ left: "50%", bottom: 64, transform: "translateX(-50%)" }}>
       <motion.div
-        className="paper-strip mono"
+        className="sheet mono"
         initial={{ opacity: 0, y: 6 }}
         animate={{ opacity: 1, y: 0 }}
         exit={{ opacity: 0, y: 6 }}
         transition={{ duration: 0.25 }}
-        style={{ display: "grid", gridTemplateColumns: "auto auto", columnGap: 22, rowGap: 4, padding: "6px 4px" }}
+        style={{ display: "grid", gridTemplateColumns: "auto auto", columnGap: 22, rowGap: 4 }}
       >
         {KEYS.map(([k, v]) => (
           <div key={k} style={{ display: "contents" }}>
@@ -201,7 +201,7 @@ export function ThreadBanner({ thread, condensed, onClose }: { thread: Thread; c
   return (
     <div className="hud" data-hud style={{ left: "50%", top: 30, transform: "translateX(-50%)", textAlign: "center", maxWidth: 520 }}>
       <motion.div
-        className="paper-strip"
+        className="sheet"
         initial={{ opacity: 0, y: -8 }}
         animate={{ opacity: 1, y: 0 }}
         exit={{ opacity: 0, y: -8 }}
@@ -263,12 +263,11 @@ export function Search({ initial = "", onSelect, onClose }: { initial?: string; 
       style={{ left: "50%", top: "12vh", transform: "translateX(-50%)", width: "min(600px, calc(100vw - 48px))" }}
     >
       <motion.div
-        className="paper-strip"
+        className="sheet"
         initial={{ opacity: 0, y: 6 }}
         animate={{ opacity: 1, y: 0 }}
         exit={{ opacity: 0, y: 6 }}
         transition={{ duration: 0.3 }}
-        style={{ padding: "6px 4px" }}
       >
         <div className="mono" style={{ color: "var(--ink-3)", marginBottom: 6 }}>
           {q.trim() ? `${hits.length} of ${PLACED.length}` : `Index · ${PLACED.length} objects`}

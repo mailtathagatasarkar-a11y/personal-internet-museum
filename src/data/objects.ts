@@ -33,7 +33,6 @@ export interface MuseumObject {
   source: string;
   sourceUrl: string;
   /** DD MON YYYY */
-  collected: string;
   note: string;
   relations: Relation[];
 }
@@ -50,7 +49,6 @@ export const OBJECTS: MuseumObject[] = [
     territory: "design",
     source: "MoMA",
     sourceUrl: "https://www.moma.org/collection/works/2825",
-    collected: "14 MAR 2026",
     note: "The restraint is what makes this still feel contemporary.",
     relations: [
       {
@@ -81,7 +79,6 @@ export const OBJECTS: MuseumObject[] = [
     territory: "design",
     source: "Design Museum",
     sourceUrl: "https://designmuseum.org/",
-    collected: "02 FEB 2026",
     note: "The 'Snow White's coffin'. The transparent lid was the radical part — you could see the mechanism and it wasn't ashamed.",
     relations: [
       { to: "sl-1200", kind: "SAME IDEA", why: "Both treat the turntable as a machine to be looked at, not hidden in a cabinet." },
@@ -98,7 +95,6 @@ export const OBJECTS: MuseumObject[] = [
     territory: "design",
     source: "Vitsœ",
     sourceUrl: "https://www.vitsoe.com/gb/606",
-    collected: "21 JAN 2026",
     note: "Still in production, still compatible with the 1960 parts. The most honest product page on the internet.",
     relations: [
       {
@@ -119,7 +115,6 @@ export const OBJECTS: MuseumObject[] = [
     territory: "design",
     source: "a Reddit thread",
     sourceUrl: "https://www.reddit.com/r/DesignPorn/",
-    collected: "09 APR 2026",
     note: "The iPhone calculator is this. Everyone knows, nobody minds.",
     relations: [
       { to: "ipod", kind: "INFLUENCE", why: "Apple's calculator app copied the ET 66's colour-coded keys almost exactly in 2007." },
@@ -136,7 +131,6 @@ export const OBJECTS: MuseumObject[] = [
     territory: "design",
     source: "Are.na",
     sourceUrl: "https://www.are.na/",
-    collected: "17 MAY 2026",
     note: "Sottsass called it an anti-machine machine. The bucket case is the point — it was made to be carried to a beach.",
     relations: [
       { to: "lettera-22", kind: "SAME MAKER", why: "Olivetti nineteen years earlier: the serious one before the playful one." },
@@ -158,7 +152,6 @@ export const OBJECTS: MuseumObject[] = [
     territory: "design",
     source: "Wikipedia",
     sourceUrl: "https://en.wikipedia.org/wiki/Olivetti_Lettera_22",
-    collected: "28 JAN 2026",
     note: "Sea-green and quiet. Voted best design product of the century by the Illinois Institute of Technology in 1959 and I can see why.",
     relations: [
       { to: "futura", kind: "SAME IDEA", why: "A machine for setting letters, next to letters designed to be set by machines." },
@@ -175,7 +168,6 @@ export const OBJECTS: MuseumObject[] = [
     territory: "design",
     source: "Artemide",
     sourceUrl: "https://www.artemide.com/",
-    collected: "03 JUN 2026",
     note: "No wires in the arms — the current runs through the metal. The counterweights are the design.",
     relations: [
       {
@@ -202,7 +194,6 @@ export const OBJECTS: MuseumObject[] = [
     territory: "typography",
     source: "Fonts In Use",
     sourceUrl: "https://fontsinuse.com/typefaces/74/helvetica",
-    collected: "11 FEB 2026",
     note: "The typeface that means 'no opinion'. Which is, of course, an opinion.",
     relations: [
       { to: "johnston", kind: "PRECURSOR", why: "Forty years earlier, Johnston proved a sans could carry a whole city's identity." },
@@ -228,7 +219,6 @@ export const OBJECTS: MuseumObject[] = [
     territory: "typography",
     source: "Flickr",
     sourceUrl: "https://www.flickr.com/",
-    collected: "19 MAR 2026",
     note: "Circles, triangles and straight lines. It went to the Moon on a plaque, which feels right.",
     relations: [
       { to: "wassily", kind: "SAME ERA", why: "1925–27: the Bauhaus years, when chairs and letters were both built from geometry." },
@@ -245,7 +235,6 @@ export const OBJECTS: MuseumObject[] = [
     territory: "typography",
     source: "Flickr",
     sourceUrl: "https://www.flickr.com/",
-    collected: "05 MAY 2026",
     note: "Still on every platform. A typeface that has outlived three generations of trains.",
     relations: [
       { to: "barbican", kind: "SAME CITY", why: "Two pieces of London that were public infrastructure before they were design objects." },
@@ -262,7 +251,6 @@ export const OBJECTS: MuseumObject[] = [
     territory: "typography",
     source: "Flickr",
     sourceUrl: "https://www.flickr.com/",
-    collected: "08 AUG 2026",
     note: "Every capital letter I've ever set descends from this. Painted with a brush first, then cut.",
     relations: [
       {
@@ -289,7 +277,6 @@ export const OBJECTS: MuseumObject[] = [
     territory: "architecture",
     source: "Fundació Mies van der Rohe",
     sourceUrl: "https://miesbcn.com/",
-    collected: "23 FEB 2026",
     note: "Demolished in 1930, rebuilt in 1986 from photographs. A building that exists because people missed it.",
     relations: [
       {
@@ -314,7 +301,6 @@ export const OBJECTS: MuseumObject[] = [
     territory: "architecture",
     source: "National Trust for Historic Preservation",
     sourceUrl: "https://savingplaces.org/",
-    collected: "12 JUN 2026",
     note: "Floats above the flood plain. The client sued him and it's still the most beautiful house I know.",
     relations: [
       {
@@ -334,7 +320,6 @@ export const OBJECTS: MuseumObject[] = [
     territory: "architecture",
     source: "Dezeen",
     sourceUrl: "https://www.dezeen.com/",
-    collected: "30 JUL 2026",
     note: "The roof is a staircase to nowhere. Godard filmed Bardot walking across it in Le Mépris and I've never recovered.",
     relations: [
       { to: "metropolis", kind: "SAME IDEA", why: "Architecture that only makes sense once a camera has looked at it." },
@@ -350,7 +335,6 @@ export const OBJECTS: MuseumObject[] = [
     territory: "architecture",
     source: "YouTube",
     sourceUrl: "https://www.youtube.com/",
-    collected: "26 APR 2026",
     note: "Demolished in 2022. The capsules were meant to be swapped every 25 years; none ever were.",
     relations: [
       { to: "walkman", kind: "SAME CITY", why: "Tokyo in the seventies: the city that miniaturised living, then miniaturised music." },
@@ -370,7 +354,6 @@ export const OBJECTS: MuseumObject[] = [
     territory: "architecture",
     source: "Wikipedia",
     sourceUrl: "https://en.wikipedia.org/wiki/Palace_of_Assembly",
-    collected: "15 JAN 2026",
     note: "The first modern building I ever stood inside. The concrete is rougher than the photographs admit.",
     relations: [
       {
@@ -390,7 +373,6 @@ export const OBJECTS: MuseumObject[] = [
     territory: "architecture",
     source: "Instagram",
     sourceUrl: "https://www.instagram.com/",
-    collected: "15 JAN 2026",
     note: "Kahn asked the brick what it wanted to be. The brick said 'an arch'. Saved from a friend's story.",
     relations: [
       {
@@ -409,7 +391,6 @@ export const OBJECTS: MuseumObject[] = [
     territory: "architecture",
     source: "Barbican Living",
     sourceUrl: "https://www.barbicanliving.co.uk/",
-    collected: "04 SEP 2026",
     note: "Hated, then listed, then unaffordable. The surface was hammered by hand to expose the aggregate.",
     relations: [{ to: "nakagin", kind: "SAME ERA", why: "Two megastructures that promised a city inside a building; one survived." }],
   },
@@ -425,7 +406,6 @@ export const OBJECTS: MuseumObject[] = [
     territory: "objects",
     source: "Herman Miller",
     sourceUrl: "https://www.hermanmiller.com/",
-    collected: "07 FEB 2026",
     note: "Meant to look like 'a well-used first baseman's mitt'. Debuted on live television, which tells you what 1956 thought of it.",
     relations: [
       { to: "barcelona-chair", kind: "SAME IDEA", why: "Two chairs that became shorthand for 'the good office'." },
@@ -443,7 +423,6 @@ export const OBJECTS: MuseumObject[] = [
     territory: "objects",
     source: "NGV Collection",
     sourceUrl: "https://www.ngv.vic.gov.au/",
-    collected: "23 FEB 2026",
     note: "The frame is a single curve drawn twice. Reich's name was left off for sixty years.",
     relations: [
       { to: "wassily", kind: "SIMILAR MATERIAL LANGUAGE", why: "Bent steel, four years apart — Breuer bicycle-tube, Mies flat bar." },
@@ -459,7 +438,6 @@ export const OBJECTS: MuseumObject[] = [
     territory: "objects",
     source: "Bauhaus-Archiv",
     sourceUrl: "https://www.bauhaus.de/",
-    collected: "19 MAR 2026",
     note: "Breuer got the idea from the handlebars of his Adler bicycle. Named after Kandinsky, who just liked sitting in it.",
     relations: [
       {
@@ -479,7 +457,6 @@ export const OBJECTS: MuseumObject[] = [
     territory: "objects",
     source: "Design Museum",
     sourceUrl: "https://designmuseum.org/",
-    collected: "03 JUN 2026",
     note: "Designed by a car-suspension engineer. It balances the way an arm does, which is why it never feels mechanical.",
     relations: [{ to: "moka", kind: "SAME ERA", why: "1933 and 1935: two household objects that have not needed a redesign since." }],
   },
@@ -492,7 +469,6 @@ export const OBJECTS: MuseumObject[] = [
     territory: "objects",
     source: "eBay",
     sourceUrl: "https://www.ebay.com/",
-    collected: "22 AUG 2026",
     note: "Saved the listing, didn't buy it. The viewfinder is still the best one ever made; everything since has been a compromise.",
     relations: [
       { to: "atget", kind: "SAME IDEA", why: "Atget carried a wooden view camera through Paris; the M3 is what that job became." },
@@ -509,7 +485,6 @@ export const OBJECTS: MuseumObject[] = [
     territory: "objects",
     source: "Wikipedia",
     sourceUrl: "https://en.wikipedia.org/wiki/Moka_pot",
-    collected: "10 JAN 2026",
     note: "The octagon is so that you can grip it with a tea towel. Ninety years and 300 million units.",
     relations: [
       { to: "tizio", kind: "SAME CITY", why: "Italian aluminium, cast for the kitchen and cast for the desk." },
@@ -529,7 +504,6 @@ export const OBJECTS: MuseumObject[] = [
     territory: "objects",
     source: "a Twitter thread",
     sourceUrl: "https://x.com/",
-    collected: "27 MAR 2026",
     note: "Eleven dollars. Seven-year battery. The most-worn watch on Earth and the only one with no target customer.",
     relations: [
       { to: "game-boy", kind: "SAME ERA", why: "1989, grey plastic, monochrome LCD: the year cheap screens became personal." },
@@ -550,7 +524,6 @@ export const OBJECTS: MuseumObject[] = [
     territory: "objects",
     source: "a stationery blog",
     sourceUrl: "https://www.thegentlemanstationer.com/",
-    collected: "18 APR 2026",
     note: "Müller worked for Rams at Braun before this. You can tell: the clip is the only thing that's allowed to shine.",
     relations: [
       {
@@ -572,7 +545,6 @@ export const OBJECTS: MuseumObject[] = [
     territory: "technology",
     source: "Wikipedia",
     sourceUrl: "https://en.wikipedia.org/wiki/IPod_(1st_generation)",
-    collected: "14 MAR 2026",
     note: "A thousand songs in your pocket. The scroll wheel actually turned — it was mechanical for one generation only.",
     relations: [
       { to: "walkman", kind: "PRECURSOR", why: "Same promise, twenty-two years apart: your music, your walk." },
@@ -594,7 +566,6 @@ export const OBJECTS: MuseumObject[] = [
     territory: "technology",
     source: "Wikipedia",
     sourceUrl: "https://en.wikipedia.org/wiki/IMac_G3",
-    collected: "11 JUL 2026",
     note: "It had a handle. Not because you'd carry it, but so you'd trust it enough to touch it.",
     relations: [
       {
@@ -614,7 +585,6 @@ export const OBJECTS: MuseumObject[] = [
     territory: "technology",
     source: "Internet Archive",
     sourceUrl: "https://archive.org/",
-    collected: "24 JAN 2026",
     note: "The screen is set into the case like a face. That's not an accident; the team called it that.",
     relations: [
       { to: "xerox-alto", kind: "INFLUENCE", why: "Everything on the Mac's screen was seen first at PARC in 1979, on this machine." },
@@ -630,7 +600,6 @@ export const OBJECTS: MuseumObject[] = [
     territory: "technology",
     source: "Computer History Museum",
     sourceUrl: "https://computerhistory.org/",
-    collected: "24 JAN 2026",
     note: "The screen is portrait because it was meant to show a page. Fifty years later we're still arguing about that.",
     relations: [
       { to: "next-cern", kind: "SAME IDEA", why: "Two research machines that quietly decided how everyone else would work." },
@@ -647,7 +616,6 @@ export const OBJECTS: MuseumObject[] = [
     territory: "technology",
     source: "Wikipedia",
     sourceUrl: "https://en.wikipedia.org/wiki/Game_Boy",
-    collected: "27 MAR 2026",
     note: "Worse screen than every competitor, and it won. Yokoi called it 'lateral thinking with withered technology'.",
     relations: [
       { to: "walkman", kind: "SAME MAKER", why: "Not the same maker, but the same Japanese idea: take something big, make it yours." },
@@ -664,7 +632,6 @@ export const OBJECTS: MuseumObject[] = [
     territory: "technology",
     source: "eBay",
     sourceUrl: "https://www.ebay.com/",
-    collected: "03 JUN 2026",
     note: "Sapper based it on a Japanese bento box: black, plain, and everything inside arranged. The red dot is still there.",
     relations: [
       {
@@ -683,7 +650,6 @@ export const OBJECTS: MuseumObject[] = [
     territory: "technology",
     source: "a meme",
     sourceUrl: "https://knowyourmeme.com/memes/indestructible-nokia-3310",
-    collected: "06 MAY 2026",
     note: "126 million sold. Saved because the internet decided it was indestructible and then made it true.",
     relations: [{ to: "utah-teapot", kind: "SAME IDEA", why: "Objects the internet adopted and turned into folklore." }],
   },
@@ -697,7 +663,6 @@ export const OBJECTS: MuseumObject[] = [
     territory: "technology",
     source: "CERN",
     sourceUrl: "https://home.cern/science/computing/birth-web",
-    collected: "01 JAN 2026",
     note: "'This machine is a server. DO NOT POWER IT DOWN!!' The first object in this museum, in every sense.",
     relations: [
       { to: "macintosh", kind: "SAME IDEA", why: "Jobs's second computer company built the machine the web was born on." },
@@ -720,7 +685,6 @@ export const OBJECTS: MuseumObject[] = [
     territory: "photography",
     source: "Library of Congress",
     sourceUrl: "https://www.loc.gov/pictures/item/2017762891/",
-    collected: "16 FEB 2026",
     note: "Lange spent ten minutes with her. Florence Owens Thompson hated the photograph for the rest of her life.",
     relations: [
       {
@@ -740,7 +704,6 @@ export const OBJECTS: MuseumObject[] = [
     territory: "photography",
     source: "Library of Congress",
     sourceUrl: "https://www.loc.gov/",
-    collected: "29 MAR 2026",
     note: "Made to settle a bet about whether all four hooves leave the ground. They do. Cinema is a side effect.",
     relations: [
       { to: "cinematographe", kind: "PRECURSOR", why: "Seventeen years from twelve cameras on tripwires to one camera on a tripod." },
@@ -756,7 +719,6 @@ export const OBJECTS: MuseumObject[] = [
     territory: "photography",
     source: "The Met",
     sourceUrl: "https://www.metmuseum.org/",
-    collected: "13 APR 2026",
     note: "He called them 'documents for artists' and sold them for a few francs. Every shopfront in Paris, before it vanished.",
     relations: [
       {
@@ -775,7 +737,6 @@ export const OBJECTS: MuseumObject[] = [
     territory: "photography",
     source: "Rijksmuseum",
     sourceUrl: "https://www.rijksmuseum.nl/",
-    collected: "20 JUL 2026",
     note: "He was teaching sculptors, not making art. The plants look like cast iron because that's what he wanted his students to see.",
     relations: [
       { to: "tizio", kind: "VISUAL RELATIONSHIP", why: "A stem and a lamp: the same cantilever, one grown and one machined." },
@@ -792,7 +753,6 @@ export const OBJECTS: MuseumObject[] = [
     territory: "photography",
     source: "NASA",
     sourceUrl: "https://science.nasa.gov/resource/voyager-1s-pale-blue-dot/",
-    collected: "14 FEB 2026",
     note: "Carl Sagan had to argue for the camera to be turned around. It was almost not taken.",
     relations: [{ to: "golden-record", kind: "SAME MAKER", why: "The same spacecraft: one object looking back, one object sent forward." }],
   },
@@ -808,7 +768,6 @@ export const OBJECTS: MuseumObject[] = [
     territory: "film",
     source: "Staatliche Museen zu Berlin",
     sourceUrl: "https://www.smb.museum/",
-    collected: "02 MAR 2026",
     note: "The city in the poster is better than the city in the film, which is saying something.",
     relations: [
       { to: "nakagin", kind: "SAME IDEA", why: "The vertical city as promise and threat, imagined in 1927 and built in 1972." },
@@ -824,7 +783,6 @@ export const OBJECTS: MuseumObject[] = [
     territory: "film",
     source: "Internet Archive",
     sourceUrl: "https://archive.org/details/ManWithAMovieCamera",
-    collected: "08 MAR 2026",
     note: "A camera on a tripod standing over a city. The first film about looking; every screen recording is its descendant.",
     relations: [
       { to: "cinematographe", kind: "PRECURSOR", why: "Vertov's hero is the machine the Lumières built thirty-four years earlier." },
@@ -839,7 +797,6 @@ export const OBJECTS: MuseumObject[] = [
     territory: "film",
     source: "Wikipedia",
     sourceUrl: "https://en.wikipedia.org/wiki/A_Trip_to_the_Moon",
-    collected: "14 FEB 2026",
     note: "The rocket in the eye. The first special effect anyone remembers, made by a magician with a theatre.",
     relations: [
       { to: "pale-blue-dot", kind: "SAME IDEA", why: "The Moon looked at from Earth in 1902; Earth looked at from past Neptune in 1990." },
@@ -854,7 +811,6 @@ export const OBJECTS: MuseumObject[] = [
     territory: "film",
     source: "Criterion",
     sourceUrl: "https://www.criterion.com/",
-    collected: "16 FEB 2026",
     note: "Ray was a graphic designer first — he drew the storyboards as a book. You can see the layouts in every frame.",
     relations: [
       {
@@ -873,7 +829,6 @@ export const OBJECTS: MuseumObject[] = [
     territory: "film",
     source: "Institut Lumière",
     sourceUrl: "https://www.institut-lumiere.org/",
-    collected: "29 MAR 2026",
     note: "Camera, printer and projector in one wooden box. Hand-cranked at sixteen frames a second.",
     relations: [{ to: "leica-m3", kind: "SAME IDEA", why: "Two instruments from the same lineage — a machine for looking that you hold." }],
   },
@@ -889,7 +844,6 @@ export const OBJECTS: MuseumObject[] = [
     territory: "music",
     source: "YouTube",
     sourceUrl: "https://www.youtube.com/",
-    collected: "05 APR 2026",
     note: "A commercial failure, discontinued after 12,000 units. Then hip-hop found it in pawn shops.",
     relations: [
       {
@@ -911,7 +865,6 @@ export const OBJECTS: MuseumObject[] = [
     territory: "music",
     source: "Wikipedia",
     sourceUrl: "https://en.wikipedia.org/wiki/Technics_SL-1200",
-    collected: "05 APR 2026",
     note: "Made for hi-fi shops, adopted by DJs because the motor was strong enough to be pushed backwards.",
     relations: [{ to: "walkman", kind: "SAME ERA", why: "Japan, the seventies: one machine for the room and one for the street." }],
   },
@@ -925,7 +878,6 @@ export const OBJECTS: MuseumObject[] = [
     territory: "music",
     source: "Teenage Engineering",
     sourceUrl: "https://teenage.engineering/products/op-1",
-    collected: "14 MAR 2026",
     note: "Stockholm's answer to Braun. The whole company is a Rams tribute that plays music.",
     relations: [
       {
@@ -946,7 +898,6 @@ export const OBJECTS: MuseumObject[] = [
     territory: "music",
     source: "Wikipedia",
     sourceUrl: "https://en.wikipedia.org/wiki/Walkman",
-    collected: "14 MAR 2026",
     note: "Two headphone jacks, because Sony assumed nobody would want to listen alone. They were wrong within a year.",
     relations: [{ to: "game-boy", kind: "SAME IDEA", why: "The two objects that turned a commute into private time." }],
   },
@@ -960,7 +911,6 @@ export const OBJECTS: MuseumObject[] = [
     territory: "music",
     source: "NASA",
     sourceUrl: "https://voyager.jpl.nasa.gov/golden-record/",
-    collected: "14 FEB 2026",
     note: "A record sleeve with playback instructions for aliens. The most optimistic piece of graphic design ever made.",
     relations: [
       { to: "sl-1200", kind: "SAME IDEA", why: "1972 and 1977: the record as a machine-readable object, on Earth and off it." },
@@ -983,7 +933,6 @@ export const OBJECTS: MuseumObject[] = [
     territory: "oddities",
     source: "Computer History Museum",
     sourceUrl: "https://computerhistory.org/",
-    collected: "31 JAN 2026",
     note: "Newell needed something to render, and his wife suggested the teapot on the table. It's been in every 3D program since, and in Toy Story.",
     relations: [
       {
@@ -1004,7 +953,6 @@ export const OBJECTS: MuseumObject[] = [
     territory: "oddities",
     source: "Stanford Graphics Lab",
     sourceUrl: "https://graphics.stanford.edu/data/3Dscanrep/",
-    collected: "31 JAN 2026",
     note: "The original rabbit was bought at a garden shop on University Avenue. It's still on Levoy's desk.",
     relations: [{ to: "blossfeldt", kind: "SAME IDEA", why: "Reference forms made for other people to work from." }],
   },
@@ -1018,7 +966,6 @@ export const OBJECTS: MuseumObject[] = [
     territory: "oddities",
     source: "Wikipedia",
     sourceUrl: "https://en.wikipedia.org/wiki/Comic_Sans",
-    collected: "01 APR 2026",
     note: "Designed for Microsoft Bob's speech bubbles. Never used there. Used everywhere else. Dyslexic readers love it, and they're right.",
     relations: [
       { to: "helvetica", kind: "VISUAL RELATIONSHIP", why: "The two most-hated typefaces on the internet, hated for opposite reasons." },
@@ -1034,7 +981,6 @@ export const OBJECTS: MuseumObject[] = [
     territory: "oddities",
     source: "Google Patents",
     sourceUrl: "https://patents.google.com/patent/US3005282A/en",
-    collected: "12 MAY 2026",
     note: "Filed in 1958, the same year as the T3. Every brick made since still fits the ones from this drawing.",
     relations: [
       { to: "braun-t3", kind: "SAME ERA", why: "1958: a radio and a brick, two systems designed to still work sixty years later." },

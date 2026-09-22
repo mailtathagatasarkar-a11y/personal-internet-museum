@@ -92,12 +92,6 @@ export function DetailPanel({
         <div style={{ marginTop: 20 }}>
           <div className="row">
             <span className="mono" style={{ color: "var(--ink-3)" }}>
-              Collected
-            </span>
-            <span className="mono">{obj.collected}</span>
-          </div>
-          <div className="row">
-            <span className="mono" style={{ color: "var(--ink-3)" }}>
               Source
             </span>
             <span className="mono">
