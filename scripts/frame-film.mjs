@@ -32,6 +32,13 @@ const TRIM = num("--trim", 1.4);
 const DUR = num("--dur", 32.6);
 const STILL = num("--still", null);
 const GROUND = flag("--ground", "ink");
+/**
+ * `--frame 1080x1350` overrides the 3:2 ground and fills it: a portrait
+ * thumbnail wants the museum edge to edge, not a landscape window letterboxed
+ * inside a card that is already a frame. The window is then larger than the
+ * frame and pans across it.
+ */
+const FRAME = flag("--frame", null);
 const FPS = 30;
 
 const CACHE = path.resolve(".cache/film");
@@ -49,8 +56,11 @@ const even = (n) => Math.round(n / 2) * 2;
 
 /** At rest the window sits inset by this much of the frame, on the long side. */
 const INSET = 0.037;
-const FRAME_W = even(W / (1 - INSET * 2));
-const FRAME_H = even(FRAME_W / 1.5);
+const [FRAME_W, FRAME_H] = FRAME
+  ? FRAME.split("x").map((n) => even(Number(n)))
+  : [even(W / (1 - INSET * 2)), even(even(W / (1 - INSET * 2)) / 1.5)];
+/** Filling the frame: the window covers it, so there is no ground to see. */
+const FULL = Boolean(FRAME);
 const RADIUS = 20;
 /** How far the shadow reaches past the window at rest. */
 const SPREAD = 150;
@@ -59,7 +69,27 @@ const SPREAD = 150;
 // [second, scale, focus x, focus y] — the focus point of the window, in its
 // own 0..1 coordinates, is what sits at the centre of the frame. Scale 1 is
 // the window at its recorded size, inset in the frame.
-const MOVES = [
+/**
+ * Filling a portrait frame, the window is scaled so its height matches and it
+ * runs off both sides; the moves then choose which slice of the room is in
+ * frame, which is all a thumbnail has room to say.
+ */
+const PORTRAIT_MOVES = [
+  [0.0, 1.5, 0.3, 0.5], // arriving: the room's first line, whole
+  [5.0, 1.5, 0.32, 0.5],
+  [6.6, 1.5, 0.4, 0.5],
+  [7.4, 1.62, 0.33, 0.5], // the object being opened
+  [10.6, 1.62, 0.36, 0.5],
+  [11.4, 1.7, 0.45, 0.5], // the object and the note that explains it
+  [14.4, 1.7, 0.47, 0.5],
+  [15.2, 1.62, 0.38, 0.5], // travelling to the next object
+  [18.4, 1.62, 0.44, 0.5],
+  [19.4, 1.5, 0.42, 0.5], // back out, and the walk through the rooms
+  [26.0, 1.5, 0.48, 0.5],
+  [32.6, 1.5, 0.4, 0.5],
+];
+
+const LANDSCAPE_MOVES = [
   [0.0, 1.0, 0.5, 0.5], // arriving: the whole room
   [6.6, 1.0, 0.5, 0.5],
   [7.4, 1.34, 0.4, 0.52], // toward the object being opened
@@ -71,6 +101,8 @@ const MOVES = [
   [19.4, 1.0, 0.5, 0.5], // back out: the thread across the whole room
   [32.6, 1.0, 0.5, 0.5],
 ];
+
+const MOVES = FULL ? PORTRAIT_MOVES : LANDSCAPE_MOVES;
 
 const smooth = (t) => t * t * (3 - 2 * t);
 function stateAt(t) {
@@ -175,17 +207,15 @@ async function compose(frameRaw, t) {
   const y = FRAME_H / 2 - fy * h;
 
   const layers = [];
-  const sw = Math.round((W + SPREAD * 2) * scale);
-  const sh = Math.round((H + SPREAD * 2) * scale);
-  const shadow = await place(await shadowFor(sw, sh), sw, sh, x - SPREAD * scale, y - SPREAD * scale);
-  if (shadow) layers.push(shadow);
+  if (!FULL) {
+    const sw = Math.round((W + SPREAD * 2) * scale);
+    const sh = Math.round((H + SPREAD * 2) * scale);
+    const shadow = await place(await shadowFor(sw, sh), sw, sh, x - SPREAD * scale, y - SPREAD * scale);
+    if (shadow) layers.push(shadow);
+  }
 
-  const win = await sharp(frameRaw, { raw: { width: W, height: H, channels: 3 } })
-    .resize(w, h)
-    .composite([{ input: maskFor(w, h), blend: "dest-in" }])
-    .ensureAlpha()
-    .raw()
-    .toBuffer();
+  const shaped = sharp(frameRaw, { raw: { width: W, height: H, channels: 3 } }).resize(w, h);
+  const win = await (FULL ? shaped : shaped.composite([{ input: maskFor(w, h), blend: "dest-in" }])).ensureAlpha().raw().toBuffer();
   const placed = await place(win, w, h, x, y);
   if (placed) layers.push(placed);
 

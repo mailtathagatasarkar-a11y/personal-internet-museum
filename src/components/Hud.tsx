@@ -218,7 +218,7 @@ export function Dots({ rooms, current, hint, narrow, onGo }: DotsProps) {
   if (narrow) {
     // On a phone the dots are the left half of the band, beside the controls.
     return (
-      <div className="hud dots" data-hud style={{ left: 18, bottom: 12, display: "flex", alignItems: "center", gap: 12 }}>
+      <div className="hud dots" data-hud style={{ left: 18, bottom: 12, display: "flex", alignItems: "center" }}>
         <div style={{ display: "flex", gap: 13, alignItems: "center" }}>
           {rooms.map((r) => (
             <button
@@ -231,11 +231,8 @@ export function Dots({ rooms, current, hint, narrow, onGo }: DotsProps) {
             />
           ))}
         </div>
-        {hint && (
-          <span className="mono dots-name" data-hint>
-            pick a room
-          </span>
-        )}
+        {/* No nudge here: the band is narrow, and a row of dots on a phone
+            asks to be tapped without being told. */}
       </div>
     );
   }

@@ -179,7 +179,7 @@ export const COLLECTION = {
    * Where a visitor can buy the collector a coffee. Empty means the link is
    * not shown at all — better nothing than a link to the wrong person.
    */
-  coffee: "",
+  coffee: "https://buymeacoffee.com/98kid",
 } as const;
 
 export function accession(n: number): string {
