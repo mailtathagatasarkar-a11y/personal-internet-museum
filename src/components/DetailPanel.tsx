@@ -53,7 +53,7 @@ export function DetailPanel({
       transition={{ duration: 0.7, delay: 0.45, ease: [0.2, 0, 0, 1] }}
       style={
         narrow
-          ? { left: 0, right: 0, top: "46vh", bottom: 48, overflowY: "auto" }
+          ? { left: 0, right: 0, top: "44vh", bottom: 62, overflowY: "auto" }
           : { left: "62vw", width: "min(34vw, 500px)", top: 0, bottom: 56, overflowY: "auto" }
       }
     >

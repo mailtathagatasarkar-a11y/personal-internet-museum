@@ -217,6 +217,21 @@ body {
   opacity: 0.68;
 }
 
+/* On a phone the HUD gets a band of paper of its own at the foot of the
+   screen, so nothing it says ever lands on an object or on the reading
+   column. The museum stops where the band begins. */
+.band {
+  position: fixed;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  height: 54px;
+  z-index: 44;
+  background: var(--paper);
+  border-top: 1px solid var(--rule);
+  pointer-events: none;
+}
+
 /* The dots: one per room, the current one filled. */
 .dot {
   width: 9px;
@@ -247,6 +262,7 @@ body {
   text-transform: uppercase;
   font-size: 10px;
   min-height: 12px;
+  white-space: nowrap;
 }
 .dots-name[data-hint] {
   color: var(--ink-3);

@@ -175,6 +175,11 @@ export const COLLECTION = {
   total: PLACED.length,
   rooms: ROOMS.length,
   since: 2026,
+  /**
+   * Where a visitor can buy the collector a coffee. Empty means the link is
+   * not shown at all — better nothing than a link to the wrong person.
+   */
+  coffee: "",
 } as const;
 
 export function accession(n: number): string {

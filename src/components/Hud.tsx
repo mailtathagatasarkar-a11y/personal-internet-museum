@@ -9,11 +9,12 @@ import type { Thread } from "@/data/threads";
 /* ─── Masthead ───────────────────────────────────────────────────────── */
 
 export function Masthead({ large, narrow, onReset }: { large: boolean; narrow: boolean; onReset: () => void }) {
+  if (narrow) return null;
   return (
-    <div className="hud" style={{ left: narrow ? 20 : 28, bottom: narrow ? 16 : 22 }} data-hud>
+    <div className="hud" style={{ left: 28, bottom: 22 }} data-hud>
       <div className="paper-strip">
         <AnimatePresence initial={false}>
-          {large && !narrow && (
+          {large && (
             <motion.div
               className="mono"
               initial={{ opacity: 0 }}
@@ -29,6 +30,13 @@ export function Masthead({ large, narrow, onReset }: { large: boolean; narrow: b
         <button type="button" className="hud-link wordmark" onClick={onReset} aria-label="Return to the whole museum">
           {COLLECTION.subtitle}
         </button>
+        {COLLECTION.coffee && (
+          <div className="mono" style={{ marginTop: 6 }}>
+            <a className="hud-link" href={COLLECTION.coffee} target="_blank" rel="noreferrer" style={{ color: "var(--ink-3)" }}>
+              Buy me a coffee ↗
+            </a>
+          </div>
+        )}
       </div>
     </div>
   );
@@ -50,8 +58,12 @@ interface ControlsProps {
 export function Controls({ onReset, onSearch, onDrift, onZoom, onHelp, searchOpen, legendOpen, narrow }: ControlsProps) {
   return (
     <div
-      className="hud mono paper-strip"
-      style={{ right: narrow ? 20 : 28, bottom: narrow ? 52 : 22, display: "flex", gap: narrow ? 16 : 22, alignItems: "baseline" }}
+      className={`hud mono${narrow ? "" : " paper-strip"}`}
+      style={
+        narrow
+          ? { right: 18, bottom: 14, display: "flex", gap: 18, alignItems: "baseline" }
+          : { right: 28, bottom: 22, display: "flex", gap: 22, alignItems: "baseline" }
+      }
       data-hud
     >
       <button type="button" className="hud-link" onClick={onReset} title="The whole museum (0)">
@@ -63,36 +75,46 @@ export function Controls({ onReset, onSearch, onDrift, onZoom, onHelp, searchOpe
       <button type="button" className="hud-link" onClick={onDrift} title="Somewhere far from here (D)">
         Drift
       </button>
-      <span style={{ display: "inline-flex", gap: 14 }}>
-        <button
-          type="button"
-          className="hud-link"
-          onClick={() => onZoom(-1)}
-          aria-label="Zoom out"
-          style={{ width: 14, textAlign: "center" }}
-        >
-          −
-        </button>
-        <button
-          type="button"
-          className="hud-link"
-          onClick={() => onZoom(1)}
-          aria-label="Zoom in"
-          style={{ width: 14, textAlign: "center" }}
-        >
-          +
-        </button>
-      </span>
-      <button
-        type="button"
-        className="hud-link"
-        onClick={onHelp}
-        aria-current={legendOpen}
-        aria-label="Keys"
-        style={{ width: 14, textAlign: "center" }}
-      >
-        ?
-      </button>
+      {narrow && COLLECTION.coffee && (
+        <a className="hud-link" href={COLLECTION.coffee} target="_blank" rel="noreferrer" title="Buy me a coffee">
+          Coffee
+        </a>
+      )}
+      {/* A phone pinches and double-taps to zoom, and has no keys to list. */}
+      {!narrow && (
+        <>
+          <span style={{ display: "inline-flex", gap: 14 }}>
+            <button
+              type="button"
+              className="hud-link"
+              onClick={() => onZoom(-1)}
+              aria-label="Zoom out"
+              style={{ width: 14, textAlign: "center" }}
+            >
+              −
+            </button>
+            <button
+              type="button"
+              className="hud-link"
+              onClick={() => onZoom(1)}
+              aria-label="Zoom in"
+              style={{ width: 14, textAlign: "center" }}
+            >
+              +
+            </button>
+          </span>
+          <button
+            type="button"
+            className="hud-link"
+            onClick={onHelp}
+            aria-current={legendOpen}
+            aria-label="Keys"
+            style={{ width: 14, textAlign: "center" }}
+          >
+            ?
+          </button>
+        </>
+      )}
     </div>
   );
 }
@@ -193,8 +215,32 @@ interface DotsProps {
 export function Dots({ rooms, current, hint, narrow, onGo }: DotsProps) {
   const [hover, setHover] = useState<number | null>(null);
   const shown = hover ?? current;
+  if (narrow) {
+    // On a phone the dots are the left half of the band, beside the controls.
+    return (
+      <div className="hud dots" data-hud style={{ left: 18, bottom: 12, display: "flex", alignItems: "center", gap: 12 }}>
+        <div style={{ display: "flex", gap: 13, alignItems: "center" }}>
+          {rooms.map((r) => (
+            <button
+              key={r.id}
+              type="button"
+              className="dot"
+              aria-label={`Room ${r.number} · ${r.name}`}
+              aria-current={r.index === current}
+              onClick={() => onGo(r.index)}
+            />
+          ))}
+        </div>
+        {hint && (
+          <span className="mono dots-name" data-hint>
+            pick a room
+          </span>
+        )}
+      </div>
+    );
+  }
   return (
-    <div className="hud dots" data-hud style={{ left: "50%", bottom: narrow ? 92 : 22, transform: "translateX(-50%)" }}>
+    <div className="hud dots" data-hud style={{ left: "50%", bottom: 22, transform: "translateX(-50%)" }}>
       <div className="paper-strip" style={{ display: "flex", flexDirection: "column", alignItems: "center", gap: 8 }}>
         <div className="mono dots-name" data-hint={hint && hover === null ? true : undefined}>
           {hover !== null ? (
@@ -238,8 +284,20 @@ export function Dots({ rooms, current, hint, narrow, onGo }: DotsProps) {
 
 /* ─── Trail: where did I come from ───────────────────────────────────── */
 
-export function Trail({ ids, current, onSelect }: { ids: string[]; current: string | null; onSelect: (id: string) => void }) {
-  if (ids.length === 0) return null;
+export function Trail({
+  ids,
+  current,
+  narrow,
+  onSelect,
+}: {
+  ids: string[];
+  current: string | null;
+  narrow: boolean;
+  onSelect: (id: string) => void;
+}) {
+  // On a phone the reading column already names where you are; the trail would
+  // sit on top of the readout.
+  if (narrow || ids.length === 0) return null;
   return (
     <div className="hud mono" style={{ right: 28, top: 26, textAlign: "right", color: "var(--ink-3)" }} data-hud>
       <div>
@@ -264,9 +322,30 @@ export function Trail({ ids, current, onSelect }: { ids: string[]; current: stri
 
 /* ─── Thread banner ──────────────────────────────────────────────────── */
 
-export function ThreadBanner({ thread, condensed, onClose }: { thread: Thread; condensed: boolean; onClose: () => void }) {
+export function ThreadBanner({
+  thread,
+  condensed,
+  narrow,
+  onClose,
+}: {
+  thread: Thread;
+  condensed: boolean;
+  narrow: boolean;
+  onClose: () => void;
+}) {
   return (
-    <div className="hud" data-hud style={{ left: "50%", top: 30, transform: "translateX(-50%)", textAlign: "center", maxWidth: 520 }}>
+    <div
+      className="hud"
+      data-hud
+      // Clear of the readout, which on a phone runs under where this sits.
+      style={{
+        left: "50%",
+        top: narrow ? 48 : 30,
+        transform: "translateX(-50%)",
+        textAlign: "center",
+        maxWidth: narrow ? "calc(100vw - 36px)" : 520,
+      }}
+    >
       <motion.div
         className="sheet"
         initial={{ opacity: 0, y: -8 }}

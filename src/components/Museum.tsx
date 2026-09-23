@@ -16,6 +16,7 @@ import {
   cellY,
   placedById,
   slotCenter,
+  slotLeft,
   slotRoom,
   territoryById,
   threadById,
@@ -45,6 +46,9 @@ const LAST_ROOM = ROOM_PLACES.length - 1;
 const slotAt = (wx: number) => Math.round((wx - ROOM_SIZE.w / 2) / STRIDE);
 /** How far the paper reaches over the hall on either side of the room in focus. */
 const VEIL_REACH = STRIDE * 3;
+/** A phone keeps the readout clear at the top and the HUD's band at the foot. */
+const PHONE_TOP = 52;
+const PHONE_BAND = 62;
 
 const smooth = (a: number, b: number, v: number) => {
   const t = clamp((v - a) / (b - a), 0, 1);
@@ -105,18 +109,19 @@ export default function Museum() {
   /** The camera is in motion: every room is at full strength while travelling. */
   const [moving, setMoving] = useState(false);
 
-  // Fit one slot: the poster view. A phone is too narrow for a poster, so it
-  // starts inside the room's first territory at a readable size and pans.
+  // Fit one slot: the poster view. A phone is too narrow for a whole poster,
+  // so it takes the room's height and pans across its width.
   const homeCamera = useCallback((atSlot: number = slotRef.current) => {
     const vp = vpRef.current;
-    const index = slotRoom(atSlot);
     const c = slotCenter(atSlot);
     if (vp.w < 760) {
-      const s = Math.max(fitScale(vp, ROOM, 24), Math.min(0.24, (vp.h - 120) / ROOM_SIZE.h));
-      const first = TERRITORY_PLACES.find((t) => t.room === index);
-      // The same point of the room, wherever in the ring this slot is.
-      if (first) return centerOn(vp, first.center.x - ROOM_PLACES[index].left + atSlot * STRIDE, first.center.y, s);
-      return centerOn(vp, c.x, c.y, s);
+      // The room's whole height, between the readout and the band, opened at
+      // its left edge so its first line reads: a phone takes a room as a tall
+      // strip and pans across it.
+      const s = Math.max(fitScale(vp, ROOM, 24), (vp.h - PHONE_TOP - PHONE_BAND) / ROOM_SIZE.h);
+      const cx = slotLeft(atSlot) + vp.w / 2 / s;
+      // Centred vertically on the room, then nudged down for the band's share.
+      return centerOn(vp, cx, c.y + (PHONE_TOP - PHONE_BAND) / 2 / s, s);
     }
     // Centred exactly, so the zoom floor and the poster agree to the pixel.
     return centerOn(vp, c.x, c.y, fitScale(vp, ROOM, 44));
@@ -510,8 +515,11 @@ export default function Museum() {
     setHot(null);
     setPreviewThreadId(null);
     if (o) {
-      // Step back to the wall the object hangs on.
-      camera.flyTo(centerOn(vpRef.current, o.x, o.y, clamp(0.5, minScale(), 0.6)), { duration: 0.8, lift: false });
+      // Step back to the wall the object hangs on — on a phone that is barely
+      // more than the room itself, or you are left standing inside one print.
+      const floor = minScale();
+      const vp = vpRef.current;
+      camera.flyTo(centerOn(vp, o.x, o.y, vp.w < 760 ? floor * 1.6 : clamp(0.5, floor, 0.6)), { duration: 0.8, lift: false });
     }
   }, [camera, minScale]);
 
@@ -533,7 +541,8 @@ export default function Museum() {
         return;
       }
       const rect = union(t.members.map((m) => rectOf(placedById[m])));
-      camera.flyTo(constrain(fitRect(rect, vp, Math.min(140, vp.w * 0.12), minScale(), 0.8), vp, WORLD_SIZE));
+      const pad = vp.w < 760 ? 26 : Math.min(140, vp.w * 0.12);
+      camera.flyTo(constrain(fitRect(rect, vp, pad, minScale(), 0.8), vp, WORLD_SIZE));
     },
     [camera, homeCamera, minScale],
   );
@@ -852,8 +861,9 @@ export default function Museum() {
 
       {still ? null : (
         <>
+          {narrow && <div className="band" aria-hidden="true" />}
           <Masthead large={(tier === "far" || entering) && !selected && !thread} narrow={narrow} onReset={reset} />
-          <Trail ids={narrow ? trail.slice(-2) : trail} current={selectedId} onSelect={select} />
+          <Trail ids={trail} current={selectedId} narrow={narrow} onSelect={select} />
           <Readout
             room={ROOM_PLACES[selected ? selected.room : room]}
             place={selected ? territoryById[selected.territory].name : place.label}
@@ -879,7 +889,9 @@ export default function Museum() {
       )}
 
       <AnimatePresence>
-        {thread && <ThreadBanner key={thread.id} thread={thread} condensed={!!selected} onClose={() => setThreadId(null)} />}
+        {thread && (
+          <ThreadBanner key={thread.id} thread={thread} condensed={!!selected} narrow={narrow} onClose={() => setThreadId(null)} />
+        )}
       </AnimatePresence>
 
       {/* Behind whatever is open, the museum recedes. */}
